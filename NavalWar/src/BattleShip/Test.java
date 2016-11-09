@@ -19,6 +19,7 @@ public class Test {
 //		System.out.println(flotte);
 		System.out.println("Test de position : "+flotte.isSomethingHere(newPos));
 		System.out.println("Porte-Avions coulé ? "+flotte.isDown("Porte-Avions"));
+		System.out.println("Tous les bateaux sont coulés ? "+flotte.areAllDown());
 		System.out.println("");
 		
 		int i,j;

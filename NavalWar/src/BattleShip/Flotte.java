@@ -18,8 +18,29 @@ public class Flotte {
 	
 	public void setPosition(String nomBateau, int[] refPosition, String direction) {
 		int i = this.getIdBateau(nomBateau);
-		if(i > -1)
-			bateaux[i].setPositions(refPosition, direction);
+		if(i > -1) {
+			int newPos[][] = {{-1,-1},{-1,-1},{-1,-1},{-1,-1},{-1,-1}};
+			int tempPos[] = {-1,-1};
+			int x = refPosition[0];
+			int y = refPosition[1];
+			int j;
+			boolean conflit = false;
+
+			for (j = 0; j < bateaux[i].getNbrCases(); j++) {
+				newPos[j][0] = x;
+				newPos[j][1] = y;
+				tempPos[0] = x;
+				tempPos[1] = y;
+				if(this.isSomethingHere(tempPos))
+					conflit = true;
+				if(direction.equals("horizontale"))
+					y++;
+				else
+					x++;
+			}
+			if(!conflit)
+				bateaux[i].setPositions(newPos);
+		}
 	}
 	
 	public boolean isSomethingHere(int[] newPos) {
@@ -27,7 +48,7 @@ public class Flotte {
 		
 		for (Bateau b : bateaux) {
 			for (int[] pos : b.getPositions()) {
-				if(pos[0] == newPos[0] && pos[1] == newPos[1])
+				if(pos[0] != -1 && pos[1] != -1 && pos[0] == newPos[0] && pos[1] == newPos[1])
 					result = true;
 			}
 		}
@@ -43,13 +64,12 @@ public class Flotte {
 		return result;
 	}
 	
-	@Override
-	public String toString() {
-		String str = "";
+	public boolean areAllDown() {
+		boolean result = true;
 		for (Bateau b : bateaux) {
-			str += b.toString()+"\n";
+			result &= b.isDown();
 		}
-		return str;
+		return result;
 	}
 	
 	private int getIdBateau(String nomBateau) {
@@ -59,6 +79,15 @@ public class Flotte {
 		if(i == -1 && i >= bateaux.length)
 			i = -1;
 		return i;
+	}
+	
+	@Override
+	public String toString() {
+		String str = "";
+		for (Bateau b : bateaux) {
+			str += b.toString()+"\n";
+		}
+		return str;
 	}
 	
 }
