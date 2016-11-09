@@ -10,7 +10,7 @@ public class Test {
 		int[] newPos4 = {7,2};
 		int[] newPos5 = {1,8};
 		
-		Flotte flotte = new Flotte();
+		/*Flotte flotte = new Flotte();
 		flotte.setPosition("Porte-Avions", newPos2, "verticale");
 		flotte.setPosition("Croiseur", newPos, "horizontale");
 		flotte.setPosition("Sous-Marin", newPos3, "horizontale");
@@ -22,7 +22,11 @@ public class Test {
 		System.out.println("Tous les bateaux sont coulés ? "+flotte.areAllDown());
 		System.out.println("");
 		
-		System.out.println(flotte);
+		System.out.println(flotte);*/
+		
+		Ocean oc = new Ocean();
+		
+		System.out.println(oc.wasAlreadyAttacked("me", newPos));
 		
 	}
 	

@@ -20,5 +20,20 @@ public class Ocean {
 	
 	private boolean[][] tirsFromEnnemi = tirsFromMe.clone();
 	
+	public boolean wasAlreadyAttacked(String from, int[] coord) {
+		boolean result = false;
+		boolean[][] temp;
+		if(from.equals("me"))
+			temp = tirsFromMe;
+		else
+			temp = tirsFromEnnemi;
+		
+		int x = coord[0];
+		int y = coord[1];
+		if(temp[x][y])
+			result = true;
+		
+		return result;
+	}
 	
 }
