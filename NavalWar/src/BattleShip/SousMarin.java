@@ -1,8 +1,8 @@
 package BattleShip;
 
-public class Croiseur extends Bateau {
+public class SousMarin extends Bateau {
 	
-	public Croiseur() {
+	public SousMarin() {
 		
 		this.nom = "SousMarin";
 		this.nbrCases = 3;
