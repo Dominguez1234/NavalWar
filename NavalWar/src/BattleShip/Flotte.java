@@ -64,6 +64,14 @@ public class Flotte {
 		return result;
 	}
 	
+	public boolean areAllDown() {
+		boolean result = true;
+		for (Bateau b : bateaux) {
+			result &= b.isDown();
+		}
+		return result;
+	}
+	
 	private int getIdBateau(String nomBateau) {
 		int i=0;
 		while(i < bateaux.length && !bateaux[i].getNom().equals(nomBateau))
