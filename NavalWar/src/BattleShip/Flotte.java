@@ -21,10 +21,15 @@ public class Flotte {
 			bateaux[i].setPositions(refPosition, direction);
 	}
 	
-	public boolean isSomethingHere(int[] pos) {
+	public boolean isSomethingHere(int[] newPos) {
 		boolean result = false;
 		
-		
+		for (Bateau b : bateaux) {
+			for (int[] pos : b.getPositions()) {
+				if(pos[0] == newPos[0] && pos[1] == newPos[1])
+					result = true;
+			}
+		}
 		
 		return result;
 	}
