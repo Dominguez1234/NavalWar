@@ -4,7 +4,10 @@ public class Flotte {
 	
 	private Bateau bateaux[] = {
 		new PorteAvions(),
-		new Croiseur()
+		new Croiseur(),
+		new Destroyer(),
+		new SousMarin(),
+		new Patrouilleur()
 	};
 	
 	public void Bateau() {
