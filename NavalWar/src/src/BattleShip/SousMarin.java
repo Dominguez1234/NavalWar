@@ -4,7 +4,7 @@ public class Croiseur extends Bateau {
 	
 	public Croiseur() {
 		
-		this.nom = "Sous-Marin";
+		this.nom = "SousMarin";
 		this.nbrCases = 3;
 		
 	}
