@@ -10,8 +10,8 @@ public abstract class Bateau {
 	
 	protected void setPositions(int[][] newPositions) {
 		for (int i = 0; i < newPositions.length; i++) {
-			this.positions[i][0] = newPositions[i][0];
-			this.positions[i][1] = newPositions[i][1];
+			this.positions[i][0] = newPositions[i][0];	// x
+			this.positions[i][1] = newPositions[i][1];	// y
 		}
 	}
 	

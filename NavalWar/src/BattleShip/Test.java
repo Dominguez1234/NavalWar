@@ -16,25 +16,13 @@ public class Test {
 		flotte.setPosition("Sous-Marin", newPos3, "horizontale");
 		flotte.setPosition("Destroyer", newPos4, "verticale");
 		flotte.setPosition("Patrouilleur", newPos5, "verticale");
-//		System.out.println(flotte);
+		
 		System.out.println("Test de position : "+flotte.isSomethingHere(newPos));
 		System.out.println("Porte-Avions coulé ? "+flotte.isDown("Porte-Avions"));
 		System.out.println("Tous les bateaux sont coulés ? "+flotte.areAllDown());
 		System.out.println("");
 		
-		int i,j;
-		int[] p = {-1,-1};
-		for (i = 0; i < 10; i++) {
-			for (j = 0; j < 10; j++) {
-				p[0] = i;
-				p[1] = j;
-				if(flotte.isSomethingHere(p))
-					System.out.print("X  ");
-				else
-					System.out.print("-  ");
-			}
-			System.out.println("");
-		}
+		System.out.println(flotte);
 		
 	}
 	
