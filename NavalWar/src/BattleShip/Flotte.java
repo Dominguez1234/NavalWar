@@ -14,10 +14,8 @@ public class Flotte {
 	}
 	
 	public void setPosition(String nomBateau, int[] refPosition, String direction) {
-		int i=0;
-		while(i < bateaux.length && !bateaux[i].getNom().equals(nomBateau))
-			i++;
-		if(i > -1 && i < bateaux.length)
+		int i = this.getIdBateau(nomBateau);
+		if(i > -1)
 			bateaux[i].setPositions(refPosition, direction);
 	}
 	
@@ -34,6 +32,14 @@ public class Flotte {
 		return result;
 	}
 	
+	public boolean isDown(String nomBateau) {
+		int i = this.getIdBateau(nomBateau);
+		boolean result = false;
+		if(i > -1)
+			result = bateaux[i].isDown();
+		return result;
+	}
+	
 	@Override
 	public String toString() {
 		String str = "";
@@ -41,6 +47,15 @@ public class Flotte {
 			str += b.toString()+"\n";
 		}
 		return str;
+	}
+	
+	private int getIdBateau(String nomBateau) {
+		int i=0;
+		while(i < bateaux.length && !bateaux[i].getNom().equals(nomBateau))
+			i++;
+		if(i == -1 && i >= bateaux.length)
+			i = -1;
+		return i;
 	}
 	
 }
