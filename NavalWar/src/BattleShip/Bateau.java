@@ -8,22 +8,10 @@ public abstract class Bateau {
 	protected int nbrCasesTouchees = 0;
 	protected int positions[][] = {{-1,-1},{-1,-1},{-1,-1},{-1,-1},{-1,-1}};
 	
-	protected void setPositions(int newPos[][]) {
-		this.positions = newPos;
-	}
-	
-	protected void setPositions(int ref[], String direction) {
-		int x = ref[0];
-		int y = ref[1];
-		int i;
-
-		for (i = 0; i < nbrCases; i++) {
-			this.positions[i][0] = x;
-			this.positions[i][1] = y;
-			if(direction.equals("horizontale"))
-				y++;
-			else
-				x++;
+	protected void setPositions(int[][] newPositions) {
+		for (int i = 0; i < newPositions.length; i++) {
+			this.positions[i][0] = newPositions[i][0];
+			this.positions[i][1] = newPositions[i][1];
 		}
 	}
 	
