@@ -4,7 +4,7 @@ public class SousMarin extends Bateau {
 	
 	public SousMarin() {
 		
-		this.nom = "SousMarin";
+		this.nom = "Sous-Marin";
 		this.nbrCases = 3;
 		
 	}

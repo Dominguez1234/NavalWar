@@ -21,9 +21,9 @@ public abstract class Bateau {
 			this.positions[i][0] = x;
 			this.positions[i][1] = y;
 			if(direction.equals("horizontale"))
-				x++;
-			else
 				y++;
+			else
+				x++;
 		}
 	}
 	
