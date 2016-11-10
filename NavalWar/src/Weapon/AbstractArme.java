@@ -14,13 +14,13 @@ public abstract class AbstractArme implements Arme {
 	
 	public abstract String[] needBoat();
 	
-	public int[] zoneImpact(Coord coord) {
-		int[] tabCoord = {this.coord.x,this.coord.y};
-		return tabCoord;
-	}
+	public abstract Coord[] zoneImpact();
 	
 	public int getX() {
 		return this.coord.x;	
+	}
+	public Coord getCoord(){
+		return this.coord;
 	}
 	
 	public int getY() {
@@ -34,6 +34,8 @@ public abstract class AbstractArme implements Arme {
 
 	public static void main(String[] args){
 		Arme missile = new Missile(new Coord (-1,22));
+		Arme nuke = new Nuke(new Coord (1,2));
+		System.out.println(nuke);
 		System.out.println(missile);
 	}
 
@@ -41,7 +43,7 @@ public abstract class AbstractArme implements Arme {
 	public String toString() {
 		return "AbstractArme [coord=" + coord + ", needBoat()=" + Arrays.toString(needBoat()) + ", getName()="
 				+ getName() + ", zoneImpact()="
-						+ zoneImpact(coord) + "]";
+						+ Arrays.toString(zoneImpact()) + "]";
 	}
 
 
