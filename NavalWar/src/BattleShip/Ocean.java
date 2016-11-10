@@ -36,4 +36,21 @@ public class Ocean {
 		return result;
 	}
 	
+	@Override
+	public String toString() {
+		String str = "";
+		
+		for (boolean[] bs : tirsFromMe) {
+			for (boolean b : bs) {
+				if(b) 
+					str += "X ";
+				else
+					str += "- ";
+			}
+			str += "\n";
+		}
+		str += "\n";
+		return str;
+	}
+	
 }

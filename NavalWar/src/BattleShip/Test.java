@@ -25,6 +25,7 @@ public class Test {
 		System.out.println(flotte);*/
 		
 		Ocean oc = new Ocean();
+		System.out.println(oc);
 		
 		System.out.println(oc.wasAlreadyAttacked("me", newPos));
 		
