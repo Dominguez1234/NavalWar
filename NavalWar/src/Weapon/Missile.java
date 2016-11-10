@@ -9,7 +9,7 @@ public class Missile extends Arme {
 	}
 
 	public String[] needBoat() {
-		String tab[] = {"Sous-Marin", "Croiseur", "Patrouilleur","Porte-Avion","Destroyer"};
+		String tab[] = {"Sous-Marin", "Croiseur", "Patrouilleur","Porte-Avions","Destroyer"};
 		return tab;
 	}
 
