@@ -24,7 +24,7 @@ public class Client {
 
 		try {
 		
-			socket = new Socket("134.214.50.83",2009);	
+			socket = new Socket("134.214.50.83",2009+);	
 		    System.out.println("Demande de connexion");
 		    System.out.println("Saississez votre pseudo:");
 		    String nom = sc.nextLine();
