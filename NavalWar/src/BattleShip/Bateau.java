@@ -14,6 +14,11 @@ public abstract class Bateau {
 		new Coord(-1,-1)
 	};
 	
+	public static enum direction {
+		horizontale,
+		verticale
+	}
+	
 	protected void setPositions(Coord[] newPositions) {
 		for (int i = 0; i < newPositions.length; i++) {
 			this.positions[i].x = newPositions[i].x;	// x
@@ -42,6 +47,10 @@ public abstract class Bateau {
 		if(this.nbrCasesTouchees >= this.nbrCases)
 			down = true;
 		return down;
+	}
+	
+	public void fire() {
+		this.nbrCasesTouchees++;
 	}
 	
 	@Override
