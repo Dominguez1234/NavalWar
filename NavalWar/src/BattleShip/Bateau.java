@@ -6,7 +6,6 @@ public abstract class Bateau {
 	protected int nbrCases = 0;
 	
 	protected int nbrCasesTouchees = 0;
-//	protected int positions[][] = {{-1,-1},{-1,-1},{-1,-1},{-1,-1},{-1,-1}};
 	protected Coord positions[] = {
 		new Coord(-1,-1), 
 		new Coord(-1,-1), 
@@ -15,23 +14,12 @@ public abstract class Bateau {
 		new Coord(-1,-1)
 	};
 	
-//	protected void setPositions(int[][] newPositions) {
-//		for (int i = 0; i < newPositions.length; i++) {
-//			this.positions[i][0] = newPositions[i][0];	// x
-//			this.positions[i][1] = newPositions[i][1];	// y
-//		}
-//	}
-	
 	protected void setPositions(Coord[] newPositions) {
 		for (int i = 0; i < newPositions.length; i++) {
 			this.positions[i].x = newPositions[i].x;	// x
 			this.positions[i].y = newPositions[i].y;	// y
 		}
 	}
-	
-//	public int[][] getPositions() {
-//		return this.positions;
-//	}
 	
 	public Coord[] getPositions() {
 		return this.positions;
