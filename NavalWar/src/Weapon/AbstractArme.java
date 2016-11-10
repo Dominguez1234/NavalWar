@@ -1,5 +1,9 @@
 package Weapon;
 
+import java.util.Arrays;
+
+import BattleShip.Coord;
+
 public abstract class AbstractArme implements Arme {
 	
 	public AbstractArme(Coord coord){
@@ -8,9 +12,12 @@ public abstract class AbstractArme implements Arme {
 	}
 	Coord coord;
 	
-	public abstract void needBoat();
+	public abstract String[] needBoat();
 	
-	public abstract void zoneImpact();
+	public int[] zoneImpact(Coord coord) {
+		int[] tabCoord = {this.coord.x,this.coord.y};
+		return tabCoord;
+	}
 	
 	public int getX() {
 		return this.coord.x;	
@@ -24,13 +31,18 @@ public abstract class AbstractArme implements Arme {
 	}
 
 
-	@Override
-	public String toString() {
-		return "AbstractArme [coord=" + coord + ", getName()=" + getName() + "]";
-	}
+
 	public static void main(String[] args){
 		Arme missile = new Missile(new Coord (-1,22));
 		System.out.println(missile);
-		System.out.println(Coord.coordonnees_valides(-1, 22));
 	}
+
+	@Override
+	public String toString() {
+		return "AbstractArme [coord=" + coord + ", needBoat()=" + Arrays.toString(needBoat()) + ", getName()="
+				+ getName() + ", zoneImpact()="
+						+ zoneImpact(coord) + "]";
+	}
+
+
 }

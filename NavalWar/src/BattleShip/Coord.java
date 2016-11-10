@@ -1,4 +1,4 @@
-package Weapon;
+package BattleShip;
 import java.io.Serializable;
 
 public class Coord implements Serializable {
