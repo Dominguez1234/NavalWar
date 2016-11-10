@@ -6,16 +6,27 @@ public abstract class Bateau {
 	protected int nbrCases = 0;
 	
 	protected int nbrCasesTouchees = 0;
-	protected int positions[][] = {{-1,-1},{-1,-1},{-1,-1},{-1,-1},{-1,-1}};
+	protected Coord positions[] = {
+		new Coord(-1,-1), 
+		new Coord(-1,-1), 
+		new Coord(-1,-1), 
+		new Coord(-1,-1), 
+		new Coord(-1,-1)
+	};
 	
-	protected void setPositions(int[][] newPositions) {
+	public static enum direction {
+		horizontale,
+		verticale
+	}
+	
+	protected void setPositions(Coord[] newPositions) {
 		for (int i = 0; i < newPositions.length; i++) {
-			this.positions[i][0] = newPositions[i][0];
-			this.positions[i][1] = newPositions[i][1];
+			this.positions[i].x = newPositions[i].x;	// x
+			this.positions[i].y = newPositions[i].y;	// y
 		}
 	}
 	
-	public int[][] getPositions() {
+	public Coord[] getPositions() {
 		return this.positions;
 	}
 	
@@ -38,11 +49,15 @@ public abstract class Bateau {
 		return down;
 	}
 	
+	public void fire() {
+		this.nbrCasesTouchees++;
+	}
+	
 	@Override
 	public String toString() {
 		String str = this.nom+" - "+this.nbrCases+" cases ("+this.nbrCasesTouchees+" touchées)\nPositions : ";
-		for (int[] pos : this.positions) {
-			str += "["+pos[0]+";"+pos[1]+"] ";
+		for (Coord pos : this.positions) {
+			str += "["+pos.x+";"+pos.y+"] ";
 		}
 		
 		str += "\nCoulé : "+this.isDown()+"\n";

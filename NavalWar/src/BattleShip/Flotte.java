@@ -16,42 +16,51 @@ public class Flotte {
 		
 	}
 	
-	public void setPosition(String nomBateau, int[] refPosition, String direction) {
+	public void setPosition(String nomBateau, Coord refPosition, Bateau.direction direction) {
 		int i = this.getIdBateau(nomBateau);
 		if(i > -1) {
-			int newPos[][] = {{-1,-1},{-1,-1},{-1,-1},{-1,-1},{-1,-1}};
-			int tempPos[] = {-1,-1};
-			int x = refPosition[0];
-			int y = refPosition[1];
+			Coord newPos[] = {
+					new Coord(-1,-1), 
+					new Coord(-1,-1), 
+					new Coord(-1,-1), 
+					new Coord(-1,-1), 
+					new Coord(-1,-1)
+				};
 			int j;
 			boolean conflit = false;
+			Coord ref = new Coord(refPosition.x, refPosition.y);
 
 			for (j = 0; j < bateaux[i].getNbrCases(); j++) {
-				newPos[j][0] = x;
-				newPos[j][1] = y;
-				tempPos[0] = x;
-				tempPos[1] = y;
-				if(this.isSomethingHere(tempPos))
+				newPos[j].x = ref.x;
+				newPos[j].y = ref.y;
+				if(this.isSomethingHere(newPos[j]))
 					conflit = true;
-				if(direction.equals("horizontale"))
-					y++;
+				if(direction.equals(Bateau.direction.horizontale))
+					ref.y++;
 				else
-					x++;
+					ref.x++;
 			}
 			if(!conflit)
 				bateaux[i].setPositions(newPos);
 		}
 	}
 	
-	public boolean isSomethingHere(int[] newPos) {
-		boolean result = false;
-		
+	public String whoIsHere(Coord pos) {
+		String result = "NULL";
 		for (Bateau b : bateaux) {
-			for (int[] pos : b.getPositions()) {
-				if(pos[0] != -1 && pos[1] != -1 && pos[0] == newPos[0] && pos[1] == newPos[1])
-					result = true;
+			for (Coord c : b.getPositions()) {
+				if(c.x != -1 && c.y != -1 && c.x == pos.x && c.y == pos.y)
+					result = b.getNom();
 			}
 		}
+		return result;
+	}
+	
+	public boolean isSomethingHere(Coord newPos) {
+		boolean result = false;
+		
+		if(!whoIsHere(newPos).equals("NULL"))
+			result = true;
 		
 		return result;
 	}
@@ -64,12 +73,26 @@ public class Flotte {
 		return result;
 	}
 	
+	public boolean isDown(Coord pos) {
+		boolean result = false;
+		int id = this.getIdBateau(pos);
+		if(id > -1)
+			result = bateaux[id].isDown();
+		return result;
+	}
+	
 	public boolean areAllDown() {
 		boolean result = true;
 		for (Bateau b : bateaux) {
 			result &= b.isDown();
 		}
 		return result;
+	}
+	
+	public void fire(Coord pos) {
+		int id = this.getIdBateau(pos);
+		if(id > -1)
+			bateaux[id].fire();
 	}
 	
 	private int getIdBateau(String nomBateau) {
@@ -81,11 +104,34 @@ public class Flotte {
 		return i;
 	}
 	
+	private int getIdBateau(Coord position) {
+		int id = -1;
+		String name = this.whoIsHere(position);
+		if(!name.equals("NULL")) {
+			id = this.getIdBateau(name);
+		}
+		return id;
+	}
+	
 	@Override
 	public String toString() {
 		String str = "";
 		for (Bateau b : bateaux) {
 			str += b.toString()+"\n";
+		}
+		
+		int i,j;
+		Coord p = new Coord(-1,-1);
+		for (i = 0; i < 10; i++) {
+			for (j = 0; j < 10; j++) {
+				p.x = i;
+				p.y = j;
+				if(this.isSomethingHere(p))
+					str += "X  ";
+				else
+					str += "-  ";
+			}
+			str += "\n";
 		}
 		return str;
 	}
