@@ -1,4 +1,5 @@
 package BattleShip;
+import Weapon.*;
 
 public class Test {
 	
@@ -30,18 +31,21 @@ public class Test {
 		
 		System.out.println(flotte);*/
 		
-		Ocean oc = new Ocean();
-		oc.monJeu.setPosition("Porte-Avions", pos1, Bateau.direction.verticale);
-		oc.monJeu.setPosition("Croiseur", pos2, Bateau.direction.horizontale);
-		oc.monJeu.setPosition("Sous-Marin", pos3, Bateau.direction.horizontale);
-		oc.monJeu.setPosition("Destroyer", pos4, Bateau.direction.verticale);
-		oc.monJeu.setPosition("Patrouilleur", pos5, Bateau.direction.verticale);
-		System.out.println(oc.monJeu);
-		System.out.println(oc);
-		System.out.println(oc.fire(pos5));
-		System.out.println(oc);
-		System.out.println(oc.fire(new Coord(2,8)));
-		System.out.println(oc);
+//		Ocean oc = new Ocean();
+//		oc.monJeu.setPosition("Porte-Avions", pos1, Bateau.direction.verticale);
+//		oc.monJeu.setPosition("Croiseur", pos2, Bateau.direction.horizontale);
+//		oc.monJeu.setPosition("Sous-Marin", pos3, Bateau.direction.horizontale);
+//		oc.monJeu.setPosition("Destroyer", pos4, Bateau.direction.verticale);
+//		oc.monJeu.setPosition("Patrouilleur", pos5, Bateau.direction.verticale);
+//		System.out.println(oc.monJeu);
+//		System.out.println(oc);
+//		System.out.println(oc.fire(pos5));
+//		System.out.println(oc);
+//		System.out.println(oc.fire(new Coord(2,8)));
+//		System.out.println(oc);
+		
+		Missile m = new Missile();
+		System.out.println(m);
 		
 		
 	}
