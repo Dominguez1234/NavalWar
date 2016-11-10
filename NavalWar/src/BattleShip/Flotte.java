@@ -19,19 +19,22 @@ public class Flotte {
 	public void setPosition(String nomBateau, int[] refPosition, String direction) {
 		int i = this.getIdBateau(nomBateau);
 		if(i > -1) {
-			int newPos[][] = {{-1,-1},{-1,-1},{-1,-1},{-1,-1},{-1,-1}};
-			int tempPos[] = {-1,-1};
+			Coord newPos[] = {
+					new Coord(-1,-1), 
+					new Coord(-1,-1), 
+					new Coord(-1,-1), 
+					new Coord(-1,-1), 
+					new Coord(-1,-1)
+				};
 			int x = refPosition[0];
 			int y = refPosition[1];
 			int j;
 			boolean conflit = false;
 
 			for (j = 0; j < bateaux[i].getNbrCases(); j++) {
-				newPos[j][0] = x;
-				newPos[j][1] = y;
-				tempPos[0] = x;
-				tempPos[1] = y;
-				if(this.isSomethingHere(tempPos))
+				newPos[j].x = x;
+				newPos[j].y = y;
+				if(this.isSomethingHere(newPos[j]))
 					conflit = true;
 				if(direction.equals("horizontale"))
 					y++;
@@ -43,12 +46,12 @@ public class Flotte {
 		}
 	}
 	
-	public boolean isSomethingHere(int[] newPos) {
+	public boolean isSomethingHere(Coord newPos) {
 		boolean result = false;
 		
 		for (Bateau b : bateaux) {
-			for (int[] pos : b.getPositions()) {
-				if(pos[0] != -1 && pos[1] != -1 && pos[0] == newPos[0] && pos[1] == newPos[1])
+			for (Coord pos : b.getPositions()) {
+				if(pos.x != -1 && pos.y != -1 && pos.x == newPos.x && pos.y == newPos.y)
 					result = true;
 			}
 		}
@@ -89,11 +92,11 @@ public class Flotte {
 		}
 		
 		int i,j;
-		int[] p = {-1,-1};
+		Coord p = new Coord(-1,-1);
 		for (i = 0; i < 10; i++) {
 			for (j = 0; j < 10; j++) {
-				p[0] = i;
-				p[1] = j;
+				p.x = i;
+				p.y = j;
 				if(this.isSomethingHere(p))
 					str += "X  ";
 				else

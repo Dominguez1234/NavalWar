@@ -1,7 +1,6 @@
 package BattleShip;
-import java.io.Serializable;
 
-public class Coord implements Serializable {
+public class Coord {
 		public int x,y;
 		
 		public Coord(int x, int y){
