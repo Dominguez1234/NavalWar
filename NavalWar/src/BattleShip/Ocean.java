@@ -20,10 +20,15 @@ public class Ocean {
 	
 	private boolean[][] tirsFromEnnemi = tirsFromMe.clone();
 	
-	public boolean wasAlreadyAttacked(String from, Coord coord) {
+	public static enum joueur {
+		moi,
+		ennemi
+	}
+	
+	public boolean wasAlreadyAttacked(Ocean.joueur from, Coord coord) {
 		boolean result = false;
 		boolean[][] temp;
-		if(from.equals("me"))
+		if(from.equals(Ocean.joueur.moi))
 			temp = tirsFromMe;
 		else
 			temp = tirsFromEnnemi;
@@ -36,7 +41,7 @@ public class Ocean {
 	public String fire(Coord tir) {
 		String str = "";
 		if(tir.coordonnees_valides()) {
-			if(!this.wasAlreadyAttacked("me", tir)) {
+			if(!this.wasAlreadyAttacked(Ocean.joueur.moi, tir)) {
 				this.tirsFromEnnemi[tir.x][tir.y] = true;
 				if(this.monJeu.isSomethingHere(tir)) {
 					str = "Touché ! ";
@@ -54,6 +59,15 @@ public class Ocean {
 			str = "Coordonnées invalides";
 		
 		return str;
+	}
+	
+	public boolean isDown(Ocean.joueur flotte, String nomBateau) {
+		boolean result = false;
+		if(flotte.equals(Ocean.joueur.moi))
+			result = monJeu.isDown(nomBateau);
+		else
+			result = ennemi.isDown(nomBateau);
+		return result;
 	}
 	
 	@Override
