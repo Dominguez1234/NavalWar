@@ -11,7 +11,7 @@ public abstract class Arme {
 	public String getName() {
 		return this.name;
 	}
-	
+
 	public abstract String[] needBoat();
 	public abstract Coord[] zoneImpact(Coord cible);
 	
