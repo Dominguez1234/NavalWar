@@ -24,22 +24,28 @@ public class Client {
 
 		try {
 		
-			socket = new Socket("134.214.50.83",2002);	
+			socket = new Socket("134.214.50.83",2009);	
 		    System.out.println("Demande de connexion");
+		    System.out.println("Saississez votre pseudo:");
+		    String nom = sc.nextLine();
+		    out = new PrintWriter(socket.getOutputStream());
+		    out.println(nom);
+		    out.flush();
 
-		    in = new BufferedReader (new InputStreamReader (socket.getInputStream()));
 		    while(i==1){
-		    	
+		    	//lecture
+		    	in = new BufferedReader (new InputStreamReader (socket.getInputStream()));
 			    String message_distant = in.readLine();
 			    System.out.println(message_distant);
 			    //String request = System.in.read();
-			    System.out.println("Que voulez vous envoyer? :");
+			    //écriture
+			    System.out.println("Votre message:");
 			    String str = sc.nextLine();
 			    out = new PrintWriter(socket.getOutputStream());
 			    out.println(str);
 			    out.flush();
 			    
-			    if (str=="fin"){
+			    if (str.equals("fin")){
 			    	socket.close();
 			    	System.out.println("deconnexion");
 			    }
