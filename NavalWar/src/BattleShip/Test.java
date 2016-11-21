@@ -1,4 +1,5 @@
 package BattleShip;
+import Boats.Bateau;
 import Weapon.*;
 
 public class Test {
