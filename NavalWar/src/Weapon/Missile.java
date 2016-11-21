@@ -12,10 +12,12 @@ public class Missile extends Arme {
 		String tab[] = {"Sous-Marin", "Croiseur", "Patrouilleur","Porte-Avions","Destroyer"};
 		return tab;
 	}
-
-	public Coord[] zoneImpact(Coord cible) {
+	@Override
+	public Coord[] zoneImpact(Coord cible, Sens sens) {
 		Coord tabCoord[] = {cible};
 		return tabCoord;
 	}
+
+	
 
 }
