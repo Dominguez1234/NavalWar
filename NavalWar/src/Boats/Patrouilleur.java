@@ -1,7 +1,5 @@
 package Boats;
 
-import BattleShip.Bateau;
-
 public class Patrouilleur extends Bateau {
 	
 	public Patrouilleur() {

@@ -1,15 +1,15 @@
 package Weapon;
 
+import java.util.ArrayList;
+
 import BattleShip.Coord;
 
-public class Nuke extends Arme {
-	public void Nuke() {
-		
-	}
+public class Nuke extends Arme {	
+	public Nuke() {
+		this.name = "Nuke";
+		this.needBat.add("Destroyer");
+		this.needBat.add("Croiseur");
 
-	public String[] needBoat() {
-		String tab[] = {"Destroyer", "Croiseur"};
-		return tab;
 	}
 	
 	@Override
@@ -30,6 +30,7 @@ public class Nuke extends Arme {
 		 new Coord(x-1,y-1),
 		 new Coord(x-1,y+1),
 		 new Coord(x+1,y-1)};
+
 		return tabCoord;
 	}
 }

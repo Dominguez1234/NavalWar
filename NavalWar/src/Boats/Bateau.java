@@ -1,4 +1,6 @@
-package BattleShip;
+package Boats;
+
+import BattleShip.Coord;
 
 public abstract class Bateau {
 	
@@ -19,7 +21,7 @@ public abstract class Bateau {
 		verticale
 	}
 	
-	protected void setPositions(Coord[] newPositions) {
+	public void setPositions(Coord[] newPositions) {
 		for (int i = 0; i < newPositions.length; i++) {
 			this.positions[i].x = newPositions[i].x;	// x
 			this.positions[i].y = newPositions[i].y;	// y
