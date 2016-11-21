@@ -1,4 +1,5 @@
 package BattleShip;
+import Boats.Bateau;
 import Weapon.*;
 
 public class Test {
@@ -44,24 +45,28 @@ public class Test {
 //		System.out.println(oc.fire(new Coord(2,8)));
 //		System.out.println(oc);
 		
-		Missile m = new Missile();
+//		Missile m = new Missile();
 //		Nuke m = new Nuke();
-		System.out.println("a :"+m+"\n");
-		String[] needs = m.needBoat();
-		Boolean tirPossible = false;
-		for (String n : needs) {
-			if(!oc.isDown(Ocean.joueur.moi, n)) {
-				tirPossible |= true;
-			}
-		}
-		if(tirPossible) {
-			Coord[] cibles = m.zoneImpact(new Coord(5, 5));
-			for (Coord tir : cibles) {
-				System.out.println("["+tir.x+";"+tir.y+"] "+oc.fire(tir));
-			}
-		} else
-			System.out.println("Aucun de vos bateau de peut tirer cette arme.");
-		System.out.println(oc);
+//		System.out.println("a :"+m+"\n");
+//		String[] needs = m.needBoat();
+//		Boolean tirPossible = false;
+//		for (String n : needs) {
+//			if(!oc.isDown(Ocean.joueur.moi, n)) {
+//				tirPossible |= true;
+//			}
+//		}
+//		if(tirPossible) {
+//			Coord[] cibles = m.zoneImpact(new Coord(5, 5));
+//			for (Coord tir : cibles) {
+//				System.out.println("["+tir.x+";"+tir.y+"] "+oc.fire(tir));
+//			}
+//		} else
+//			System.out.println("Aucun de vos bateau de peut tirer cette arme.");
+//		System.out.println(oc);
+		
+		Nuke m = new Nuke();
+		System.out.println(m);
+		
 		
 	}
 	

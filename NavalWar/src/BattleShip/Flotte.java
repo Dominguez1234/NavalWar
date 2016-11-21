@@ -1,5 +1,6 @@
 package BattleShip;
 
+import Boats.Bateau;
 import Boats.Croiseur;
 import Boats.Destroyer;
 import Boats.Patrouilleur;

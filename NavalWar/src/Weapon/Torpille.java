@@ -3,14 +3,10 @@ package Weapon;
 import BattleShip.Coord;
 
 public class Torpille extends Arme {
-	public void Torpille(Coord cible,int sens){
-		
-	}
-
-	@Override
-	public String[] needBoat() {
-		String tab[] = {"Sous-Marin"};
-		return tab;
+	
+	public void Torpille(){
+		this.name = "Torpille";
+		this.needBat.add("Sous-Marin");
 	}
 
 	@Override
