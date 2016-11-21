@@ -30,7 +30,7 @@ public class Serveur {
 		        System.out.println("Un joueur s'est connecté");
 		        
 		        out = new PrintWriter(socketduserveur.getOutputStream());
-		        out.println("Vous êtes connecté au serveur NAVALOIRE ! Username : ");
+		        out.println("Vous êtes connecté au serveur NAVALOIRE !");
 		        out.flush();
 		        
 		        in = new BufferedReader(new InputStreamReader(socketduserveur.getInputStream()));
@@ -48,6 +48,7 @@ public class Serveur {
 		        	String str = sc.nextLine();		        	
 		        	out.println(str);
 		        	out.flush();
+		        	System.out.println("Attendez que "+username+" ait envoyé un message\n");
 		        	if(str.equals("fin")){
 		        		socketduserveur.close();
 				        socketserver.close();
