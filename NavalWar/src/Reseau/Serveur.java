@@ -15,7 +15,6 @@ public class Serveur {
 	
 	public static void main(String[] zero) {
 		
-		
 		ServerSocket socketserver  ;
 		Socket socketduserveur;
 		BufferedReader in;
@@ -24,7 +23,7 @@ public class Serveur {
 		
 		try {
 		
-			socketserver = new ServerSocket(2009);
+			socketserver = new ServerSocket(2010);
 			System.out.println("Le serveur est à l'écoute du port "+socketserver.getLocalPort());
 			socketduserveur = socketserver.accept(); 
 		        System.out.println("Un joueur s'est connecté");
@@ -36,9 +35,10 @@ public class Serveur {
 		        in = new BufferedReader(new InputStreamReader(socketduserveur.getInputStream()));
 	        	String username = in.readLine();
 	        	System.out.println("Le joueur s'appelle : "+username);
-	        	
+	        	System.out.println("Attendez que "+username+" commence la conversation\n");
 		        int i=1;
 		        while(i==1){
+		        	
 		        	in = new BufferedReader(new InputStreamReader(socketduserveur.getInputStream()));
 		        	String message = in.readLine();
 		        	System.out.println(username+" dit : "+message);
@@ -48,7 +48,8 @@ public class Serveur {
 		        	String str = sc.nextLine();		        	
 		        	out.println(str);
 		        	out.flush();
-		        	System.out.println("Attendez que "+username+" ait envoyé un message\n");
+		        	System.out.println("Attendez que "+username+" réponde\n");
+		        	
 		        	if(str.equals("fin")){
 		        		socketduserveur.close();
 				        socketserver.close();
