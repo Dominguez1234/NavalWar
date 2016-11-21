@@ -3,7 +3,8 @@ package Weapon;
 import BattleShip.Coord;
 
 public class Nuke extends Arme {
-	public void Nuke(Coord coord) {
+	
+	public void Nuke() {
 		
 	}
 

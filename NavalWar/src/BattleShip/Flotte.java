@@ -1,5 +1,11 @@
 package BattleShip;
 
+import Boats.Croiseur;
+import Boats.Destroyer;
+import Boats.Patrouilleur;
+import Boats.PorteAvions;
+import Boats.SousMarin;
+
 public class Flotte {
 	
 	private Bateau bateaux[] = {
