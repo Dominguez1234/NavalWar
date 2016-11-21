@@ -1,4 +1,6 @@
-package BattleShip;
+package Boats;
+
+import BattleShip.Bateau;
 
 public class Croiseur extends Bateau {
 	
