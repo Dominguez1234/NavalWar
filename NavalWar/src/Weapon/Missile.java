@@ -12,10 +12,12 @@ public class Missile extends Arme {
 		this.needBat.add("Croiseur");
 		this.needBat.add("Patrouilleur");
 	}
-
-	public Coord[] zoneImpact(Coord cible) {
+	@Override
+	public Coord[] zoneImpact(Coord cible, Sens sens) {
 		Coord tabCoord[] = {cible};
 		return tabCoord;
 	}
+
+	
 
 }
