@@ -1,16 +1,15 @@
 package Weapon;
 
+import java.util.ArrayList;
+
 import BattleShip.Coord;
 
 public class Nuke extends Arme {
 	
-	public void Nuke(Coord coord) {
-		
-	}
-
-	public String[] needBoat() {
-		String tab[] = {"Destroyer", "Croiseur"};
-		return tab;
+	public Nuke() {
+		this.name = "Nuke";
+		this.needBat.add("Destroyer");
+		this.needBat.add("Croiseur");
 	}
 
 	public Coord[] zoneImpact(Coord cible) {

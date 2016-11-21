@@ -4,13 +4,13 @@ import BattleShip.Coord;
 
 public class Missile extends Arme {
 	
-	public void Missile() {
-		
-	}
-
-	public String[] needBoat() {
-		String tab[] = {"Sous-Marin", "Croiseur", "Patrouilleur","Porte-Avions","Destroyer"};
-		return tab;
+	public Missile() {
+		this.name = "Missile";
+		this.needBat.add("Porte-Avions");
+		this.needBat.add("Destroyer");
+		this.needBat.add("Sous-Marin");
+		this.needBat.add("Croiseur");
+		this.needBat.add("Patrouilleur");
 	}
 
 	public Coord[] zoneImpact(Coord cible) {
