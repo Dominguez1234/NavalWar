@@ -4,7 +4,7 @@ import BattleShip.Coord;
 
 public class Missile extends Arme {
 	
-	public void Missile(Coord coord) {
+	public void Missile() {
 		
 	}
 

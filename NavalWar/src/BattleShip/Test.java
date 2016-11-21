@@ -46,7 +46,7 @@ public class Test {
 		
 		Missile m = new Missile();
 //		Nuke m = new Nuke();
-		System.out.println(m+"\n");
+		System.out.println("a :"+m+"\n");
 		String[] needs = m.needBoat();
 		Boolean tirPossible = false;
 		for (String n : needs) {
