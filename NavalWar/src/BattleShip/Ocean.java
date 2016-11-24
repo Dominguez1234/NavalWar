@@ -1,50 +1,74 @@
 package BattleShip;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import Weapon.*;
+
 public class Ocean {
 	
 	public Flotte monJeu = new Flotte();
 	private Flotte ennemi = new Flotte();
 	
-	private boolean[][] tirsFromMe = {
-			{false,false,false,false,false,false,false,false,false,false},
-			{false,false,false,false,false,false,false,false,false,false},
-			{false,false,false,false,false,false,false,false,false,false},
-			{false,false,false,false,false,false,false,false,false,false},
-			{false,false,false,false,false,false,false,false,false,false},
-			{false,false,false,false,false,false,false,false,false,false},
-			{false,false,false,false,false,false,false,false,false,false},
-			{false,false,false,false,false,false,false,false,false,false},
-			{false,false,false,false,false,false,false,false,false,false},
-			{false,false,false,false,false,false,false,false,false,false}
+	private static Map<String, Arme> lArmes = new LinkedHashMap<>();
+	
+	private Touche t = new Touche();
+	private Touche[][] tirsFromMe = {
+			{new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche()},
+			{new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche()},
+			{new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche()},
+			{new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche()},
+			{new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche()},
+			{new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche()},
+			{new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche()},
+			{new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche()},
+			{new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche()},
+			{new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche()}
 	};
 	
-	private boolean[][] tirsFromEnnemi = tirsFromMe.clone();
+	private Touche[][] tirsFromEnnemi = tirsFromMe.clone();
 	
 	public static enum joueur {
 		moi,
 		ennemi
 	}
 	
+	public static enum modeJeu {
+		NORMAL,
+		TOTALWAR
+	}
+	
+	public Ocean(Ocean.modeJeu mode) {
+		lArmes.put("Missile", new Missile());
+		
+		if(mode.equals(Ocean.modeJeu.TOTALWAR)) {
+			lArmes.put("Nuke", new Nuke());
+			lArmes.put("Torpille", new Torpille());
+			lArmes.put("Avion", new Avion());
+		}
+	}
+	
 	public boolean wasAlreadyAttacked(Ocean.joueur from, Coord coord) {
 		boolean result = false;
-		boolean[][] temp;
+		Touche[][] temp;
 		if(from.equals(Ocean.joueur.moi))
 			temp = tirsFromMe;
 		else
 			temp = tirsFromEnnemi;
 		
-		result = temp[coord.x][coord.y];
+		result = temp[coord.x][coord.y].isTargeted;
 		
 		return result;
 	}
 	
-	public String fire(Coord tir) {
+	public String fire(Coord tir, String arme) {
 		String str = "";
 		if(tir.coordonnees_valides()) {
 			if(!this.wasAlreadyAttacked(Ocean.joueur.moi, tir)) {
-				this.tirsFromEnnemi[tir.x][tir.y] = true;
+				this.tirsFromEnnemi[tir.x][tir.y].isTargeted = true;
 				if(this.monJeu.isSomethingHere(tir)) {
 					str = "Touché ! ";
+					this.tirsFromEnnemi[tir.x][tir.y].isTouche = true;
 					this.monJeu.fire(tir);
 					if(this.monJeu.isDown(tir)) {
 						str += "Coulé ! ";
@@ -74,12 +98,9 @@ public class Ocean {
 	public String toString() {
 		String str = "";
 		
-		for (boolean[] bs : tirsFromMe) {
-			for (boolean b : bs) {
-				if(b) 
-					str += "X  ";
-				else
-					str += "-  ";
+		for (Touche[] bs : tirsFromMe) {
+			for (Touche b : bs) {
+				str += b+"  ";
 			}
 			str += "\n";
 		}
