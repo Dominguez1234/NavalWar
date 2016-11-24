@@ -1,5 +1,7 @@
 package Weapon;
 
+import java.util.ArrayList;
+
 import BattleShip.Coord;
 
 public class Missile extends Arme {
@@ -13,9 +15,10 @@ public class Missile extends Arme {
 		this.needBat.add("Patrouilleur");
 	}
 	@Override
-	public Coord[] zoneImpact(Coord cible, Sens sens) {
-		Coord tabCoord[] = {cible};
-		return tabCoord;
+	public  ArrayList<Coord> zoneImpact(Coord cible, Sens sens) {
+		ArrayList<Coord> listCoord = new ArrayList<Coord>();
+		listCoord.add(cible);
+		return listCoord;
 	}
 
 	
