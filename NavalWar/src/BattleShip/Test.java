@@ -64,8 +64,9 @@ public class Test {
 //			System.out.println("Aucun de vos bateau de peut tirer cette arme.");
 //		System.out.println(oc);
 		
-		Nuke m = new Nuke();
+		Torpille m = new Torpille();
 		System.out.println(m);
+		System.out.println(m.zoneImpact(new Coord(1,1), Arme.Sens.VERTICAL));
 		
 		
 	}

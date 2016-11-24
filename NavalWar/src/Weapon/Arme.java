@@ -16,11 +16,11 @@ public abstract class Arme {
 	protected String name;
 	protected ArrayList<String> needBat = new ArrayList<String>();
 	
+	public abstract ArrayList<Coord> zoneImpact(Coord cible, Sens sens);
+	
 	public String getName() {
 		return this.name;
 	}
-
-	public abstract Coord[] zoneImpact(Coord cible, Sens sens);
 	
 	public ArrayList<String> getNeedBoat() {
 		return this.needBat;
