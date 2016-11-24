@@ -3,7 +3,6 @@ package Weapon;
 import java.util.ArrayList;
 
 import BattleShip.Coord;
-import Weapon.Arme.Sens;
 
 public class Avion extends Arme{
 
