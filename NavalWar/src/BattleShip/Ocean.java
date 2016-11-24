@@ -1,9 +1,16 @@
 package BattleShip;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import Weapon.*;
+
 public class Ocean {
 	
 	public Flotte monJeu = new Flotte();
 	private Flotte ennemi = new Flotte();
+	
+	private static Map<String, Arme> lArmes = new LinkedHashMap<>();
 	
 	private boolean[][] tirsFromMe = {
 			{false,false,false,false,false,false,false,false,false,false},
@@ -25,6 +32,21 @@ public class Ocean {
 		ennemi
 	}
 	
+	public static enum modeJeu {
+		NORMAL,
+		TOTALWAR
+	}
+	
+	public Ocean(Ocean.modeJeu mode) {
+		lArmes.put("Missile", new Missile());
+		
+		if(mode.equals(Ocean.modeJeu.TOTALWAR)) {
+			lArmes.put("Nuke", new Nuke());
+			lArmes.put("Torpille", new Torpille());
+			lArmes.put("Avion", new Avion());
+		}
+	}
+	
 	public boolean wasAlreadyAttacked(Ocean.joueur from, Coord coord) {
 		boolean result = false;
 		boolean[][] temp;
@@ -38,7 +60,7 @@ public class Ocean {
 		return result;
 	}
 	
-	public String fire(Coord tir) {
+	public String fire(Coord tir, String arme) {
 		String str = "";
 		if(tir.coordonnees_valides()) {
 			if(!this.wasAlreadyAttacked(Ocean.joueur.moi, tir)) {
