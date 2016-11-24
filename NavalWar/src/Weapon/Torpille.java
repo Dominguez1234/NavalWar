@@ -8,7 +8,6 @@ public class Torpille extends Arme {
 	public void Torpille(){
 		this.name = "Torpille";
 		this.needBat.add("Sous-Marin");
-
 	}
 
 	@Override
@@ -18,16 +17,10 @@ public class Torpille extends Arme {
 		int i;
 		Coord[] tabCoord = new Coord[10];
 		for(i=0;i<10;i++){
-		if (sens.equals(Sens.HORIZONTAL)){
-				tabCoord[i] = new Coord(x,i);
-					
-		}
-				else{ 
-					if (sens.equals(Sens.VERTICAL)){
-						tabCoord[i] = new Coord(i,y);
-					}
-					else{}
-				}
+			if (sens.equals(Sens.HORIZONTAL))
+				tabCoord[i] = new Coord(x,i);	
+			else
+				tabCoord[i] = new Coord(i,y);
 		}
 		return tabCoord;
 		
