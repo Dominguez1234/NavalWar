@@ -1,5 +1,6 @@
 package BattleShip;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -10,7 +11,7 @@ public class Ocean {
 	public Flotte monJeu = new Flotte();
 	private Flotte ennemi = new Flotte();
 	
-	private static Map<String, Arme> lArmes = new LinkedHashMap<>();
+	private Map<String, Arme> lArmes = new LinkedHashMap<>();
 	
 	private Touche t = new Touche();
 	private Touche[][] tirsFromMe = {
@@ -61,26 +62,43 @@ public class Ocean {
 		return result;
 	}
 	
-	public String fire(Coord tir, String arme) {
+	public String fire(Coord cible, String arme, Arme.Sens sens) {
+		// ----------------- VERSION TEMPORAIRE -----------------
 		String str = "";
-		if(tir.coordonnees_valides()) {
-			if(!this.wasAlreadyAttacked(Ocean.joueur.moi, tir)) {
-				this.tirsFromEnnemi[tir.x][tir.y].isTargeted = true;
-				if(this.monJeu.isSomethingHere(tir)) {
-					str = "Touché ! ";
-					this.tirsFromEnnemi[tir.x][tir.y].isTouche = true;
-					this.monJeu.fire(tir);
-					if(this.monJeu.isDown(tir)) {
-						str += "Coulé ! ";
-						if(this.monJeu.areAllDown())
-							str += "Fin de la partie.";
-					}
-				} else
-					str = "Loupé";
-			} else
-				str = "Cette case a déjà été attaquée";
+		boolean continueFire = true;
+		
+		// Sélection de l'arme.
+		if(this.lArmes.containsKey(arme)) {
+			for (Coord tir : this.lArmes.get(arme).zoneImpact(cible, sens)) {
+				// Vérifier validité coordonées.
+				if(continueFire) {
+					if(tir.coordonnees_valides()) {
+						// Vérifier si la case a déjà été attaquée.
+						if(!this.wasAlreadyAttacked(Ocean.joueur.moi, tir)) {
+							this.tirsFromEnnemi[tir.x][tir.y].isTargeted = true;
+							// Vérifier s'il y a un bateau sur la cible.
+							if(this.monJeu.isSomethingHere(tir)) {
+								str = "Touché ! ";
+								continueFire = false;
+								this.tirsFromEnnemi[tir.x][tir.y].isTouche = true;
+								this.monJeu.fire(tir);
+								// Vérifier si le bateau touché est coulé.
+								if(this.monJeu.isDown(tir)) {
+									str += "Coulé ! ";
+									// Vérifier si tous les bateaux sont coulés.
+									if(this.monJeu.areAllDown())
+										str += "Fin de la partie.";
+								}
+							} else
+								str = "Loupé";
+						} else
+							str = "Cette case a déjà été attaquée";
+					} else
+						str = "Coordonnées invalides";
+				}
+			}
 		} else
-			str = "Coordonnées invalides";
+			str = "Arme inconnue";
 		
 		return str;
 	}
