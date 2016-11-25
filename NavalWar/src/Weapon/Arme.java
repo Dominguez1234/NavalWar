@@ -14,7 +14,7 @@ public abstract class Arme {
 	}
 	
 	protected String name;
-	protected ArrayList<String> needBat = new ArrayList<String>();
+	protected ArrayList<String> needBoat = new ArrayList<String>();
 	
 	public abstract ArrayList<Coord> zoneImpact(Coord cible, Sens sens);
 	
@@ -23,12 +23,12 @@ public abstract class Arme {
 	}
 	
 	public ArrayList<String> getNeedBoat() {
-		return this.needBat;
+		return this.needBoat;
 	}
 
 	@Override
 	public String toString() {
-		return this.name+" (Arme) [needBoat()=" + this.needBat + "]";
+		return this.name+" (Arme) [needBoat()=" + this.needBoat + "]";
 	}
 
 	
