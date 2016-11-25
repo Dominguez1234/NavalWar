@@ -32,7 +32,7 @@ public class Test {
 		
 		System.out.println(flotte);*/
 		
-		Ocean oc = new Ocean();
+		Ocean oc = new Ocean(Ocean.modeJeu.TOTALWAR);
 		oc.monJeu.setPosition("Porte-Avions", pos1, Bateau.direction.verticale);
 		oc.monJeu.setPosition("Croiseur", pos2, Bateau.direction.horizontale);
 		oc.monJeu.setPosition("Sous-Marin", pos3, Bateau.direction.horizontale);
@@ -65,8 +65,9 @@ public class Test {
 //		System.out.println(oc);
 		
 		Torpille m = new Torpille();
-		System.out.println(m);
-		System.out.println(m.zoneImpact(new Coord(1,1), Arme.Sens.VERTICAL));
+		Avion c = new Avion();
+		System.out.println(c);
+		System.out.println(c.zoneImpact(new Coord(1,1), Arme.Sens.HORIZONTAL));
 		
 		
 	}
