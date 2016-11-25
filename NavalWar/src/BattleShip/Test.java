@@ -1,4 +1,9 @@
 package BattleShip;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 import Boats.Bateau;
 import Weapon.*;
 
@@ -32,7 +37,7 @@ public class Test {
 		
 		System.out.println(flotte);*/
 		
-		Ocean oc = new Ocean();
+		Ocean oc = new Ocean(Ocean.modeJeu.TOTALWAR);
 		oc.monJeu.setPosition("Porte-Avions", pos1, Bateau.direction.verticale);
 		oc.monJeu.setPosition("Croiseur", pos2, Bateau.direction.horizontale);
 		oc.monJeu.setPosition("Sous-Marin", pos3, Bateau.direction.horizontale);
@@ -64,10 +69,31 @@ public class Test {
 //			System.out.println("Aucun de vos bateau de peut tirer cette arme.");
 //		System.out.println(oc);
 		
-		Torpille m = new Torpille();
-		System.out.println(m);
-		System.out.println(m.zoneImpact(new Coord(1,1), Arme.Sens.VERTICAL));
+//		Torpille m = new Torpille();
+//		System.out.println(m);
+//		System.out.println(m.zoneImpact(new Coord(1,1), Arme.Sens.VERTICAL));
 		
+		Scanner sc = new Scanner(System.in);
+		Coord cible = new Coord(-1,-1);
+		String arme = "Nuke";
+		while(true) {
+			System.out.println(oc);
+			
+			System.out.print("Ligne : ");
+			cible.x = sc.nextInt()-1;
+			System.out.print("Colonne : ");
+			cible.y = sc.nextInt()-1;
+			
+			System.out.println(oc.fire(cible,arme,Arme.Sens.HORIZONTAL));
+			
+		}
+		
+//		Map<String, Arme> lArmes = new LinkedHashMap<>();
+//		lArmes.put("Nuke", new Nuke());
+//		lArmes.put("Torpille", new Torpille());
+//		lArmes.put("Avion", new Avion());
+//		
+//		System.out.println(lArmes.get("Nuke").getNeedBoat());
 		
 	}
 	
