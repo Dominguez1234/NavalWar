@@ -6,6 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import BattleShip.Coord;
+import Reseau.Tir;
  
 public class SeveurObj {
     static final int port = 2012;
@@ -29,14 +30,14 @@ public class SeveurObj {
         ObjectInputStream in = new ObjectInputStream(soc.getInputStream());
       
         	//envoi objet
-        	out.writeObject(envoi); 
-        	out.flush();
-        	System.out.println("Envoi de l'objet coord: \n x : " + envoi.x +"\n y : " + envoi.y);
-        
+//        	out.writeObject(envoi); 
+//        	out.flush();
+//        	System.out.println("Envoi de l'objet coord: \n x : " + envoi.x +"\n y : " + envoi.y);
+//        
         	//réception objet
         	Object objetRecu = in.readObject();
-        	Coord recu = (Coord) objetRecu;
-        	System.out.println("Serveur recoit: \n x : " + recu.x +"\n y : " + recu.y);
+        	Tir recu = (Tir) objetRecu;
+        	System.out.println("Serveur recoit: \n Cible \nx : " + recu.coordCible.x +"\n y : " + recu.coordCible.y + "\nNom arme : " + recu.nomArme);
         
         //fermeture tunnel, socket
         in.close();

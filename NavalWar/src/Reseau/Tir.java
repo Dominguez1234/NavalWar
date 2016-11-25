@@ -10,10 +10,12 @@ package Reseau;
 
 
 
+import java.io.Serializable;
+
 import BattleShip.Coord;
 import Boats.Bateau;
 
-public class Tir {
+public class Tir implements Serializable{
 	
 	public Coord coordCible;
 	public String nomArme;
