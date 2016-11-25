@@ -1,8 +1,6 @@
 package Reseau;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
+
 //info a envoyer:
 //-liste de cible
 //infos a retourner:
@@ -12,15 +10,17 @@ import java.net.Socket;
 
 
 
+import java.io.Serializable;
+
 import BattleShip.Coord;
 import Boats.Bateau;
 
-public class Tir {
+public class Tir implements Serializable{
 	
 	public Coord coordCible;
 	public String nomArme;
 	public Coord coordTouche;
-	public Bateau bateauCoule;
+	public boolean bateauCoule;
 	
 
 	public Coord getCoordCible() {
@@ -47,11 +47,11 @@ public class Tir {
 		this.coordTouche = coordTouche;
 	}
 
-	public Bateau getBateauCoule() {
+	public boolean getBateauCoule() {
 		return bateauCoule;
 	}
 
-	public void setBateauCoule(Bateau bateauCoule) {
+	public void setBateauCoule(boolean bateauCoule) {
 		this.bateauCoule = bateauCoule;
 	}
 
