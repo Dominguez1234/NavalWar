@@ -1,5 +1,12 @@
 package BattleShip;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 import Boats.Bateau;
+import Reseau.ClientObjet;
+import Reseau.Tir;
 import Weapon.*;
 
 public class Test {
@@ -17,6 +24,12 @@ public class Test {
 		Coord pos3 = new Coord(5,4);
 		Coord pos4 = new Coord(7,2);
 		Coord pos5 = new Coord(1,8);
+		Tir tir = new Tir();
+		tir.setCoordCible(pos5);
+		tir.setNomArme("Nuke");
+		tir.setCoordTouche(pos1);
+		tir.setBateauCoule(false);
+		
 		
 		/*Flotte flotte = new Flotte();
 		flotte.setPosition("Porte-Avions", newPos2, "verticale");
@@ -26,8 +39,8 @@ public class Test {
 		flotte.setPosition("Patrouilleur", newPos5, "verticale");
 		
 		System.out.println("Test de position : "+flotte.isSomethingHere(newPos));
-		System.out.println("Porte-Avions coulé ? "+flotte.isDown("Porte-Avions"));
-		System.out.println("Tous les bateaux sont coulés ? "+flotte.areAllDown());
+		System.out.println("Porte-Avions coulï¿½ ? "+flotte.isDown("Porte-Avions"));
+		System.out.println("Tous les bateaux sont coulï¿½s ? "+flotte.areAllDown());
 		System.out.println("");
 		
 		System.out.println(flotte);*/
@@ -65,10 +78,33 @@ public class Test {
 //		System.out.println(oc);
 		
 		Torpille m = new Torpille();
-		Avion c = new Avion();
-		System.out.println(c);
-		System.out.println(c.zoneImpact(new Coord(1,1), Arme.Sens.HORIZONTAL));
+
+		System.out.println(m);
+		System.out.println(m.zoneImpact(new Coord(1,1), Arme.Sens.VERTICAL));
+//		ClientObjet.Envoi(tir);
+
 		
+		Scanner sc = new Scanner(System.in);
+		Coord cible = new Coord(-1,-1);
+		String arme = "Torpille";
+		while(true) {
+			System.out.println(oc);
+			
+			System.out.print("Ligne : ");
+			cible.x = sc.nextInt()-1;
+			System.out.print("Colonne : ");
+			cible.y = sc.nextInt()-1;
+			
+			System.out.println(oc.fire(cible,arme,Arme.Sens.HORIZONTAL));
+			
+		}
+		
+//		Map<String, Arme> lArmes = new LinkedHashMap<>();
+//		lArmes.put("Nuke", new Nuke());
+//		lArmes.put("Torpille", new Torpille());
+//		lArmes.put("Avion", new Avion());
+//		
+//		System.out.println(lArmes.get("Nuke").getNeedBoat());
 		
 	}
 	
