@@ -75,7 +75,7 @@ public class Test {
 		
 		Scanner sc = new Scanner(System.in);
 		Coord cible = new Coord(-1,-1);
-		String arme = "Nuke";
+		String arme = "Torpille";
 		while(true) {
 			System.out.println(oc);
 			
