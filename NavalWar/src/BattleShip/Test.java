@@ -78,9 +78,11 @@ public class Test {
 //		System.out.println(oc);
 		
 		Torpille m = new Torpille();
+
 		System.out.println(m);
 		System.out.println(m.zoneImpact(new Coord(1,1), Arme.Sens.VERTICAL));
 //		ClientObjet.Envoi(tir);
+
 		
 		Scanner sc = new Scanner(System.in);
 		Coord cible = new Coord(-1,-1);
