@@ -8,7 +8,7 @@ public class Avion extends Arme{
 
 	public Avion(){
 		this.name = "Avion";
-		this .getNeedBoat().add("Porte-Avions");
+		this .needBoat.add("Porte-Avions");
 	}
 	@Override
 	public ArrayList<Coord> zoneImpact(Coord cible, Sens sens) {

@@ -7,8 +7,8 @@ import BattleShip.Coord;
 public class Nuke extends Arme {	
 	public Nuke() {
 		this.name = "Nuke";
-		this.needBat.add("Destroyer");
-		this.needBat.add("Croiseur");
+		this.needBoat.add("Destroyer");
+		this.needBoat.add("Croiseur");
 
 	}
 	
