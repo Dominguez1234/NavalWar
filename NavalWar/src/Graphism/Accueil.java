@@ -104,7 +104,6 @@ public class Accueil {
 		panel.setBounds(0, 0, 944, 501);
 		
 		
-		
 		frame.getContentPane().add(panel);
 		frame.setBounds(100, 100, 450, 300);
 		frame.setBackground(new Color(0, 153, 204));
