@@ -17,16 +17,23 @@ public class ClientObjet {
 		int serverPort = 2012; //port
 		Socket socket;
 		ObjectOutputStream out;
+		
 		socket = new Socket(serverName,serverPort);	//création de la socket
+		System.out.println("Demande de connexion");
+		System.out.println("Socket client: " + socket);
+		
 		out = new ObjectOutputStream(socket.getOutputStream());
 		out.flush(); 
-		out.writeObject(tir);
+		
+		out.writeObject(tir); //écriture dans le flux de sortie
+		System.out.println("envoi du tir");
 		out.flush();
 		out.close();    
 		socket.close();	
 		
 	}
-	public static void main(String[] zero) throws Exception {
+	
+	public static void main(String[] zero) throws IOException, ClassNotFoundException  {
 	
 		String serverName = "134.214.50.91"; //adresse IP du serveur distant
 		int serverPort = 2012; //port

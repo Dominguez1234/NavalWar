@@ -1,4 +1,7 @@
 package BattleShip;
+import java.io.IOException;
+import java.net.UnknownHostException;
+
 import Boats.Bateau;
 import Reseau.ClientObjet;
 import Reseau.Tir;
@@ -6,7 +9,7 @@ import Weapon.*;
 
 public class Test {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnknownHostException, IOException {
 		
 //		int[] newPos = {1,1};
 //		int[] newPos2 = {0,0};
@@ -40,12 +43,12 @@ public class Test {
 		
 		System.out.println(flotte);*/
 		
-		Ocean oc = new Ocean();
-		oc.monJeu.setPosition("Porte-Avions", pos1, Bateau.direction.verticale);
-		oc.monJeu.setPosition("Croiseur", pos2, Bateau.direction.horizontale);
-		oc.monJeu.setPosition("Sous-Marin", pos3, Bateau.direction.horizontale);
-		oc.monJeu.setPosition("Destroyer", pos4, Bateau.direction.verticale);
-		oc.monJeu.setPosition("Patrouilleur", pos5, Bateau.direction.verticale);
+//		Ocean oc = new Ocean();
+//		oc.monJeu.setPosition("Porte-Avions", pos1, Bateau.direction.verticale);
+//		oc.monJeu.setPosition("Croiseur", pos2, Bateau.direction.horizontale);
+//		oc.monJeu.setPosition("Sous-Marin", pos3, Bateau.direction.horizontale);
+//		oc.monJeu.setPosition("Destroyer", pos4, Bateau.direction.verticale);
+//		oc.monJeu.setPosition("Patrouilleur", pos5, Bateau.direction.verticale);
 //		System.out.println(oc.monJeu);
 //		System.out.println(oc);
 //		System.out.println(oc.fire(pos5));
@@ -75,7 +78,8 @@ public class Test {
 		Torpille m = new Torpille();
 		System.out.println(m);
 		System.out.println(m.zoneImpact(new Coord(1,1), Arme.Sens.VERTICAL));
-		ClientObjet.Envoi(tir);
+		
+			ClientObjet.Envoi(tir);
 
 		
 		
