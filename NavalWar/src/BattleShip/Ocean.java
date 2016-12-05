@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import Boats.Bateau;
 import Weapon.*;
 
 public class Ocean {
 	
-	public Flotte monJeu = new Flotte();
+	private Flotte monJeu = new Flotte();
 	private Flotte ennemi = new Flotte();
 	
 //	private Map<String, Arme> lArmes = new LinkedHashMap<>();
@@ -121,6 +122,10 @@ public class Ocean {
 		else
 			result = ennemi.isDown(nomBateau);
 		return result;
+	}
+	
+	public void setPosBoat(String nom, Coord posOrigine, Bateau.direction sens) {
+		this.monJeu.setPosition(nom, posOrigine, sens);
 	}
 	
 	@Override

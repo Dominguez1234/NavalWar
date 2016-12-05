@@ -95,6 +95,13 @@ public class Test {
 		BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
 		bs.connexion("127.0.0.1", 3131);
 		
+		bs.setPosBoat("Porte-Avions", new Coord(0,0), Bateau.direction.verticale);
+		bs.setPosBoat("Croiseur", new Coord(1,1), Bateau.direction.horizontale);
+		bs.setPosBoat("Sous-Marin", new Coord(5,4), Bateau.direction.horizontale);
+		bs.setPosBoat("Destroyer", new Coord(7,2), Bateau.direction.verticale);
+		bs.setPosBoat("Patrouilleur", new Coord(1,8), Bateau.direction.verticale);
+		
+		
 		System.out.println("Test prêt\n");
 		
 		Thread.sleep(2000);

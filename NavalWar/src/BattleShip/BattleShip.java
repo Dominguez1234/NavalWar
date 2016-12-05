@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import Boats.Bateau;
 import Weapon.Arme;
 import Weapon.Avion;
 import Weapon.Missile;
@@ -85,6 +86,10 @@ public class BattleShip {
 		Tir tir = reseau.receive();
 		System.out.println("Réception : "+tir);
 		return false;
+	}
+	
+	public void setPosBoat(String nom, Coord posOrigine, Bateau.direction sens) {
+		ocean.setPosBoat(nom, posOrigine, sens);
 	}
 	
 }
