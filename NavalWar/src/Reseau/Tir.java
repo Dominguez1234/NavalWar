@@ -1,17 +1,6 @@
 package Reseau;
 
-
-//info a envoyer:
-//-liste de cible
-//infos a retourner:
-//- liste de cible avec loupé/touché
-//- si le bateau à été coulé ou non
-//- si coulé, nom du bateau
-
-
-
 import java.io.Serializable;
-
 import BattleShip.Coord;
 import Boats.Bateau;
 
@@ -59,5 +48,9 @@ public class Tir implements Serializable{
 		this.bateauCoule = bateauCoule;
 	}
 
-
+	@Override
+	public String toString() {
+		return "Tir de l'arme "+this.nomArme+" en "+this.coordCible;
+	}
+	
 }

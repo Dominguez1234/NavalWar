@@ -21,7 +21,7 @@ public class Reseau {
 	}
 	
 	public void send(Tir tir) throws IOException {
-		System.out.println("lol");
+		System.out.println("Début envoi");
 		
 		soc = new Socket(this.ipOther,this.port);
 		
@@ -53,13 +53,6 @@ public class Reseau {
     	
     	System.out.println("Reception objet "+tir.getClass()+" : "+tir.toString());
 		return tir;
-	}
-	
-	public void end() throws IOException {
-		in.close();
-        out.close();
-        soc.close();
-        servSoc.close();
 	}
 	
 }
