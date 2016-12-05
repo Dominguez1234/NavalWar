@@ -97,7 +97,7 @@ public class Accueil {
 		frame.getContentPane().add(lblUsername);
 		
 		//Image de fond
-		ImageIcon image = new ImageIcon("img/Fond.png");
+		ImageIcon image = new ImageIcon("C:/Users/mathieu.pierluigi/Desktop/Fond.png");
 		JLabel label = new JLabel("", image, JLabel.CENTER);
 		JPanel panel = new JPanel(new BorderLayout());
 		panel.add( label, BorderLayout.CENTER );
