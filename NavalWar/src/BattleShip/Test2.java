@@ -10,15 +10,15 @@ public class Test2 {
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 
-		Coord pos1 = new Coord(0,0);
-		Coord pos2 = new Coord(1,1);
-		Coord pos3 = new Coord(5,4);
-		Coord pos4 = new Coord(7,2);
-		Coord pos5 = new Coord(1,8);
+		Coord pos1 = new Coord(1,1);
+		Coord pos2 = new Coord(3,0);
+		Coord pos3 = new Coord(4,5);
+		Coord pos4 = new Coord(2,9);
+		Coord pos5 = new Coord(7,6);
 		
 		Ocean oc = new Ocean(Ocean.modeJeu.TOTALWAR);
-		oc.monJeu.setPosition("Porte-Avions", pos1, Bateau.direction.verticale);
-		oc.monJeu.setPosition("Croiseur", pos2, Bateau.direction.horizontale);
+		oc.monJeu.setPosition("Porte-Avions", pos1, Bateau.direction.horizontale);
+		oc.monJeu.setPosition("Croiseur", pos2, Bateau.direction.verticale);
 		oc.monJeu.setPosition("Sous-Marin", pos3, Bateau.direction.horizontale);
 		oc.monJeu.setPosition("Destroyer", pos4, Bateau.direction.verticale);
 		oc.monJeu.setPosition("Patrouilleur", pos5, Bateau.direction.verticale);
@@ -49,11 +49,22 @@ public class Test2 {
 // --------------------------------------------------------------------------------------------
 // ----- Test du réseau
 		
-		Reseau r = new Reseau(3339,"127.0.0.1");
+//		Reseau r = new Reseau(3339,"127.0.0.1");
 //		Tir tir = new Tir(new Coord(1,1),"Missile");
 //		r.send(tir);
 		
-		Tir tir = r.receive();
+//		Tir tir = r.receive();
+		
+// --------------------------------------------------------------------------------------------
+		
+		// Connexion à l'autre
+		String ip = "127.0.0.1";
+		int port = 3339;
+		
+		Reseau r = new Reseau(port,ip);
+		r.connexion();
+		
+		r.receive();
 		
 	}
 	

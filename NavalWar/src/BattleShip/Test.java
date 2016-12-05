@@ -52,11 +52,30 @@ public class Test {
 // --------------------------------------------------------------------------------------------
 // ----- Test du réseau
 		
-		Reseau r = new Reseau(3339,"127.0.0.1");
-		Tir tir = new Tir(new Coord(1,1),"Missile");
-		r.send(tir);
+//		Reseau r = new Reseau(3339,"127.0.0.1");
+//		Tir tir = new Tir(new Coord(1,1),"Missile");
+//		r.send(tir);
 //		
 //		r.receive();
+		
+// --------------------------------------------------------------------------------------------
+		
+		// Connexion à l'autre
+		String ip = "127.0.0.1";
+		int port = 3339;
+		
+		Reseau r = new Reseau(port,ip);
+		r.connexion();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Tir t = new Tir(new Coord(1,2),"Missile");
+		r.send(t);
 		
 	}
 	
