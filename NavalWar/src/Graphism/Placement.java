@@ -18,6 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 
 public class Placement {
 
@@ -78,27 +80,7 @@ public class Placement {
 		JPanel Plateau = new JPanel();
 		Plateau.setBounds(91, 138, 325, 325);
 		panel.add(Plateau);
-		Plateau.setLayout(new GridLayout(0,9));
 		Plateau.setBorder(new LineBorder(Color.BLACK));
-		
-		//Listener et bouton du mode standard
-		JButton btnModeStandard = new JButton("Demarrer");
-		btnModeStandard.setBounds(579, 231, 240, 80);
-		panel.add(btnModeStandard);
-		btnModeStandard.setFont(new Font("Battleground", Font.PLAIN, 40));
-		btnModeStandard.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		panel.add( label );
-		panel.setBounds(0, 0, 944, 501);
-		
-		//Plateau
-		frame.getContentPane().add(panel);
-		frame.setBounds(100, 100, 450, 300);
-		frame.setBackground(new Color(0, 153, 204));
-		frame.setSize(960,540);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
         // create the chess board squares
         Insets buttonMargin = new Insets(0,0,0,0);
@@ -120,8 +102,27 @@ public class Placement {
                 chessBoardSquares[jj][ii] = b;
             }
         }
-        
-        
+		
+		//Plateau
+		frame.getContentPane().add(panel);
+		frame.setBounds(100, 100, 450, 300);
+		frame.setBackground(new Color(0, 153, 204));
+		frame.setSize(960,540);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 
+		
+		
+		//Listener et bouton du bouton démarrer
+		JButton btnModeStandard = new JButton("Demarrer");
+		btnModeStandard.setBounds(579, 231, 240, 80);
+		panel.add(btnModeStandard);
+		btnModeStandard.setFont(new Font("Battleground", Font.PLAIN, 40));
+		btnModeStandard.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		panel.add( label );
+		panel.setBounds(0, 0, 944, 501);
 	}
 }
