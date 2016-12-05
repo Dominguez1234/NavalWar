@@ -9,7 +9,7 @@ public class Torpille extends Arme {
 	
 	public Torpille(){
 		this.name = "Torpille";
-		this.needBat.add("Sous-Marin");
+		this.needBoat.add("Sous-Marin");
 	}
 
 	@Override

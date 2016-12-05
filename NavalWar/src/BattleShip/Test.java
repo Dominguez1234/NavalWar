@@ -1,6 +1,8 @@
 package BattleShip;
-import java.io.IOException;
-import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 import Boats.Bateau;
 import Reseau.ClientObjet;
@@ -9,7 +11,7 @@ import Weapon.*;
 
 public class Test {
 	
-	public static void main(String[] args) throws UnknownHostException, IOException {
+	public static void main(String[] args) {
 		
 //		int[] newPos = {1,1};
 //		int[] newPos2 = {0,0};
@@ -43,12 +45,12 @@ public class Test {
 		
 		System.out.println(flotte);*/
 		
-//		Ocean oc = new Ocean();
-//		oc.monJeu.setPosition("Porte-Avions", pos1, Bateau.direction.verticale);
-//		oc.monJeu.setPosition("Croiseur", pos2, Bateau.direction.horizontale);
-//		oc.monJeu.setPosition("Sous-Marin", pos3, Bateau.direction.horizontale);
-//		oc.monJeu.setPosition("Destroyer", pos4, Bateau.direction.verticale);
-//		oc.monJeu.setPosition("Patrouilleur", pos5, Bateau.direction.verticale);
+		Ocean oc = new Ocean(Ocean.modeJeu.TOTALWAR);
+		oc.monJeu.setPosition("Porte-Avions", pos1, Bateau.direction.verticale);
+		oc.monJeu.setPosition("Croiseur", pos2, Bateau.direction.horizontale);
+		oc.monJeu.setPosition("Sous-Marin", pos3, Bateau.direction.horizontale);
+		oc.monJeu.setPosition("Destroyer", pos4, Bateau.direction.verticale);
+		oc.monJeu.setPosition("Patrouilleur", pos5, Bateau.direction.verticale);
 //		System.out.println(oc.monJeu);
 //		System.out.println(oc);
 //		System.out.println(oc.fire(pos5));
@@ -76,12 +78,33 @@ public class Test {
 //		System.out.println(oc);
 		
 		Torpille m = new Torpille();
+
 		System.out.println(m);
 		System.out.println(m.zoneImpact(new Coord(1,1), Arme.Sens.VERTICAL));
-		
-			ClientObjet.Envoi(tir);
+//		ClientObjet.Envoi(tir);
 
 		
+		Scanner sc = new Scanner(System.in);
+		Coord cible = new Coord(-1,-1);
+		String arme = "Torpille";
+		while(true) {
+			System.out.println(oc);
+			
+			System.out.print("Ligne : ");
+			cible.x = sc.nextInt()-1;
+			System.out.print("Colonne : ");
+			cible.y = sc.nextInt()-1;
+			
+			System.out.println(oc.fire(cible,arme,Arme.Sens.HORIZONTAL));
+			
+		}
+		
+//		Map<String, Arme> lArmes = new LinkedHashMap<>();
+//		lArmes.put("Nuke", new Nuke());
+//		lArmes.put("Torpille", new Torpille());
+//		lArmes.put("Avion", new Avion());
+//		
+//		System.out.println(lArmes.get("Nuke").getNeedBoat());
 		
 	}
 	
