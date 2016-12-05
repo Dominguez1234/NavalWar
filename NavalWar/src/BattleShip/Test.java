@@ -74,7 +74,9 @@ public class Test {
 			e.printStackTrace();
 		}
 		
-		Tir t = new Tir(new Coord(1,2),"Missile");
+		Tir t = new Tir();
+		t.nomArme = "Missile";
+		t.addCible(new Coord(1,2));
 		r.send(t);
 		
 	}

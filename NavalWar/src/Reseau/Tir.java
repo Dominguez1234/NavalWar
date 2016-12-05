@@ -8,10 +8,10 @@ import Boats.Bateau;
 
 public class Tir implements Serializable{
 	
-	private ArrayList<Coord> coordCibles;
+	private ArrayList<Coord> coordCibles = new ArrayList<>();
 	public String nomArme;
-	private ArrayList<Coord> coordTouchees;
-	private ArrayList<String> bateauxCoules;
+	private ArrayList<Coord> coordTouchees = new ArrayList<>();
+	private ArrayList<String> bateauxCoules = new ArrayList<>();
 	
 	public Tir(ArrayList<Coord> coord, String arme) {
 		this.coordCibles = coord;
@@ -48,7 +48,7 @@ public class Tir implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Tir de l'arme "+this.nomArme+" en "+this.coordCible;
+		return "Tir de l'arme "+this.nomArme+" en "+this.coordCibles;
 	}
 	
 }
