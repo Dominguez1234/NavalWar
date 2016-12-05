@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import Boats.Bateau;
 import Weapon.*;
 
 public class Ocean {
 	
-	public Flotte monJeu = new Flotte();
+	private Flotte monJeu = new Flotte();
 	private Flotte ennemi = new Flotte();
 	
 //	private Map<String, Arme> lArmes = new LinkedHashMap<>();
@@ -66,6 +67,29 @@ public class Ocean {
 		return result;
 	}
 	
+	public boolean fire(Coord tir) {
+		boolean result = false;
+		// Vérifier s'il y a un bateau sur la cible.
+		if(this.monJeu.isSomethingHere(tir)) {
+			result = true;
+			this.tirsFromEnnemi[tir.x][tir.y].isTouche = true;
+			this.monJeu.fire(tir);
+		}
+		return result;
+	}
+	
+	public boolean isDown(Coord tir) {
+		return this.monJeu.isDown(tir);
+	}
+	
+	public boolean areAllDown() {
+		return this.monJeu.areAllDown();
+	}
+	
+	public String whoIsHere(Coord pos) {
+		return this.monJeu.whoIsHere(pos);
+	}
+	
 	/*public String fire(Coord cible, String arme, Arme.Sens sens) {
 		// ----------------- VERSION TEMPORAIRE -----------------
 		String str = "";
@@ -107,11 +131,18 @@ public class Ocean {
 		return str;
 	}*/
 	
-	public void addAShoot(Ocean.joueur tireur, Coord coord) {
+	public void addATargeted(Ocean.joueur tireur, Coord coord) {
 		if(tireur.equals(Ocean.joueur.moi))
 			this.tirsFromMe[coord.x][coord.y].isTargeted = true;
 		else
 			this.tirsFromEnnemi[coord.x][coord.y].isTargeted = true;
+	}
+	
+	public void addATouched(Ocean.joueur tireur, Coord coord) {
+		if(tireur.equals(Ocean.joueur.moi))
+			this.tirsFromMe[coord.x][coord.y].isTouche = true;
+		else
+			this.tirsFromEnnemi[coord.x][coord.y].isTouche = true;
 	}
 	
 	public boolean isDown(Ocean.joueur flotte, String nomBateau) {
@@ -121,6 +152,19 @@ public class Ocean {
 		else
 			result = ennemi.isDown(nomBateau);
 		return result;
+	}
+	
+	public void setPosBoat(String nom, Coord posOrigine, Bateau.direction sens) {
+		this.monJeu.setPosition(nom, posOrigine, sens);
+	}
+	
+	public Touche[][] getTouches(Ocean.joueur plateau) {
+		Touche[][] tmp;
+		if(plateau.equals(Ocean.joueur.moi))
+			tmp = this.tirsFromEnnemi;
+		else
+			tmp = this.tirsFromMe;
+		return tmp;
 	}
 	
 	@Override
