@@ -19,7 +19,7 @@ public class Accueil {
 
 	private JFrame frame;
 	private JTextField UsernameField;
-	private final JPanel panel = new JPanel();
+	private final JPanel panel = new JPanel(); 
 
 	/**
 	 * Launch the application.
@@ -49,7 +49,8 @@ public class Accueil {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(0, 153, 204));		
+		frame.setResizable(false);
+		frame.getContentPane().setBackground(Color.WHITE);		
 		frame.getContentPane().setLayout(null);
 		
 		//Listener et bouton du mode standard
@@ -97,11 +98,11 @@ public class Accueil {
 		frame.getContentPane().add(lblUsername);
 		
 		//Image de fond
-		ImageIcon image = new ImageIcon("C:/Users/mathieu.pierluigi/Desktop/Fond.png");
+		ImageIcon image = new ImageIcon("img/Fond.png");
 		JLabel label = new JLabel("", image, JLabel.CENTER);
 		JPanel panel = new JPanel(new BorderLayout());
 		panel.add( label, BorderLayout.CENTER );
-		panel.setBounds(0, 0, 944, 501);
+		panel.setBounds(0, 0, 960, 540);
 		
 		
 		frame.getContentPane().add(panel);
@@ -109,5 +110,7 @@ public class Accueil {
 		frame.setBackground(new Color(0, 153, 204));
 		frame.setSize(960,540);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
 	}
 }
