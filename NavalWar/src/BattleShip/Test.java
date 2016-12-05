@@ -105,7 +105,9 @@ public class Test {
 		System.out.println("Test prêt\n");
 		
 		Thread.sleep(2000);
-		bs.Jattaque(new Coord(5,5), "Nuke", Arme.Sens.HORIZONTAL);
+		bs.Jattaque(new Coord(2,2), "Torpille", Arme.Sens.HORIZONTAL);
+		
+		System.out.println(bs.ocean);
 		
 	}
 	

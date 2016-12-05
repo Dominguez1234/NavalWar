@@ -11,6 +11,7 @@ public class Tir implements Serializable{
 	public String nomArme;
 	private ArrayList<Coord> coordTouchees = new ArrayList<>();
 	private ArrayList<String> bateauxCoules = new ArrayList<>();
+	public boolean gameOver;
 	
 	public Tir(ArrayList<Coord> coord, String arme) {
 		this.coordCibles = coord;
