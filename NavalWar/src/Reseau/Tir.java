@@ -1,63 +1,59 @@
 package Reseau;
 
-
-//info a envoyer:
-//-liste de cible
-//infos a retourner:
-//- liste de cible avec loupé/touché
-//- si le bateau à été coulé ou non
-//- si coulé, nom du bateau
-
-
-
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import BattleShip.Coord;
 import Boats.Bateau;
 
 public class Tir implements Serializable{
 	
-	public Coord coordCible;
+	private ArrayList<Coord> coordCibles = new ArrayList<>();
 	public String nomArme;
-	public Coord coordTouche;
-	public boolean bateauCoule;
+	private ArrayList<Coord> coordTouchees = new ArrayList<>();
+	private ArrayList<String> bateauxCoules = new ArrayList<>();
 	
-	public Tir(Coord coord, String arme) {
-		this.coordCible = coord;
+	public Tir(ArrayList<Coord> coord, String arme) {
+		this.coordCibles = coord;
 		this.nomArme = arme;
 	}
-
-	public Coord getCoordCible() {
-		return coordCible;
+	
+	public Tir() {
+		
+	}
+	
+	public void addCible(Coord cible) {
+		coordCibles.add(cible);
+	}
+	
+	public ArrayList<Coord> getCibles() {
+		return coordCibles;
+	}
+	
+	public void addTouche(Coord cible) {
+		coordTouchees.add(cible);
+	}
+	
+	public ArrayList<Coord> getTouches() {
+		return coordTouchees;
+	}
+	
+	public void addBateauCoule(String bat) {
+		bateauxCoules.add(bat);
+	}
+	
+	public ArrayList<String> getBateauxCoules() {
+		return bateauxCoules;
 	}
 
-	public void setCoordCible(Coord coordCible) {
-		this.coordCible = coordCible;
+	@Override
+	public String toString() {
+		String str = "Tir de l'arme "+this.nomArme+" en "+this.coordCibles;
+		
+		if(!this.coordTouchees.isEmpty())
+			str += "\nTouché aux coordonnées suivantes : "+this.coordTouchees;
+		
+		return str;
 	}
-
-	public String getNomArme() {
-		return nomArme;
-	}
-
-	public void setNomArme(String nomArme) {
-		this.nomArme = nomArme;
-	}
-
-	public Coord getCoordTouche() {
-		return coordTouche;
-	}
-
-	public void setCoordTouche(Coord coordTouche) {
-		this.coordTouche = coordTouche;
-	}
-
-	public boolean getBateauCoule() {
-		return bateauCoule;
-	}
-
-	public void setBateauCoule(boolean bateauCoule) {
-		this.bateauCoule = bateauCoule;
-	}
-
-
+	
 }
