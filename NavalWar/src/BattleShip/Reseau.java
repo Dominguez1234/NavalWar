@@ -1,4 +1,4 @@
-package Reseau;
+package BattleShip;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -7,9 +7,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import Reseau.Tir;
+
 public class Reseau {
 	
-	private int port;
+	private int port = 2121;
 	private String ipOther;
 	private ServerSocket servSoc;
 	private Socket soc;
@@ -18,6 +20,10 @@ public class Reseau {
 	
 	public Reseau(int newPort, String ip) throws IOException {
 		this.port = newPort;
+		this.ipOther = ip;
+	}
+	
+	public Reseau(String ip) throws IOException {
 		this.ipOther = ip;
 	}
 	
