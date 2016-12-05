@@ -1,4 +1,6 @@
 package BattleShip;
+import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -81,7 +83,15 @@ public class Test {
 
 		System.out.println(m);
 		System.out.println(m.zoneImpact(new Coord(1,1), Arme.Sens.VERTICAL));
-//		ClientObjet.Envoi(tir);
+		try {
+			ClientObjet.Envoi(tir);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		
 		Scanner sc = new Scanner(System.in);
