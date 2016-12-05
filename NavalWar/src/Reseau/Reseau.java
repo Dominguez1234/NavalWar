@@ -22,8 +22,6 @@ public class Reseau {
 	}
 	
 	public void send(Tir tir) throws IOException {
-		System.out.println("Début envoi");
-		
 		soc = new Socket(this.ipOther,this.port);
 		
 		out = new ObjectOutputStream(soc.getOutputStream());
@@ -33,15 +31,11 @@ public class Reseau {
     	
     	out.close();
     	soc.close();
-    	
-    	System.out.println("Envoi objet "+tir.getClass()+" : "+tir.toString());
 	}
 	
 	public Tir receive() throws ClassNotFoundException, IOException {
 		Tir tir;
-		
 		servSoc = new ServerSocket(this.port);
-		System.out.println("Socket serveur: " + servSoc);
 		soc = servSoc.accept();
 		in = new ObjectInputStream(soc.getInputStream());
 		
@@ -51,8 +45,6 @@ public class Reseau {
     	in.close();
     	soc.close();
     	servSoc.close();
-    	
-    	System.out.println("Reception objet "+tir.getClass()+" : "+tir.toString());
 		return tir;
 	}
 	

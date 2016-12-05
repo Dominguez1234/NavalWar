@@ -48,7 +48,12 @@ public class Tir implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Tir de l'arme "+this.nomArme+" en "+this.coordCibles;
+		String str = "Tir de l'arme "+this.nomArme+" en "+this.coordCibles;
+		
+		if(!this.coordTouchees.isEmpty())
+			str += "\nTouché aux coordonnées suivantes : "+this.coordTouchees;
+		
+		return str;
 	}
 	
 }

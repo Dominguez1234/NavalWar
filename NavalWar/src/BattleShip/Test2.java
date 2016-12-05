@@ -64,7 +64,18 @@ public class Test2 {
 		Reseau r = new Reseau(port,ip);
 		r.connexion();
 		
-		r.receive();
+		Tir t = r.receive();
+		System.out.println("Nous sommes touchés !");
+		t.addTouche(new Coord(1,2));
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		r.send(t);
 		
 	}
 	

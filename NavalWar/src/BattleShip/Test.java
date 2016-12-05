@@ -74,10 +74,21 @@ public class Test {
 			e.printStackTrace();
 		}
 		
+		System.out.println("Missile lancé !");
 		Tir t = new Tir();
 		t.nomArme = "Missile";
 		t.addCible(new Coord(1,2));
 		r.send(t);
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		t = r.receive();
+		System.out.println(t);
 		
 	}
 	
