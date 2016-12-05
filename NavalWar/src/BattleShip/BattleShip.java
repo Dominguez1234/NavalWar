@@ -89,6 +89,8 @@ public class BattleShip {
 			// Réception de la réponse
 			tir = reseau.receive();
 			System.out.println("Cibles touchées : "+tir.getTouches());
+			if(!tir.getBateauxCoules().isEmpty())
+				System.out.println("Bateau(x) coulé(s) : "+tir.getBateauxCoules());
 			for(Coord touche : tir.getTouches()) {
 				ocean.addATouched(Ocean.joueur.moi, touche);
 			}
