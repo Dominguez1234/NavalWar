@@ -1,51 +1,49 @@
 package Reseau;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
 import BattleShip.Coord;
 import Boats.Bateau;
 
 public class Tir implements Serializable{
 	
-	public Coord coordCible;
+	private ArrayList<Coord> coordCibles;
 	public String nomArme;
-	public Coord coordTouche;
-	public boolean bateauCoule;
+	private ArrayList<Coord> coordTouchees;
+	private ArrayList<String> bateauxCoules;
 	
-	public Tir(Coord coord, String arme) {
-		this.coordCible = coord;
+	public Tir(ArrayList<Coord> coord, String arme) {
+		this.coordCibles = coord;
 		this.nomArme = arme;
 	}
-
-	public Coord getCoordCible() {
-		return coordCible;
+	
+	public Tir() {
+		
 	}
-
-	public void setCoordCible(Coord coordCible) {
-		this.coordCible = coordCible;
+	
+	public void addCible(Coord cible) {
+		coordCibles.add(cible);
 	}
-
-	public String getNomArme() {
-		return nomArme;
+	
+	public ArrayList<Coord> getCibles() {
+		return coordCibles;
 	}
-
-	public void setNomArme(String nomArme) {
-		this.nomArme = nomArme;
+	
+	public void addTouche(Coord cible) {
+		coordTouchees.add(cible);
 	}
-
-	public Coord getCoordTouche() {
-		return coordTouche;
+	
+	public ArrayList<Coord> getTouches() {
+		return coordTouchees;
 	}
-
-	public void setCoordTouche(Coord coordTouche) {
-		this.coordTouche = coordTouche;
+	
+	public void addBateauCoule(String bat) {
+		bateauxCoules.add(bat);
 	}
-
-	public boolean getBateauCoule() {
-		return bateauCoule;
-	}
-
-	public void setBateauCoule(boolean bateauCoule) {
-		this.bateauCoule = bateauCoule;
+	
+	public ArrayList<String> getBateauxCoules() {
+		return bateauxCoules;
 	}
 
 	@Override
