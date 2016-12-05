@@ -51,9 +51,9 @@ public class Test {
 		
 // --------------------------------------------------------------------------------------------
 		
-		Reseau r = new Reseau(3339,"192.168.0.1");
+		Reseau r = new Reseau(3339,"134.214.50.88");
 		Tir tir = new Tir(new Coord(1,1),"Missile");
-//		r.send(tir);
+		r.send(tir);
 		
 //		r.receive();
 		
