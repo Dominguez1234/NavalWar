@@ -7,8 +7,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import Reseau.Tir;
-
 public class Reseau {
 	
 	private int port = 2121;
@@ -18,7 +16,7 @@ public class Reseau {
 	private ObjectOutputStream out;
 	private ObjectInputStream in;
 	
-	public Reseau(int newPort, String ip) throws IOException {
+	public Reseau(String ip, int newPort) throws IOException {
 		this.port = newPort;
 		this.ipOther = ip;
 	}

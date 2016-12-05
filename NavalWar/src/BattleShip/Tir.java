@@ -1,9 +1,8 @@
-package Reseau;
+package BattleShip;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import BattleShip.Coord;
 import Boats.Bateau;
 
 public class Tir implements Serializable{

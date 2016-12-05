@@ -11,7 +11,7 @@ public class Ocean {
 	public Flotte monJeu = new Flotte();
 	private Flotte ennemi = new Flotte();
 	
-	private Map<String, Arme> lArmes = new LinkedHashMap<>();
+//	private Map<String, Arme> lArmes = new LinkedHashMap<>();
 	
 	private Touche t = new Touche();
 	private Touche[][] tirsFromMe = {
@@ -34,19 +34,23 @@ public class Ocean {
 		ennemi
 	}
 	
-	public static enum modeJeu {
-		NORMAL,
-		TOTALWAR
-	}
+//	public static enum modeJeu {
+//		NORMAL,
+//		TOTALWAR
+//	}
 	
-	public Ocean(Ocean.modeJeu mode) {
-		lArmes.put("Missile", new Missile());
+//	public Ocean(Ocean.modeJeu mode) {
+//		lArmes.put("Missile", new Missile());
+//		
+//		if(mode.equals(Ocean.modeJeu.TOTALWAR)) {
+//			lArmes.put("Nuke", new Nuke());
+//			lArmes.put("Torpille", new Torpille());
+//			lArmes.put("Avion", new Avion());
+//		}
+//	}
+	
+	public Ocean() {
 		
-		if(mode.equals(Ocean.modeJeu.TOTALWAR)) {
-			lArmes.put("Nuke", new Nuke());
-			lArmes.put("Torpille", new Torpille());
-			lArmes.put("Avion", new Avion());
-		}
 	}
 	
 	public boolean wasAlreadyAttacked(Ocean.joueur from, Coord coord) {
@@ -62,7 +66,7 @@ public class Ocean {
 		return result;
 	}
 	
-	public String fire(Coord cible, String arme, Arme.Sens sens) {
+	/*public String fire(Coord cible, String arme, Arme.Sens sens) {
 		// ----------------- VERSION TEMPORAIRE -----------------
 		String str = "";
 		boolean continueFire = true;
@@ -101,6 +105,13 @@ public class Ocean {
 			str = "Arme inconnue";
 		
 		return str;
+	}*/
+	
+	public void addAShoot(Ocean.joueur tireur, Coord coord) {
+		if(tireur.equals(Ocean.joueur.moi))
+			this.tirsFromMe[coord.x][coord.y].isTargeted = true;
+		else
+			this.tirsFromEnnemi[coord.x][coord.y].isTargeted = true;
 	}
 	
 	public boolean isDown(Ocean.joueur flotte, String nomBateau) {
