@@ -1,17 +1,17 @@
 package BattleShip;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import Boats.Bateau;
-import Reseau.ClientObjet;
-import Reseau.Tir;
+import Boats.*;
+import Reseau.*;
 import Weapon.*;
 
 public class Test {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		
 //		int[] newPos = {1,1};
 //		int[] newPos2 = {0,0};
@@ -24,11 +24,6 @@ public class Test {
 		Coord pos3 = new Coord(5,4);
 		Coord pos4 = new Coord(7,2);
 		Coord pos5 = new Coord(1,8);
-		Tir tir = new Tir();
-		tir.setCoordCible(pos5);
-		tir.setNomArme("Nuke");
-		tir.setCoordTouche(pos1);
-		tir.setBateauCoule(false);
 		
 		
 		/*Flotte flotte = new Flotte();
@@ -77,34 +72,38 @@ public class Test {
 //			System.out.println("Aucun de vos bateau de peut tirer cette arme.");
 //		System.out.println(oc);
 		
-		Torpille m = new Torpille();
-
-		System.out.println(m);
-		System.out.println(m.zoneImpact(new Coord(1,1), Arme.Sens.VERTICAL));
-//		ClientObjet.Envoi(tir);
-
+// --------------------------------------------------------------------------------------------
 		
-		Scanner sc = new Scanner(System.in);
-		Coord cible = new Coord(-1,-1);
-		String arme = "Torpille";
-		while(true) {
-			System.out.println(oc);
-			
-			System.out.print("Ligne : ");
-			cible.x = sc.nextInt()-1;
-			System.out.print("Colonne : ");
-			cible.y = sc.nextInt()-1;
-			
-			System.out.println(oc.fire(cible,arme,Arme.Sens.HORIZONTAL));
-			
-		}
-		
-//		Map<String, Arme> lArmes = new LinkedHashMap<>();
-//		lArmes.put("Nuke", new Nuke());
-//		lArmes.put("Torpille", new Torpille());
-//		lArmes.put("Avion", new Avion());
+//		Torpille m = new Torpille();
+//
+//		System.out.println(m);
+//		System.out.println(m.zoneImpact(new Coord(1,1), Arme.Sens.VERTICAL));
+//
 //		
-//		System.out.println(lArmes.get("Nuke").getNeedBoat());
+//		Scanner sc = new Scanner(System.in);
+//		Coord cible = new Coord(-1,-1);
+//		String arme = "Torpille";
+//		while(true) {
+//			System.out.println(oc);
+//			
+//			System.out.print("Ligne : ");
+//			cible.x = sc.nextInt()-1;
+//			System.out.print("Colonne : ");
+//			cible.y = sc.nextInt()-1;
+//			
+//			System.out.println(oc.fire(cible,arme,Arme.Sens.HORIZONTAL));
+//			
+//		}
+		
+// --------------------------------------------------------------------------------------------
+		
+		Reseau r = new Reseau(3339,"192.168.0.1");
+		Tir tir = new Tir(new Coord(1,1),"Missile");
+//		r.send(tir);
+		
+//		r.receive();
+		
+		r.end();
 		
 	}
 	

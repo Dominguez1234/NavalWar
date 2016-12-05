@@ -17,12 +17,16 @@ import Boats.Bateau;
 
 public class Tir implements Serializable{
 	
-	public Coord coordCible;
-	public String nomArme;
-	public Coord coordTouche;
-	public boolean bateauCoule;
+	private Coord coordCible;
+	private String nomArme;
+	private Coord coordTouche;
+	private boolean bateauCoule;
 	
-
+	public Tir(Coord coord, String arme) {
+		this.coordCible = coord;
+		this.nomArme = arme;
+	}
+	
 	public Coord getCoordCible() {
 		return coordCible;
 	}
@@ -54,6 +58,10 @@ public class Tir implements Serializable{
 	public void setBateauCoule(boolean bateauCoule) {
 		this.bateauCoule = bateauCoule;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "Tir de l'arme "+this.nomArme+" !";
+	}
 
 }
