@@ -4,9 +4,9 @@ package Reseau;
 //info a envoyer:
 //-liste de cible
 //infos a retourner:
-//- liste de cible avec loupÃ©/touchÃ©
-//- si le bateau Ã  Ã©tÃ© coulÃ© ou non
-//- si coulÃ©, nom du bateau
+//- liste de cible avec loupé/touché
+//- si le bateau à été coulé ou non
+//- si coulé, nom du bateau
 
 
 
@@ -17,16 +17,16 @@ import Boats.Bateau;
 
 public class Tir implements Serializable{
 	
-	private Coord coordCible;
-	private String nomArme;
-	private Coord coordTouche;
-	private boolean bateauCoule;
+	public Coord coordCible;
+	public String nomArme;
+	public Coord coordTouche;
+	public boolean bateauCoule;
 	
 	public Tir(Coord coord, String arme) {
 		this.coordCible = coord;
 		this.nomArme = arme;
 	}
-	
+
 	public Coord getCoordCible() {
 		return coordCible;
 	}
@@ -58,10 +58,6 @@ public class Tir implements Serializable{
 	public void setBateauCoule(boolean bateauCoule) {
 		this.bateauCoule = bateauCoule;
 	}
-	
-	@Override
-	public String toString() {
-		return "Tir de l'arme "+this.nomArme+" !";
-	}
+
 
 }
