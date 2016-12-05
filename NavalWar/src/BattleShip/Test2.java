@@ -1,15 +1,12 @@
 package BattleShip;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Scanner;
 
-import Boats.*;
-import Reseau.*;
-import Weapon.*;
+import Boats.Bateau;
+import Reseau.Reseau;
+import Reseau.Tir;
 
-public class Test {
+public class Test2 {
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 
@@ -53,10 +50,10 @@ public class Test {
 // ----- Test du réseau
 		
 		Reseau r = new Reseau(3339,"127.0.0.1");
-		Tir tir = new Tir(new Coord(1,1),"Missile");
-		r.send(tir);
-//		
-//		r.receive();
+//		Tir tir = new Tir(new Coord(1,1),"Missile");
+//		r.send(tir);
+		
+		Tir tir = r.receive();
 		
 	}
 	
