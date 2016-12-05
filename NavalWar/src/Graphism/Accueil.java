@@ -19,7 +19,7 @@ public class Accueil {
 
 	private JFrame frame;
 	private JTextField UsernameField;
-	private final JPanel panel = new JPanel();
+	private final JPanel panel = new JPanel(); 
 
 	/**
 	 * Launch the application.
