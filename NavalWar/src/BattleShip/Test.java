@@ -57,8 +57,6 @@ public class Test {
 		
 //		r.receive();
 		
-		r.end();
-		
 	}
 	
 }
