@@ -81,6 +81,12 @@ public class Placement {
 		Plateau.setBounds(91, 138, 325, 325);
 		panel.add(Plateau);
 		Plateau.setBorder(new LineBorder(Color.BLACK));
+		GridBagLayout gbl_Plateau = new GridBagLayout();
+		gbl_Plateau.columnWidths = new int[]{0};
+		gbl_Plateau.rowHeights = new int[]{0};
+		gbl_Plateau.columnWeights = new double[]{Double.MIN_VALUE};
+		gbl_Plateau.rowWeights = new double[]{Double.MIN_VALUE};
+		Plateau.setLayout(gbl_Plateau);
 		
         // create the chess board squares
         Insets buttonMargin = new Insets(0,0,0,0);
