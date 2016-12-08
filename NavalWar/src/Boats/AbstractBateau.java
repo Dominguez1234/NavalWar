@@ -1,13 +1,17 @@
 package Boats;
 
-public class AbstractBoat {
+public class AbstractBateau {
 	
 	private String nom = "";
 	private int nbrCases = 0;
 	
-	public AbstractBoat(String n, int nbr) {
+	public AbstractBateau(String n, int nbr) {
 		this.nom = n;
 		this.nbrCases = nbr;
+	}
+	
+	public AbstractBateau() {
+		
 	}
 	
 	public String getNom() {
