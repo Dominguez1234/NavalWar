@@ -13,8 +13,9 @@ import BattleShip.Coord;
 public class ClientObjet {
 	
 	public static void Envoi(Tir tir) throws UnknownHostException, IOException{
-		String serverName = "134.214.50.91"; //adresse IP du serveur distant
-		int serverPort = 2012; //port
+		//String serverName = "134.214.50.88"; //adresse IP du serveur distant
+		String serverName = "0.0.0.0";
+		int serverPort = 2013; //port
 		Socket socket;
 		ObjectOutputStream out;
 		
@@ -35,7 +36,7 @@ public class ClientObjet {
 	
 	public static void main(String[] zero) throws IOException, ClassNotFoundException  {
 	
-		String serverName = "134.214.50.91"; //adresse IP du serveur distant
+		String serverName = "134.214.50.88"; //adresse IP du serveur distant
 		int serverPort = 2012; //port
 		Socket socket;
 		ObjectOutputStream out;
