@@ -55,6 +55,10 @@ public abstract class Bateau {
 		this.nbrCasesTouchees++;
 	}
 	
+	public AbstractBateau getAbstract() {
+		return new AbstractBateau(this.nom, this.nbrCases);
+	}
+	
 	@Override
 	public String toString() {
 		String str = this.nom+" - "+this.nbrCases+" cases ("+this.nbrCasesTouchees+" touchées)\nPositions : ";

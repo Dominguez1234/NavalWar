@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import Boats.AbstractBateau;
 import Boats.Bateau;
 import Weapon.Arme;
 import Weapon.Avion;
@@ -13,8 +14,14 @@ import Weapon.Missile;
 import Weapon.Nuke;
 import Weapon.Torpille;
 
+/*
+ * Contrôleur du jeu
+ * Met en relation l'océan (flotte, bateaux), les armes, et le réseau
+ */
+
 public class BattleShip {
 	
+	// Attributs
 	private boolean online = false;
 	private Reseau reseau;
 	public Ocean ocean;
@@ -25,8 +32,10 @@ public class BattleShip {
 		TOTALWAR
 	}
 	
+	// Liste des armes
 	private Map<String, Arme> lArmes = new LinkedHashMap<>();
 	
+	// Constructeur
 	public BattleShip(BattleShip.modeJeu mode) {
 		// Création de l'océan
 		ocean = new Ocean();
@@ -40,16 +49,18 @@ public class BattleShip {
 		}
 	}
 	
+	// Lance la connexion avec l'adversaire
 	public boolean connexion(String addr, int port) {
 		try {
-			this.reseau = new Reseau(addr, port);
-			this.online = this.reseau.connexion();
+			this.reseau = new Reseau(addr, port);	// Création objet réseau
+			this.online = this.reseau.connexion();	// Tentative de connexion
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return this.online;
 	}
 	
+	// Joueur local attaque l'adversaire
 	public boolean Jattaque(Coord cible, String arme, Arme.Sens sens) throws IOException, ClassNotFoundException {
 		if(this.online) {
 			
@@ -91,7 +102,7 @@ public class BattleShip {
 			System.out.println("Cibles touchées : "+tir.getTouches());
 			if(!tir.getBateauxCoules().isEmpty())
 				System.out.println("Bateau(x) coulé(s) : "+tir.getBateauxCoules());
-			for(Coord touche : tir.getTouches()) {
+			for(Coord touche : tir.getTouches()) {			// Pour chaque case touché, on modifie sur la map
 				ocean.addATouched(Ocean.joueur.moi, touche);
 			}
 			
@@ -99,14 +110,15 @@ public class BattleShip {
 		return false;
 	}
 	
+	// L'adversaire attaque le joueur local
 	public boolean JattendsLattaque() throws ClassNotFoundException, IOException {
 		System.out.println("En attente de réception...");
-		Tir tir = reseau.receive();
+		Tir tir = reseau.receive();		// Réception du Tir de l'adversaire
 		boolean continueFire = true;
 		String temp = "";
 		System.out.println("Réception : "+tir);
 		
-		for(Coord cible  : tir.getCibles()) {
+		for(Coord cible  : tir.getCibles()) {	// Pour chaque case ciblé par l'adversaire
 			// Si on touche un bateau
 			if(continueFire) {
 				if(ocean.fire(cible)) {
@@ -135,13 +147,19 @@ public class BattleShip {
 		}
 		// ----------------
 		
-		reseau.send(tir);
+		reseau.send(tir);	// Renvoie de l'objet tir à l'adversaire
 		
 		return false;
 	}
 	
+	// Modifier la position d'un bateau
 	public void setPosBoat(String nom, Coord posOrigine, Bateau.direction sens) {
 		ocean.setPosBoat(nom, posOrigine, sens);
+	}
+	
+	// Retourne l'abstract d'un bateau
+	public AbstractBateau getAbstractBateau(String nom) {
+		return this.ocean.getAbstractBateau(nom);
 	}
 	
 }
