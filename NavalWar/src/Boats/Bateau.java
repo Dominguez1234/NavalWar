@@ -2,8 +2,14 @@ package Boats;
 
 import BattleShip.Coord;
 
+/*
+ * Classe bateau
+ * Doit être étendu par une autre classe partant le nom du bateau
+ */
+
 public abstract class Bateau {
 	
+	// Attributs
 	protected String nom;
 	protected int nbrCases = 0;
 	
@@ -21,6 +27,7 @@ public abstract class Bateau {
 		verticale
 	}
 	
+	// Modifier la position
 	public void setPositions(Coord[] newPositions) {
 		for (int i = 0; i < newPositions.length; i++) {
 			this.positions[i].x = newPositions[i].x;	// x
@@ -28,6 +35,7 @@ public abstract class Bateau {
 		}
 	}
 	
+	// Renvoie un tableau avec toutes les coordonées du bateau
 	public Coord[] getPositions() {
 		return this.positions;
 	}
@@ -44,6 +52,7 @@ public abstract class Bateau {
 		return this.nbrCasesTouchees;
 	}
 	
+	// Renvoie VRAI si coulé
 	public boolean isDown() {
 		boolean down = false;
 		if(this.nbrCasesTouchees >= this.nbrCases)
@@ -51,8 +60,14 @@ public abstract class Bateau {
 		return down;
 	}
 	
+	// Comptabilise le tir
 	public void fire() {
 		this.nbrCasesTouchees++;
+	}
+	
+	// Renvoie l'abstract du bateau
+	public AbstractBateau getAbstract() {
+		return new AbstractBateau(this.nom, this.nbrCases);
 	}
 	
 	@Override

@@ -4,17 +4,21 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import Boats.AbstractBateau;
 import Boats.Bateau;
 import Weapon.*;
 
+/*
+ * Classe Oc�an, repr�sentant le terrain de jeu.
+ * Connais des informations sur les deux flottes.
+ */
+
 public class Ocean {
 	
-	private Flotte monJeu = new Flotte();
-	private Flotte ennemi = new Flotte();
+	// Attributs
+	private Flotte monJeu = new Flotte();	// Flotte du joueur local
 	
-//	private Map<String, Arme> lArmes = new LinkedHashMap<>();
-	
-	private Touche t = new Touche();
+	// G�n�ration des maps 10x10 de chaque joueur avec, dans chaque case, un objet Touche.
 	private Touche[][] tirsFromMe = {
 			{new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche()},
 			{new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche()},
@@ -27,7 +31,6 @@ public class Ocean {
 			{new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche()},
 			{new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche(),new Touche()}
 	};
-	
 	private Touche[][] tirsFromEnnemi = tirsFromMe.clone();
 	
 	public static enum joueur {
@@ -35,25 +38,13 @@ public class Ocean {
 		ennemi
 	}
 	
-//	public static enum modeJeu {
-//		NORMAL,
-//		TOTALWAR
-//	}
-	
-//	public Ocean(Ocean.modeJeu mode) {
-//		lArmes.put("Missile", new Missile());
-//		
-//		if(mode.equals(Ocean.modeJeu.TOTALWAR)) {
-//			lArmes.put("Nuke", new Nuke());
-//			lArmes.put("Torpille", new Torpille());
-//			lArmes.put("Avion", new Avion());
-//		}
-//	}
-	
+	// Constructeur
 	public Ocean() {
 		
 	}
 	
+	// Interroge si une case a d�j� �t� attaqu�.
+	// Renvoie vrai ou faux
 	public boolean wasAlreadyAttacked(Ocean.joueur from, Coord coord) {
 		boolean result = false;
 		Touche[][] temp;
@@ -67,6 +58,8 @@ public class Ocean {
 		return result;
 	}
 	
+	// Ex�cute un tir
+	// Renvoi vrai si le tir a �t� ex�cut�
 	public boolean fire(Coord tir) {
 		boolean result = false;
 		// V�rifier s'il y a un bateau sur la cible.
@@ -78,59 +71,22 @@ public class Ocean {
 		return result;
 	}
 	
+	// Retourne vrai si le bateau plac� � des coordon�es a �t� coul�
 	public boolean isDown(Coord tir) {
 		return this.monJeu.isDown(tir);
 	}
 	
+	// Renvoie vrai si tous les bateaux sont coul�s => fin de la partie
 	public boolean areAllDown() {
 		return this.monJeu.areAllDown();
 	}
 	
+	// Renvoie le nom du bateau qui se trouve � la position indiqu�e
 	public String whoIsHere(Coord pos) {
 		return this.monJeu.whoIsHere(pos);
 	}
-	
-	/*public String fire(Coord cible, String arme, Arme.Sens sens) {
-		// ----------------- VERSION TEMPORAIRE -----------------
-		String str = "";
-		boolean continueFire = true;
-		
-		// S�lection de l'arme.
-		if(this.lArmes.containsKey(arme)) {
-			for (Coord tir : this.lArmes.get(arme).zoneImpact(cible, sens)) {
-				// V�rifier validit� coordon�es.
-				if(continueFire) {
-					if(tir.coordonnees_valides()) {
-						// V�rifier si la case a d�j� �t� attaqu�e.
-						if(!this.wasAlreadyAttacked(Ocean.joueur.moi, tir)) {
-							this.tirsFromEnnemi[tir.x][tir.y].isTargeted = true;
-							// V�rifier s'il y a un bateau sur la cible.
-							if(this.monJeu.isSomethingHere(tir)) {
-								str = "Touch� ! ";
-								continueFire = false;
-								this.tirsFromEnnemi[tir.x][tir.y].isTouche = true;
-								this.monJeu.fire(tir);
-								// V�rifier si le bateau touch� est coul�.
-								if(this.monJeu.isDown(tir)) {
-									str += "Coul� ! ";
-									// V�rifier si tous les bateaux sont coul�s.
-									if(this.monJeu.areAllDown())
-										str += "Fin de la partie.";
-								}
-							} else
-								str = "Loup�";
-						} else
-							str = "Cette case a d�j� �t� attaqu�e";
-					} else
-						str = "Coordonn�es invalides";
-				}
-			}
-		} else
-			str = "Arme inconnue";
-		
-		return str;
-	}*/
-	
+
+	// Passe un point de la map en "cibl�e".
 	public void addATargeted(Ocean.joueur tireur, Coord coord) {
 		if(tireur.equals(Ocean.joueur.moi))
 			this.tirsFromMe[coord.x][coord.y].isTargeted = true;
@@ -138,6 +94,7 @@ public class Ocean {
 			this.tirsFromEnnemi[coord.x][coord.y].isTargeted = true;
 	}
 	
+	// Passe un point de la map en "touch�".
 	public void addATouched(Ocean.joueur tireur, Coord coord) {
 		if(tireur.equals(Ocean.joueur.moi))
 			this.tirsFromMe[coord.x][coord.y].isTouche = true;
@@ -145,19 +102,13 @@ public class Ocean {
 			this.tirsFromEnnemi[coord.x][coord.y].isTouche = true;
 	}
 	
-	public boolean isDown(Ocean.joueur flotte, String nomBateau) {
-		boolean result = false;
-		if(flotte.equals(Ocean.joueur.moi))
-			result = monJeu.isDown(nomBateau);
-		else
-			result = ennemi.isDown(nomBateau);
-		return result;
-	}
-	
+	// Modifier la position d'un bateau
+	// Se base sur la position d'origine (en haut � gauche) et sur le sens d'orientation
 	public void setPosBoat(String nom, Coord posOrigine, Bateau.direction sens) {
 		this.monJeu.setPosition(nom, posOrigine, sens);
 	}
 	
+	// Renvoie la map de Touche d'un joueur
 	public Touche[][] getTouches(Ocean.joueur plateau) {
 		Touche[][] tmp;
 		if(plateau.equals(Ocean.joueur.moi))
@@ -165,6 +116,11 @@ public class Ocean {
 		else
 			tmp = this.tirsFromMe;
 		return tmp;
+	}
+	
+	// Renvoie l'abstract du bateau souhait�
+	public AbstractBateau getAbstractBateau(String nom) {
+		return this.monJeu.getAbstractBateau(nom);
 	}
 	
 	@Override

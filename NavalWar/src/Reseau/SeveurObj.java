@@ -10,7 +10,6 @@ import Reseau.Tir;
  
 public class SeveurObj {
     static final int port = 2012;
-    
     public static void main(String[] args) throws Exception {
         ServerSocket s = new ServerSocket(port);
         System.out.println("Socket serveur: " + s);
@@ -37,8 +36,8 @@ public class SeveurObj {
         	//réception objet
         	Object objetRecu = in.readObject();
         	Tir recu = (Tir) objetRecu;
-        	System.out.println("Serveur recoit: \n Cible \nx : " + recu.coordCible.x +"\n y : " + recu.coordCible.y + "\nNom arme : " + recu.nomArme);
-        
+        	//System.out.println("Serveur recoit: \n Cible \nx : " + recu.coordCible.x +"\n y : " + recu.coordCible.y + "\nNom arme : " + recu.nomArme);
+        	System.out.println("\nNom arme : " + recu.nomArme);
         //fermeture tunnel, socket
         in.close();
         out.close();

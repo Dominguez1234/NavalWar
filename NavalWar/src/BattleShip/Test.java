@@ -50,7 +50,7 @@ public class Test {
 //		}
 		
 // --------------------------------------------------------------------------------------------
-// ----- Test du réseau
+// ----- Test du rÃ©seau
 		
 //		Reseau r = new Reseau(3339,"127.0.0.1");
 //		Tir tir = new Tir(new Coord(1,1),"Missile");
@@ -60,7 +60,7 @@ public class Test {
 		
 // --------------------------------------------------------------------------------------------
 		
-		// Connexion à l'autre
+		// Connexion Ã  l'autre
 //		String ip = "127.0.0.1";
 //		int port = 3339;
 //		
@@ -74,7 +74,7 @@ public class Test {
 //			e.printStackTrace();
 //		}
 //		
-//		System.out.println("Missile lancé !");
+//		System.out.println("Missile lancÃ© !");
 //		Tir t = new Tir();
 //		t.nomArme = "Missile";
 //		t.addCible(new Coord(1,2));
@@ -102,7 +102,7 @@ public class Test {
 		bs.setPosBoat("Patrouilleur", new Coord(1,8), Bateau.direction.verticale);
 		
 		
-		System.out.println("Test prêt\n");
+		System.out.println("Test prÃªt\n");
 		
 		Thread.sleep(2000);
 		

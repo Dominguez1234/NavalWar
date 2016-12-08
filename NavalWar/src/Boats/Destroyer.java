@@ -1,5 +1,10 @@
 package Boats;
 
+/*
+ * Bateau : Destroyer
+ * 3 cases
+ */
+
 public class Destroyer extends Bateau {
 	
 	public Destroyer() {
