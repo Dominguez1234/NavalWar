@@ -1,9 +1,8 @@
-package Reseau;
+package BattleShip;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import BattleShip.Coord;
 import Boats.Bateau;
 
 public class Tir implements Serializable{
@@ -12,6 +11,7 @@ public class Tir implements Serializable{
 	public String nomArme;
 	private ArrayList<Coord> coordTouchees = new ArrayList<>();
 	private ArrayList<String> bateauxCoules = new ArrayList<>();
+	public boolean gameOver;
 	
 	public Tir(ArrayList<Coord> coord, String arme) {
 		this.coordCibles = coord;

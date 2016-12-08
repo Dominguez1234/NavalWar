@@ -10,6 +10,11 @@ public class Coord implements Serializable{
 			this.y = y;
 		}
 		
+		public Coord() {
+			this.x = -1;
+			this.y = -1;
+		}
+		
 		public static boolean coordonnees_valides(int x, int y){
 			return ( (x<=9)&&(x>=0)&& (y<=9)&&(y>=0));
 		}
