@@ -69,7 +69,7 @@ public class Ocean {
 	
 	public boolean fire(Coord tir) {
 		boolean result = false;
-		// Vérifier s'il y a un bateau sur la cible.
+		// Vï¿½rifier s'il y a un bateau sur la cible.
 		if(this.monJeu.isSomethingHere(tir)) {
 			result = true;
 			this.tirsFromEnnemi[tir.x][tir.y].isTouche = true;
@@ -95,34 +95,34 @@ public class Ocean {
 		String str = "";
 		boolean continueFire = true;
 		
-		// Sélection de l'arme.
+		// Sï¿½lection de l'arme.
 		if(this.lArmes.containsKey(arme)) {
 			for (Coord tir : this.lArmes.get(arme).zoneImpact(cible, sens)) {
-				// Vérifier validité coordonées.
+				// Vï¿½rifier validitï¿½ coordonï¿½es.
 				if(continueFire) {
 					if(tir.coordonnees_valides()) {
-						// Vérifier si la case a déjà été attaquée.
+						// Vï¿½rifier si la case a dï¿½jï¿½ ï¿½tï¿½ attaquï¿½e.
 						if(!this.wasAlreadyAttacked(Ocean.joueur.moi, tir)) {
 							this.tirsFromEnnemi[tir.x][tir.y].isTargeted = true;
-							// Vérifier s'il y a un bateau sur la cible.
+							// Vï¿½rifier s'il y a un bateau sur la cible.
 							if(this.monJeu.isSomethingHere(tir)) {
-								str = "Touché ! ";
+								str = "Touchï¿½ ! ";
 								continueFire = false;
 								this.tirsFromEnnemi[tir.x][tir.y].isTouche = true;
 								this.monJeu.fire(tir);
-								// Vérifier si le bateau touché est coulé.
+								// Vï¿½rifier si le bateau touchï¿½ est coulï¿½.
 								if(this.monJeu.isDown(tir)) {
-									str += "Coulé ! ";
-									// Vérifier si tous les bateaux sont coulés.
+									str += "Coulï¿½ ! ";
+									// Vï¿½rifier si tous les bateaux sont coulï¿½s.
 									if(this.monJeu.areAllDown())
 										str += "Fin de la partie.";
 								}
 							} else
-								str = "Loupé";
+								str = "Loupï¿½";
 						} else
-							str = "Cette case a déjà été attaquée";
+							str = "Cette case a dï¿½jï¿½ ï¿½tï¿½ attaquï¿½e";
 					} else
-						str = "Coordonnées invalides";
+						str = "Coordonnï¿½es invalides";
 				}
 			}
 		} else

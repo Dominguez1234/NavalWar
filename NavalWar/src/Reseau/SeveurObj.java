@@ -10,7 +10,7 @@ import Reseau.Tir;
  
 public class SeveurObj {
     static final int port = 2012;
- 
+    
     public static void main(String[] args) throws Exception {
         ServerSocket s = new ServerSocket(port);
         System.out.println("Socket serveur: " + s);
