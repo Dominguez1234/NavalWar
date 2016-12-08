@@ -1,5 +1,6 @@
 package BattleShip;
 
+import Boats.AbstractBateau;
 import Boats.Bateau;
 import Boats.Croiseur;
 import Boats.Destroyer;
@@ -7,8 +8,13 @@ import Boats.Patrouilleur;
 import Boats.PorteAvions;
 import Boats.SousMarin;
 
+/*
+ * Classe Flotte contenant tous les bateaux d'un joueur
+ */
+
 public class Flotte {
 	
+	// Attributs
 	private Bateau bateaux[] = {
 		new PorteAvions(),
 		new Croiseur(),
@@ -17,12 +23,13 @@ public class Flotte {
 		new Patrouilleur()
 	};
 	
+	// Constructeur
 	public void Bateau() {
-		
 		// I have nothing to do here
-		
 	}
 	
+	// Modifier la position d'un bateau
+	// 
 	public void setPosition(String nomBateau, Coord refPosition, Bateau.direction direction) {
 		int i = this.getIdBateau(nomBateau);
 		if(i > -1) {
@@ -118,6 +125,15 @@ public class Flotte {
 			id = this.getIdBateau(name);
 		}
 		return id;
+	}
+	
+	public AbstractBateau getAbstractBateau(String nom) {
+		AbstractBateau ab = new AbstractBateau();
+		for (Bateau b : bateaux) {
+			if(b.getNom().equals(nom))
+				ab = b.getAbstract();
+		}
+		return ab;
 	}
 	
 	@Override

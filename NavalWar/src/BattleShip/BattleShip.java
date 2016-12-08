@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import Boats.AbstractBateau;
 import Boats.Bateau;
 import Weapon.Arme;
 import Weapon.Avion;
@@ -142,6 +143,10 @@ public class BattleShip {
 	
 	public void setPosBoat(String nom, Coord posOrigine, Bateau.direction sens) {
 		ocean.setPosBoat(nom, posOrigine, sens);
+	}
+	
+	public AbstractBateau getAbstractBateau(String nom) {
+		return this.ocean.getAbstractBateau(nom);
 	}
 	
 }
