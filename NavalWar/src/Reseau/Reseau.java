@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 public class Reseau {
 	
@@ -21,8 +22,6 @@ public class Reseau {
 	}
 	
 	public void send(Tir tir) throws IOException {
-		System.out.println("lol");
-		
 		soc = new Socket(this.ipOther,this.port);
 		
 		out = new ObjectOutputStream(soc.getOutputStream());
@@ -32,15 +31,11 @@ public class Reseau {
     	
     	out.close();
     	soc.close();
-    	
-    	System.out.println("Envoi objet "+tir.getClass()+" : "+tir.toString());
 	}
 	
 	public Tir receive() throws ClassNotFoundException, IOException {
 		Tir tir;
-		
 		servSoc = new ServerSocket(this.port);
-		System.out.println("Socket serveur: " + servSoc);
 		soc = servSoc.accept();
 		in = new ObjectInputStream(soc.getInputStream());
 		
@@ -50,16 +45,37 @@ public class Reseau {
     	in.close();
     	soc.close();
     	servSoc.close();
-    	
-    	System.out.println("Reception objet "+tir.getClass()+" : "+tir.toString());
 		return tir;
 	}
 	
-	public void end() throws IOException {
-		in.close();
-        out.close();
-        soc.close();
-        servSoc.close();
+	public boolean connexion() {
+		
+		System.out.println("Tentative de connexion à l'adversaire...");
+		
+		try {
+			// Connexion en tant que client
+			soc = new Socket(this.ipOther,this.port);
+			soc.close();
+			System.out.println("Connexion réussie");
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// Erreur : aucun serveur => passage en mode serveur en attendant l'adversaire
+			System.out.println("En attente de l'adversaire...");
+			
+			try {
+				servSoc = new ServerSocket(this.port);
+				soc = servSoc.accept();
+				System.out.println("Connexion réussie");
+				soc.close();
+				servSoc.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			
+		}
+		
+		return true;
 	}
 	
 }
