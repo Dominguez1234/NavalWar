@@ -25,9 +25,8 @@ import javax.swing.JTextPane;
 public class Placement {
 
 	private JFrame frame;
-	private final JPanel panel = new JPanel();
-	private JTextField UnDeux;
-
+	private JTextField ClicDroit;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -78,6 +77,12 @@ public class Placement {
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		
+		JLabel lblClicDroitSur = new JLabel("Clic droit sur une unite pour la tourner");
+		lblClicDroitSur.setFont(new Font("Battleground", Font.PLAIN, 30));
+		lblClicDroitSur.setBounds(490, 165, 439, 26);
+		panel.add(lblClicDroitSur);
+		
+		
 		//Lettres du dessus
 		JPanel Lettres = new JPanel();
 		Lettres.setBounds(91, 107, 325, 26);
@@ -106,9 +111,7 @@ public class Placement {
           for (int i = 0; i < 10; i++) {
               lbls1[i] = new JLabel(num[i] + "");
               Chiffres.add(lbls1[i]);
-          }
-    
-		
+          }		
 		
 		//Plateau
 		JPanel Plateau = new JPanel();
@@ -130,8 +133,6 @@ public class Placement {
 		frame.setSize(960,540);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-
-		
 		
 		//Listener et bouton du bouton démarrer
 		JButton btnModeStandard = new JButton("Demarrer");
@@ -143,6 +144,6 @@ public class Placement {
 			}
 		});
 		panel.add( label );
-		panel.setBounds(0, 0, 944, 501);
+		panel.setBounds(0, 0, 960, 540);
 	}
 }
