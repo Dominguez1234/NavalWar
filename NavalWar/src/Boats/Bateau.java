@@ -29,22 +29,7 @@ public abstract class Bateau {
 		verticale
 	}
 	
-	// Modifier la position
-//	public void setPositions(Coord[] newPositions) {
-//		for (int i = 0; i < newPositions.length; i++) {
-//			this.positions[i].x = newPositions[i].x;	// x
-//			this.positions[i].y = newPositions[i].y;	// y
-//		}
-//	}
-	
-//	public void setPositions(Coord origine, Bateau.direction sens) {
-//		int i = 0;
-//		for(Coord pos : this.calculPositions(origine, sens)) {
-//			this.positions[i] = pos;
-//			i++;
-//		}
-//	}
-	
+	// Modifier la position du bateau
 	public void setPositions(ArrayList<Coord> positions) {
 		int i = 0;
 		for(Coord pos : positions) {
@@ -53,6 +38,7 @@ public abstract class Bateau {
 		}
 	}
 	
+	// Calcul des positions en fonction d'une coordonnée de référence
 	public ArrayList<Coord> calculPositions(Coord origine, Bateau.direction sens) {
 		ArrayList<Coord> result = new ArrayList<>();
 		int i;
