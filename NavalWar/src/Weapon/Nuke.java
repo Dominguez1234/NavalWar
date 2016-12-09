@@ -1,15 +1,20 @@
 package Weapon;
 
+/*
+ * Nuke
+ * Bombe nucléaire, attaque une zone étendue
+ */
+
 import java.util.ArrayList;
 
 import BattleShip.Coord;
 
 public class Nuke extends Arme {	
+	
 	public Nuke() {
 		this.name = "Nuke";
 		this.needBoat.add("Destroyer");
 		this.needBoat.add("Croiseur");
-
 	}
 	
 	@Override

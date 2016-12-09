@@ -6,13 +6,20 @@ import java.util.ArrayList;
 
 import BattleShip.Coord;
 
+/*
+ * Classe Arme
+ * Contient les éléments de base d'une arme
+ * Doit être étendue
+ */
+
 public abstract class Arme {
-	
+
 	public enum Sens {
 		HORIZONTAL, 
 		VERTICAL;
 	}
 	
+	// Attributs
 	protected String name;
 	protected ArrayList<String> needBoat = new ArrayList<String>();
 	

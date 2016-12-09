@@ -1,5 +1,10 @@
 package Weapon;
 
+/*
+ * Missile
+ * Arme basique, attaque seulement une case
+ */
+
 import java.util.ArrayList;
 
 import BattleShip.Coord;
@@ -14,6 +19,7 @@ public class Missile extends Arme {
 		this.needBoat.add("Croiseur");
 		this.needBoat.add("Patrouilleur");
 	}
+	
 	@Override
 	public  ArrayList<Coord> zoneImpact(Coord cible, Sens sens) {
 		ArrayList<Coord> listCoord = new ArrayList<Coord>();
