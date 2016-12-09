@@ -13,6 +13,7 @@ public class Avion extends Arme{
 
 	public Avion(){
 		this.name = "Avion";
+		this.nbrRestant = 2;
 		this.needBoat.add("Porte-Avions");
 	}
 	

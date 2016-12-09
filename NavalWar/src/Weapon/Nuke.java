@@ -13,6 +13,7 @@ public class Nuke extends Arme {
 	
 	public Nuke() {
 		this.name = "Nuke";
+		this.nbrRestant = 1;
 		this.needBoat.add("Destroyer");
 		this.needBoat.add("Croiseur");
 	}

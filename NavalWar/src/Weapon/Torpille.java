@@ -13,6 +13,7 @@ public class Torpille extends Arme {
 
 	public Torpille(){
 		this.name = "Torpille";
+		this.nbrRestant = 2;
 		this.needBoat.add("Sous-Marin");
 	}
 

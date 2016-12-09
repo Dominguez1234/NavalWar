@@ -68,7 +68,8 @@ public class BattleShip {
 			Tir tir;
 			
 			// Sélection de l'arme.
-			if(this.lArmes.containsKey(arme)) {
+			if(this.lArmes.containsKey(arme) && this.lArmes.get(arme).getNbrRestant() > 0) {
+				this.lArmes.get(arme).FireInTheHole();
 				for (Coord c : this.lArmes.get(arme).zoneImpact(cible, sens)) {
 					// Vérifier validité coordonées.
 					if(c.coordonnees_valides()) {

@@ -13,6 +13,7 @@ public class Missile extends Arme {
 	
 	public Missile() {
 		this.name = "Missile";
+		this.nbrRestant = 9999;
 		this.needBoat.add("Porte-Avions");
 		this.needBoat.add("Destroyer");
 		this.needBoat.add("Sous-Marin");

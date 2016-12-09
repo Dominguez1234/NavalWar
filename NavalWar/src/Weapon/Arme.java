@@ -22,6 +22,7 @@ public abstract class Arme {
 	// Attributs
 	protected String name;
 	protected ArrayList<String> needBoat = new ArrayList<String>();
+	protected int nbrRestant = 0;
 	
 	public abstract ArrayList<Coord> zoneImpact(Coord cible, Sens sens);
 	
@@ -31,6 +32,14 @@ public abstract class Arme {
 	
 	public ArrayList<String> getNeedBoat() {
 		return this.needBoat;
+	}
+	
+	public int getNbrRestant() {
+		return this.nbrRestant;
+	}
+	
+	public void FireInTheHole() {
+		this.nbrRestant--;
 	}
 
 	@Override
