@@ -54,11 +54,12 @@ public class Accueil {
 		frame.getContentPane().setBackground(Color.WHITE);		
 		frame.getContentPane().setLayout(null);
 		
+		setFonts("fonts/Battleground.ttf");
 		
 		
 		//Label NavalWar
 		JLabel lblNavalWar = new JLabel("NavalWar", SwingConstants.CENTER);
-		lblNavalWar.setFont(new Font("Battleground", Font.PLAIN, 75));
+		lblNavalWar.setFont(new Font("fonts/Battleground.ttf", Font.PLAIN, 75));
 		lblNavalWar.setBounds(360, 10, 240, 80);		
 		frame.getContentPane().add(lblNavalWar);
 		
@@ -154,6 +155,11 @@ public class Accueil {
 			  }
 			});
 		
+		
+	}
+
+	private void setFonts(String string) {
+		// TODO Auto-generated method stub
 		
 	}
 }
