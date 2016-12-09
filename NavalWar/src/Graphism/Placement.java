@@ -24,7 +24,7 @@ import javax.swing.JTextPane;
 
 public class Placement {
 
-	private JFrame frame;
+	JFrame frame;
 	private JTextField ClicDroit;
 	
 	/**
@@ -98,7 +98,7 @@ public class Placement {
             Lettres.add(lbls[i]);
         }
         
-        //Chiffre à gauche
+        //Chiffre ï¿½ gauche
   		JPanel Chiffres = new JPanel();
   		Chiffres.setBounds(58, 138, 26, 325);
   		panel.add(Chiffres);
@@ -134,7 +134,7 @@ public class Placement {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-		//Listener et bouton du bouton démarrer
+		//Listener et bouton du bouton dï¿½marrer
 		JButton btnModeStandard = new JButton("Demarrer");
 		btnModeStandard.setBounds(579, 231, 240, 80);
 		panel.add(btnModeStandard);

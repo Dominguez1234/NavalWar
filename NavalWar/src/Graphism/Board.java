@@ -46,7 +46,7 @@ public class Board implements MouseListener, MouseMotionListener, Observer{
 	AbstractBateau abs3 = new AbstractBateau();
 	AbstractBateau abs4 = new AbstractBateau();
 	AbstractBateau abs5 = new AbstractBateau();
-	ArrayList al= new ArrayList();
+	ArrayList<AbstractBateau> al= new ArrayList();
 	
 	// ----- A SUPPRIMER
 	BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
@@ -104,9 +104,7 @@ public class Board implements MouseListener, MouseMotionListener, Observer{
             square.setBorder(new LineBorder(new Color(0, 0, 0)));
  
 		}
-		
-		
-		
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_1.setBounds(277, 51, 200, 200);
@@ -122,28 +120,40 @@ public class Board implements MouseListener, MouseMotionListener, Observer{
 		frame.getContentPane().add(textArea);
 		textArea.add(scrollPane);
 		
-		for(Object o : al){
-			System.out.println("Placer le "+((AbstractBateau) o).getNom()+"\n");
-		}
+//		for(Object o : al){
+//			System.out.println("Placer le "+((AbstractBateau) o).getNom()+"\n");
+//		}
 	
 	}
 	
 	int nb=0;
+	int index=0;
+	boolean placement=false;
+	//textArea.setText("Placer le ");
 	public void mouseClicked(MouseEvent e) {
 		//quand on clique sur une case, elle devient verte
-		System.out.println(e.getX() + " " + e.getY());		
-		Component c = panel.findComponentAt(e.getX(), e.getY());
-		this.xInit=e.getX();
-		this.yInit=e.getY();
-		c.setBackground(Color.green);
-		if (c.isValid()){
-			nb++;
-			if(nb>5){
+			System.out.println(e.getX() + " " + e.getY());		
+			Component c = panel.findComponentAt(e.getX(), e.getY());
+			this.xInit = e.getX() / c.getWidth();
+	        this.yInit = e.getY() / c.getHeight();		
+	        System.out.println(xInit + " " + yInit);	
+			//si la case est valide
+			if (c.isValid()){
+				nb++;
+				//si le nombre de cases sur lesquelles on à cliqué 
+				if(nb<=al.get(index).getNbrCases()){
+					c.setBackground(Color.green);
+					System.out.println("2eme if");
+				}
+				else{
+					nb=0;
+					index++;
+				}
 				
 			}
+			System.out.println(index);
+			textArea.setText("Placer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)");
 		}
-		System.out.println(nb);
-	}
 		
 		
 	
@@ -190,10 +200,10 @@ public class Board implements MouseListener, MouseMotionListener, Observer{
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		for(Object o : al){
-			textArea.setText("Placer le "+((AbstractBateau) o).getNom()+"\n");
-		}
+		// TODO Auto-generated method stub	
+//		for(Object o : al){
+//			textArea.setText("Placer le "+(((AbstractBateau) o).getNom()+"\n"));
+//		}
 		
 	}
 }	
