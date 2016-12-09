@@ -123,6 +123,11 @@ public class Ocean {
 		return this.monJeu.getAbstractBateau(nom);
 	}
 	
+	// Indique, pour une coordonnée, si un bateau est présent sur le jeu local
+	public boolean isSomethingHere(Coord coord) {
+		return this.monJeu.isSomethingHere(coord);
+	}
+	
 	@Override
 	public String toString() {
 		String str = "";

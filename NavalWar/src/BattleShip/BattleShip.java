@@ -60,6 +60,16 @@ public class BattleShip {
 		return this.online;
 	}
 	
+	public boolean connexion(String addr) {
+		try {
+			this.reseau = new Reseau(addr);	// Création objet réseau
+			this.online = this.reseau.connexion();	// Tentative de connexion
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return this.online;
+	}
+	
 	// Joueur local attaque l'adversaire
 	public boolean Jattaque(Coord cible, String arme, Arme.Sens sens) throws IOException, ClassNotFoundException {
 		if(this.online) {
@@ -68,7 +78,8 @@ public class BattleShip {
 			Tir tir;
 			
 			// Sélection de l'arme.
-			if(this.lArmes.containsKey(arme)) {
+			if(this.lArmes.containsKey(arme) && this.lArmes.get(arme).getNbrRestant() > 0) {
+				this.lArmes.get(arme).FireInTheHole();
 				for (Coord c : this.lArmes.get(arme).zoneImpact(cible, sens)) {
 					// Vérifier validité coordonées.
 					if(c.coordonnees_valides()) {
@@ -160,6 +171,11 @@ public class BattleShip {
 	// Retourne l'abstract d'un bateau
 	public AbstractBateau getAbstractBateau(String nom) {
 		return this.ocean.getAbstractBateau(nom);
+	}
+	
+	// Indique, pour une coordonnée, si un bateau est présent sur le jeu local
+	public boolean isSomethingHere(Coord coord) {
+		return this.ocean.isSomethingHere(coord);
 	}
 	
 }

@@ -1,5 +1,7 @@
 package BattleShip;
 
+import java.util.ArrayList;
+
 import Boats.AbstractBateau;
 import Boats.Bateau;
 import Boats.Croiseur;
@@ -29,34 +31,48 @@ public class Flotte {
 	}
 	
 	// Modifier la position d'un bateau
+//	public void setPosition(String nomBateau, Coord refPosition, Bateau.direction direction) {
+//		int i = this.getIdBateau(nomBateau);	// Récupère l'ID de la case où se trouve le bateau
+//		if(i > -1) {							// Si le bateau existe dans le tableau
+//			Coord newPos[] = {
+//					new Coord(-1,-1), 
+//					new Coord(-1,-1), 
+//					new Coord(-1,-1), 
+//					new Coord(-1,-1), 
+//					new Coord(-1,-1)
+//				};
+//			int j;
+//			boolean conflit = false;
+//			Coord ref = new Coord(refPosition.x, refPosition.y);
+//			
+//			// Calcul de la position de chaque case du bateau
+//			for (j = 0; j < bateaux[i].getNbrCases(); j++) {
+//				newPos[j].x = ref.x;
+//				newPos[j].y = ref.y;
+//				if(this.isSomethingHere(newPos[j]))		// Vérifie qu'aucun bateau de s'y trouve déjà
+//					conflit = true;
+//				// Incrémentation en fonction de la direction
+//				if(direction.equals(Bateau.direction.horizontale))
+//					ref.y++;
+//				else
+//					ref.x++;
+//			}
+//
+//			if(!conflit)	// Si aucun conflit avec un autre bateau
+//				bateaux[i].setPositions(newPos);
+//		}
+//	}
+	
 	public void setPosition(String nomBateau, Coord refPosition, Bateau.direction direction) {
 		int i = this.getIdBateau(nomBateau);	// Récupère l'ID de la case où se trouve le bateau
+		boolean conflit = false;
 		if(i > -1) {							// Si le bateau existe dans le tableau
-			Coord newPos[] = {
-					new Coord(-1,-1), 
-					new Coord(-1,-1), 
-					new Coord(-1,-1), 
-					new Coord(-1,-1), 
-					new Coord(-1,-1)
-				};
-			int j;
-			boolean conflit = false;
-			Coord ref = new Coord(refPosition.x, refPosition.y);
-			
-			// Calcul de la position de chaque case du bateau
-			for (j = 0; j < bateaux[i].getNbrCases(); j++) {
-				newPos[j].x = ref.x;
-				newPos[j].y = ref.y;
-				if(this.isSomethingHere(newPos[j]))		// Vérifie qu'aucun bateau de s'y trouve déjà
+			 ArrayList<Coord> newPos = bateaux[i].calculPositions(refPosition, direction);
+			for(Coord pos : newPos) {
+				if(this.isSomethingHere(pos))
 					conflit = true;
-				// Incrémentation en fonction de la direction
-				if(direction.equals(Bateau.direction.horizontale))
-					ref.y++;
-				else
-					ref.x++;
 			}
-
-			if(!conflit)	// Si aucun conflit avec un autre bateau
+			if(!conflit)
 				bateaux[i].setPositions(newPos);
 		}
 	}

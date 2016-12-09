@@ -1,5 +1,9 @@
 package Boats;
 
+import java.util.ArrayList;
+
+import BattleShip.Coord;
+
 /*
  * Version simplifiée d'un bateau
  */
@@ -26,6 +30,24 @@ public class AbstractBateau {
 	
 	public int getNbrCases() {
 		return this.nbrCases;
+	}
+	
+	// Calcul des positions en fonction d'une coordonnée de référence
+	public ArrayList<Coord> calculPositions(Coord origine, Bateau.direction sens) {
+		ArrayList<Coord> result = new ArrayList<>();
+		int i;
+		int x = origine.x;
+		int y = origine.y;
+		
+		for (i = 0; i < this.nbrCases; i++) {
+			result.add(new Coord(x,y));
+			if(sens.equals(Bateau.direction.horizontale))
+				y++;
+			else
+				x++;
+		}
+		
+		return result;
 	}
 	
 }
