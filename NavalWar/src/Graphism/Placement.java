@@ -71,7 +71,7 @@ public class Placement {
 		frame.getContentPane().add(lblBattleShip);
 		
 		//Image de fond
-		ImageIcon image = new ImageIcon("C:/Users/mathieu.pierluigi/Desktop/Fond.png");
+		ImageIcon image = new ImageIcon("img/Fond.png");
 		JLabel label = new JLabel("", image, JLabel.CENTER);
 		label.setBounds(0, 0, 944, 501);
 		JPanel panel = new JPanel();
