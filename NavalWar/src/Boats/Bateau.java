@@ -1,5 +1,7 @@
 package Boats;
 
+import java.util.ArrayList;
+
 import BattleShip.Coord;
 
 /*
@@ -28,11 +30,44 @@ public abstract class Bateau {
 	}
 	
 	// Modifier la position
-	public void setPositions(Coord[] newPositions) {
-		for (int i = 0; i < newPositions.length; i++) {
-			this.positions[i].x = newPositions[i].x;	// x
-			this.positions[i].y = newPositions[i].y;	// y
+//	public void setPositions(Coord[] newPositions) {
+//		for (int i = 0; i < newPositions.length; i++) {
+//			this.positions[i].x = newPositions[i].x;	// x
+//			this.positions[i].y = newPositions[i].y;	// y
+//		}
+//	}
+	
+//	public void setPositions(Coord origine, Bateau.direction sens) {
+//		int i = 0;
+//		for(Coord pos : this.calculPositions(origine, sens)) {
+//			this.positions[i] = pos;
+//			i++;
+//		}
+//	}
+	
+	public void setPositions(ArrayList<Coord> positions) {
+		int i = 0;
+		for(Coord pos : positions) {
+			this.positions[i] = pos;
+			i++;
 		}
+	}
+	
+	public ArrayList<Coord> calculPositions(Coord origine, Bateau.direction sens) {
+		ArrayList<Coord> result = new ArrayList<>();
+		int i;
+		int x = origine.x;
+		int y = origine.y;
+		
+		for (i = 0; i < this.nbrCases; i++) {
+			result.add(new Coord(x,y));
+			if(sens.equals(Bateau.direction.horizontale))
+				y++;
+			else
+				x++;
+		}
+		
+		return result;
 	}
 	
 	// Renvoie un tableau avec toutes les coordonées du bateau
