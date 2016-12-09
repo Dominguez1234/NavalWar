@@ -56,9 +56,6 @@ public class Score {
 		lblBattleShip.setFont(new Font("Battleground", Font.PLAIN, 47));
 		lblBattleShip.setBounds(330, 50, 300, 80);		
 		frame.getContentPane().add(lblBattleShip);
-				
-		//Image de fond
-		ImageIcon image = new ImageIcon("img/Fond.png");
 		
 		//Label NavalWar
 		JLabel lblNavalWar = new JLabel("NavalWar", SwingConstants.CENTER);
@@ -66,6 +63,7 @@ public class Score {
 		frame.getContentPane().add(lblNavalWar);
 		lblNavalWar.setFont(new Font("Battleground", Font.PLAIN, 75));
 		
+		//Champ du nom du gagnat
 		JLabel lblNomGagnant = new JLabel("NomGagnant");
 		lblNomGagnant.setForeground(new Color(245, 255, 250));
 		lblNomGagnant.setBackground(new Color(144, 238, 144));
@@ -76,6 +74,7 @@ public class Score {
 		lblNomGagnant.setOpaque(true);
 		frame.getContentPane().add(lblNomGagnant);
 		
+		//Champ du score du gagnant
 		JLabel lblScoreGagnant = new JLabel("SCORE");
 		lblScoreGagnant.setForeground(new Color(144, 238, 144));
 		lblScoreGagnant.setOpaque(true);
@@ -86,6 +85,7 @@ public class Score {
 		lblScoreGagnant.setHorizontalAlignment(SwingConstants.CENTER);
 		lblScoreGagnant.setFont(new Font("Bitstream Charter", Font.BOLD, 30));
 		
+		//Champ du nom du perdant
 		JLabel lblNomPerdant = new JLabel("NomPerdant");
 		lblNomPerdant.setOpaque(true);
 		lblNomPerdant.setForeground(new Color(255, 255, 255));
@@ -96,6 +96,7 @@ public class Score {
 		lblNomPerdant.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNomPerdant.setFont(new Font("Bitstream Charter", Font.BOLD, 30));
 		
+		//Champ du score du perdant
 		JLabel lblScorePerdant = new JLabel("SCORE");
 		lblScorePerdant.setOpaque(true);
 		lblScorePerdant.setBackground(new Color(255, 255, 240));
@@ -106,24 +107,20 @@ public class Score {
 		lblScorePerdant.setHorizontalAlignment(SwingConstants.CENTER);
 		lblScorePerdant.setFont(new Font("Bitstream Charter", Font.BOLD, 30));
 		
-		JLabel lblImgGagnant = new JLabel("New label");
-		lblImgGagnant.setBounds(190, 185, 50, 50);
-		frame.getContentPane().add(lblImgGagnant);
-		
-		
+		//Bouton rejouer
 		JButton btnRejouer = new JButton("Rejouer");
-		btnRejouer.setForeground(new Color(255, 255, 255));
-		btnRejouer.setBackground(new Color(102, 204, 51));
 		btnRejouer.setFont(new Font("Dialog", Font.PLAIN, 40));
 		btnRejouer.setBounds(220, 360, 240, 80);
 		frame.getContentPane().add(btnRejouer);
 		
+		//Bouton quitter
 		JButton btnQuitter = new JButton("Quitter");
-		btnQuitter.setBackground(new Color(255, 51, 0));
-		btnQuitter.setForeground(new Color(255, 255, 255));
 		btnQuitter.setBounds(500, 360, 240, 80);
 		frame.getContentPane().add(btnQuitter);
 		btnQuitter.setFont(new Font("Dialog", Font.PLAIN, 40));
+		
+		//Image de fond
+		ImageIcon image = new ImageIcon("img/Fond.png");
 		JLabel label = new JLabel("", image, JLabel.CENTER);
 		JPanel panel = new JPanel(new BorderLayout());
 		panel.add( label, BorderLayout.CENTER );
