@@ -70,7 +70,7 @@ public class Accueil {
 		frame.getContentPane().add(lblBattleShip);
 		
 		//Image de fond
-		ImageIcon image = new ImageIcon("img/Fond.png");
+		ImageIcon image = new ImageIcon("img/Fond.png"); 
 		JLabel label = new JLabel("", image, JLabel.CENTER);
 		label.setBounds(0, 0, 960, 511);
 		JPanel panel = new JPanel();
