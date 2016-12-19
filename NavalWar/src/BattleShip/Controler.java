@@ -21,6 +21,7 @@ public class Controler extends JFrame implements Observer {
 	
 	BattleShip bs;
 	JPanel accueil;
+	JPanel placement;
 	
 	/**
 	 * Launch the application.
@@ -49,9 +50,9 @@ public class Controler extends JFrame implements Observer {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		accueil = new Accueil(this);
-		this.getContentPane().add(accueil);
+		this.add(accueil);
 		
-//		JPanel placement = new Placement();
+//		placement = new Placement();
 //		this.getContentPane().add(placement);
 	}
 
@@ -73,11 +74,14 @@ public class Controler extends JFrame implements Observer {
 	}
 	
 	public void changeToPlacement() {
-		System.out.println("Changement de JPanel => Placement");
+		
 		JPanel placement = new Placement();
-		this.removeAll();
-		this.getContentPane().add(placement);
+		this.remove(accueil);
+		this.add(placement);
+		this.revalidate();
 		this.repaint();
+		
+		System.out.println("Changement de JPanel => Placement");
 	}
 
 	
