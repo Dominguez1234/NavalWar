@@ -46,22 +46,6 @@ public class Accueil extends JPanel {
 //			this.notifyObservers();
 //		}
 //	};
-	
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					Accueil window = new Accueil();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * Create the application.
@@ -90,9 +74,6 @@ public class Accueil extends JPanel {
 	 */
 	
 	private void initialize() throws FontFormatException, IOException {
-//		frame = new JFrame();
-//		frame.setResizable(false);
-//		frame.getContentPane().setBackground(Color.WHITE);		
 		this.setLayout(null);
 		
 		// ************* POLICE **************
@@ -118,8 +99,7 @@ public class Accueil extends JPanel {
 		//Label NavalWar
 		JLabel lblNavalWar = new JLabel("NavalWar", SwingConstants.CENTER);
 		lblNavalWar.setFont(BattlegroungBig);
-		lblNavalWar.setBounds(360, 10, 240, 80);		
-		//frame.getContentPane().add(lblNavalWar);
+		lblNavalWar.setBounds(360, 10, 240, 80);	
 		this.add(lblNavalWar);
 		
 		
@@ -128,7 +108,6 @@ public class Accueil extends JPanel {
 		JLabel lblBattleShip = new JLabel("Battleship Game", SwingConstants.CENTER);
 		lblBattleShip.setFont(BattlegroundMedium);
 		lblBattleShip.setBounds(330, 50, 300, 80);		
-//		frame.getContentPane().add(lblBattleShip);
 		this.add(lblBattleShip);
 		
 		//Image de fond
@@ -189,8 +168,6 @@ public class Accueil extends JPanel {
 		panel.add(label);
 		panel.setBounds(0, 0, 960, 511);
 		
-		
-//		frame.getContentPane().add(panel);
 		this.add(panel);
 		
 		//Champ de nom
@@ -203,12 +180,6 @@ public class Accueil extends JPanel {
 		IPAddrField.setColumns(10);
 		IPAddrField.setBounds(360, 181, 240, 34);
 		panel.add(IPAddrField);
-//		frame.setBounds(100, 100, 450, 300);
-//		frame.setBackground(new Color(0, 153, 204));
-//		frame.setSize(960,540);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-//		this.add(panel);
 		
 				
 		IPAddrField.getDocument().addDocumentListener(new DocumentListener() {
