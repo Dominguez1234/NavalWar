@@ -7,16 +7,21 @@ import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import BattleShip.BattleShip;
+import BattleShip.*;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -31,7 +36,7 @@ public class Accueil extends JPanel {
 	private JTextField UsernameField;
 	private JTextField IPAddrField;
 	
-	private JFrame maman;
+	private Controler controler;
 	
 	public MonObservable monObservable = new MonObservable();
 			
@@ -60,34 +65,59 @@ public class Accueil extends JPanel {
 
 	/**
 	 * Create the application.
+	 * @throws IOException 
+	 * @throws FontFormatException 
 	 */
-	public Accueil() {
+	public Accueil() throws FontFormatException, IOException {
 		super();
 		initialize();
 	}
 	
 	
-	public Accueil(Observer observer) {
-		this();
-		this.monObservable.addObserver(observer);
-	}
+//	public Accueil(Observer observer) {
+//		this();
+//		this.monObservable.addObserver(observer);
+//	}
 	
-	public Accueil(JFrame fenetreMere) {
+	public Accueil(Controler fenetreMere) throws FontFormatException, IOException {
 		this();
-		this.maman = fenetreMere;
+		this.controler = fenetreMere;
 	}
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws IOException 
+	 * @throws FontFormatException 
 	 */
-	private void initialize() {
+	
+	private void initialize() throws FontFormatException, IOException {
 //		frame = new JFrame();
 //		frame.setResizable(false);
 //		frame.getContentPane().setBackground(Color.WHITE);		
 		this.setLayout(null);
 		
+		// ************* POLICE **************
+		//Création de la police BattlegroundBig avec la taille
+	    Font BattlegroungBig = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")).deriveFont(75f);
+	    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+	    //Enregistrement de la police BattlegroundBig
+	    ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")));
+	    
+	    //Création de la police BattlegroundMedium avec la taille
+	    Font BattlegroundMedium = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")).deriveFont(47f);
+	    GraphicsEnvironment ge1 = GraphicsEnvironment.getLocalGraphicsEnvironment();
+	    //Enregistrement de la police BattlegroundBig
+	    ge1.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")));
+	    
+	    //Création de la police v avec la taille
+	    Font BattlegroundSmall = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")).deriveFont(35f);
+	    GraphicsEnvironment ge11 = GraphicsEnvironment.getLocalGraphicsEnvironment();
+	    //Enregistrement de la police BattlegroundSmall
+	    ge11.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")));
+	    // ***********************************
+	    
 		//Label NavalWar
 		JLabel lblNavalWar = new JLabel("NavalWar", SwingConstants.CENTER);
-		lblNavalWar.setFont(new Font("fonts/Battleground.ttf", Font.PLAIN, 50));
+		lblNavalWar.setFont(BattlegroungBig);
 		lblNavalWar.setBounds(360, 10, 240, 80);		
 		//frame.getContentPane().add(lblNavalWar);
 		this.add(lblNavalWar);
@@ -96,7 +126,7 @@ public class Accueil extends JPanel {
 		
 		//Label Battleship Game
 		JLabel lblBattleShip = new JLabel("Battleship Game", SwingConstants.CENTER);
-		lblBattleShip.setFont(new Font("Battleground", Font.PLAIN, 30));
+		lblBattleShip.setFont(BattlegroundMedium);
 		lblBattleShip.setBounds(330, 50, 300, 80);		
 //		frame.getContentPane().add(lblBattleShip);
 		this.add(lblBattleShip);
@@ -109,7 +139,7 @@ public class Accueil extends JPanel {
 		panel.setLayout(null);
 		
 		final JButton btnConnect = new JButton("Connect");
-		btnConnect.setFont(new Font("Battleground", Font.PLAIN, 30));
+		btnConnect.setFont(BattlegroundSmall);
 		btnConnect.setBounds(625, 181, 150, 34);
 		panel.add(btnConnect);
 		btnConnect.addActionListener(new ActionListener() {
@@ -117,7 +147,9 @@ public class Accueil extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 //				bs.connexion("127.0.0.1");
-				System.out.println(IPAddrField.getText());
+//				System.out.println(IPAddrField.getText());
+//				controler.connexionReseau(IPAddrField.getText());
+				controler.connexionReseau("127.0.0.1");
 			}
 			
 		});
@@ -126,9 +158,10 @@ public class Accueil extends JPanel {
 		JButton btnModeStandard = new JButton("Mode standard");
 		btnModeStandard.setBounds(360, 310, 240, 80);
 		panel.add(btnModeStandard);
-		btnModeStandard.setFont(new Font("Battleground", Font.PLAIN, 40));
+		btnModeStandard.setFont(BattlegroundSmall);
 		btnModeStandard.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				controler.choixModeJeu(BattleShip.modeJeu.NORMAL);
 			}
 		});
 		
@@ -147,11 +180,10 @@ public class Accueil extends JPanel {
 		JButton btnModeWorms = new JButton("Mode worms");
 		btnModeWorms.setBounds(360, 396, 240, 80);
 		panel.add(btnModeWorms);
-		btnModeWorms.setFont(new Font("Battleground", Font.PLAIN, 40));
+		btnModeWorms.setFont(BattlegroundSmall);
 		btnModeWorms.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("clic! worms");
-				monObservable.myNotify();
+				controler.choixModeJeu(BattleShip.modeJeu.TOTALWAR);
 			}
 		});
 		panel.add(label);
