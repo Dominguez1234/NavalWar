@@ -1,6 +1,7 @@
 package Graphism;
 
 import java.awt.BorderLayout;
+
 import java.awt.Component;
 import java.awt.EventQueue;
 
@@ -13,6 +14,8 @@ import java.awt.GridLayout;
 import javax.swing.border.LineBorder;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -28,17 +31,18 @@ import javax.swing.JScrollPane;
 import javax.swing.JEditorPane;
 
 import BattleShip.BattleShip;
+import BattleShip.Coord;
 import Boats.AbstractBateau;
 import Boats.Bateau;
 
 import javax.swing.JTextArea;
 
-public class Board implements MouseListener, MouseMotionListener, Observer{
+
+public class Board implements MouseListener, MouseMotionListener, Observer, KeyListener{
 
 	private JFrame frame;
 	public JPanel square;
 	public JPanel panel;
-	JTextArea textArea = new JTextArea();
 	int xInit;
 	int yInit;
 	AbstractBateau abs1 = new AbstractBateau();
@@ -47,6 +51,7 @@ public class Board implements MouseListener, MouseMotionListener, Observer{
 	AbstractBateau abs4 = new AbstractBateau();
 	AbstractBateau abs5 = new AbstractBateau();
 	ArrayList<AbstractBateau> al= new ArrayList();
+	Bateau.direction dir = Bateau.direction.verticale;
 	
 	// ----- A SUPPRIMER
 	BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
@@ -84,7 +89,6 @@ public class Board implements MouseListener, MouseMotionListener, Observer{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JScrollPane scrollPane = new JScrollPane(textArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		//panel
 		panel = new JPanel();
@@ -92,8 +96,9 @@ public class Board implements MouseListener, MouseMotionListener, Observer{
 		panel.setBounds(31, 51, 200, 200);
 		frame.getContentPane().add(panel);
 		panel.addMouseListener(this);
+		frame.addKeyListener(this);
 		panel.addMouseMotionListener(this);
-		panel.add(scrollPane);
+		//panel.add(scrollPane);
 		
 		panel.setLayout(new GridLayout(10, 10, 0, 0));
 		
@@ -116,48 +121,58 @@ public class Board implements MouseListener, MouseMotionListener, Observer{
 		al.add(abs4 = bs.getAbstractBateau("Destroyer"));
 		al.add(abs5 = bs.getAbstractBateau("Patrouilleur"));
 		
-		textArea.setBounds(31, 304, 200, 100);		
-		frame.getContentPane().add(textArea);
-		textArea.add(scrollPane);
+		//textArea.setBounds(31, 304, 200, 100);		
+		//frame.getContentPane().add(textArea);
+		//textArea.add(scrollPane);
 		
-//		for(Object o : al){
-//			System.out.println("Placer le "+((AbstractBateau) o).getNom()+"\n");
-//		}
+		for(Object o : al){
+			System.out.println("Placer le "+((AbstractBateau) o).getNom()+"\n");
+		}
 	
 	}
 	
 	int nb=0;
 	int index=0;
 	boolean placement=false;
-	//textArea.setText("Placer le ");
 	public void mouseClicked(MouseEvent e) {
+		int varx,vary;
+		boolean co_Valid=true;
+		Component v;
 		//quand on clique sur une case, elle devient verte
-			System.out.println(e.getX() + " " + e.getY());		
+			ArrayList<Coord> coo;
+			System.out.println(e.getX() + " " + e.getY());
 			Component c = panel.findComponentAt(e.getX(), e.getY());
-			this.xInit = e.getX() / c.getWidth();
-	        this.yInit = e.getY() / c.getHeight();		
-	        System.out.println(xInit + " " + yInit);	
-			//si la case est valide
-			if (c.isValid()){
-				nb++;
-				//si le nombre de cases sur lesquelles on à cliqué 
-				if(nb<=al.get(index).getNbrCases()){
-					c.setBackground(Color.green);
-					System.out.println("2eme if");
-				}
-				else{
-					nb=0;
-					index++;
-				}
+			this.xInit = (e.getX() / ((c.getWidth())));
+	        this.yInit = (e.getY() / ((c.getHeight())));
+	        Coord coord = new Coord(xInit,yInit);
+	        System.out.println(xInit + " " + yInit);
+	        coo = al.get(index).calculPositions(coord, dir);	
+	        System.out.println("\n\n"+coo+"\n");
+	        for(Coord o: coo){
+	        	co_Valid &= o.coordonnees_valides();
+	        	System.out.println(co_Valid);
+	        	}
+	        if(co_Valid==true){
+	        for(Coord o: coo){
+	        	varx = o.x * ((c.getWidth()));
+	        	vary = o.y * ((c.getWidth()));
+	        	v = panel.findComponentAt(varx, vary);
+	         	v.setBackground(Color.green);
+	         	
+	         	//System.out.println("Placer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
+	        }
+	        index++;
+	        }
+	        else{
+	        	System.out.println("replacer bateau");
+	        }
 				
-			}
-			System.out.println(index);
-			textArea.setText("Placer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)");
 		}
 		
 		
 	
 	public void mousePressed(MouseEvent e){
+		
 
 	}
 
@@ -169,14 +184,6 @@ public class Board implements MouseListener, MouseMotionListener, Observer{
 
 	//@Override
 	public void mouseDragged(MouseEvent e) {
-		
-		// TODO Auto-generated method stub
-//		Component c = panel.findComponentAt(e.getX(), e.getY());
-//		c.setBackground(Color.green);
-//		if (c.isValid()){
-//			nb++;
-//		}
-//		System.out.println(nb);
 	
 	}
 
@@ -201,9 +208,31 @@ public class Board implements MouseListener, MouseMotionListener, Observer{
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub	
-//		for(Object o : al){
-//			textArea.setText("Placer le "+(((AbstractBateau) o).getNom()+"\n"));
-//		}
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getKeyCode() == KeyEvent.VK_UP){
+			dir = Bateau.direction.verticale;
+			}
+		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
+			dir= Bateau.direction.horizontale;
+		}
+		else{}
+	
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
 		
 	}
 }	

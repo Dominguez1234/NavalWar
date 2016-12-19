@@ -7,26 +7,63 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JTextArea;
+
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.Window;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JTextPane;
 
-public class Placement {
+import tools.BoatImageProvider;
+import BattleShip.BattleShip;
+import BattleShip.Coord;
+import Boats.AbstractBateau;
+import Boats.Bateau;
+
+public class Placement implements MouseListener, MouseMotionListener, Observer, KeyListener {
 
 	JFrame frame;
-	private JTextField ClicDroit;
+	public JPanel square;
+	public JPanel panel;
+	public JPanel Plateau;
+	public JTextArea textArea;
+	int xInit;
+	int yInit;
+	AbstractBateau abs1 = new AbstractBateau();
+	AbstractBateau abs2 = new AbstractBateau();
+	AbstractBateau abs3 = new AbstractBateau();
+	AbstractBateau abs4 = new AbstractBateau();
+	AbstractBateau abs5 = new AbstractBateau();
+	ArrayList<AbstractBateau> al= new ArrayList();
+	Bateau.direction dir = Bateau.direction.verticale;
+	String mes = "Horizontal";
 	
+	// ----- A SUPPRIMER
+	BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
+	// ------------------	
 	/**
 	 * Launch the application.
 	 */
@@ -50,13 +87,22 @@ public class Placement {
 		initialize();
 	}
 
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(0, 153, 204));		
 		frame.getContentPane().setLayout(null);
+
+		
+		al.add(abs1 = bs.getAbstractBateau("Porte-Avions"));
+		al.add(abs2 = bs.getAbstractBateau("Croiseur"));
+		al.add(abs3 = bs.getAbstractBateau("Sous-Marin"));		
+		al.add(abs4 = bs.getAbstractBateau("Destroyer"));
+		al.add(abs5 = bs.getAbstractBateau("Patrouilleur"));
 		
 		//Label NavalWar
 		JLabel lblNavalWar = new JLabel("NavalWar", SwingConstants.CENTER);
@@ -77,9 +123,14 @@ public class Placement {
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		
-		JLabel lblClicDroitSur = new JLabel("Clic droit sur une unite pour la tourner");
+		textArea = new JTextArea();
+		textArea.setBounds(579, 379, 245, 80);
+		//textArea.setEditable(false);
+		panel.add(textArea);
+		
+		JLabel lblClicDroitSur = new JLabel("Appuyez sur les flèches haut et bas pour changer le sens");
 		lblClicDroitSur.setFont(new Font("Battleground", Font.PLAIN, 30));
-		lblClicDroitSur.setBounds(490, 165, 439, 26);
+		lblClicDroitSur.setBounds(490, 165, 400, 50);
 		panel.add(lblClicDroitSur);
 		
 		
@@ -96,9 +147,10 @@ public class Placement {
         for (int i = 0; i < 10; i++) {
             lbls[i] = new JLabel("    " + labelLettres[i] + "");
             Lettres.add(lbls[i]);
+
         }
         
-        //Chiffre � gauche
+        //Chiffre � gaucheframe
   		JPanel Chiffres = new JPanel();
   		Chiffres.setBounds(58, 138, 26, 325);
   		panel.add(Chiffres);
@@ -114,7 +166,7 @@ public class Placement {
           }		
 		
 		//Plateau
-		JPanel Plateau = new JPanel();
+		Plateau = new JPanel();
 		Plateau.setBounds(91, 138, 325, 325);
 		panel.add(Plateau);
 		Plateau.setBorder(new LineBorder(Color.BLACK));
@@ -125,6 +177,9 @@ public class Placement {
 			square.setBorder(new LineBorder(new Color(0, 0, 0)));
 		}
 
+		Plateau.addMouseListener(this);
+
+		Plateau.addMouseMotionListener(this);
 		
 		//Plateau
 		frame.getContentPane().add(panel);
@@ -132,7 +187,8 @@ public class Placement {
 		frame.setBackground(new Color(0, 153, 204));
 		frame.setSize(960,540);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		frame.addKeyListener(this);
+		frame.setFocusable(true);
 		
 		//Listener et bouton du bouton d�marrer
 		JButton btnModeStandard = new JButton("Demarrer");
@@ -145,5 +201,130 @@ public class Placement {
 		});
 		panel.add( label );
 		panel.setBounds(0, 0, 960, 540);
+
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+		// TODO Auto-generated method stub
+		if(e.getKeyCode() == KeyEvent.VK_UP){
+			dir= Bateau.direction.horizontale;
+			mes="Vertical";
+			textArea.setText("sens : " + mes +"\nPlacer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
+			}
+		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
+			dir = Bateau.direction.verticale;
+			mes="Horizontal";
+			textArea.setText("sens : " + mes +"\nPlacer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
+		}
+		else{}
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	int index=0;
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		int varx,vary,cox,coy,pos;
+		Coord testCo = new Coord();
+		boolean co_Valid=true;
+
+		Component v;
+		//quand on clique sur une case, elle devient verte
+			ArrayList<Coord> coo;
+			System.out.println(e.getX() + " " + e.getY());
+			Component c = Plateau.findComponentAt(e.getX(), e.getY());
+			this.xInit = (e.getX() / ((c.getWidth())))+1;
+	        this.yInit = (e.getY() / ((c.getHeight())))+1;
+	        Coord coord = new Coord(xInit,yInit);
+	        System.out.println(xInit + " " + yInit);
+	        coo = al.get(index).calculPositions(coord, dir);	
+	        System.out.println("\n\n"+coo+"\n");
+	        for(Coord o: coo){
+	        	cox=(o.x)-1;
+	        	coy=(o.y)-1;
+	        	testCo.x =cox;
+	        	testCo.y =coy;
+	        	co_Valid &= testCo.coordonnees_valides();
+	        	co_Valid &= !bs.isSomethingHere(o);
+	        	//System.out.println(co_Valid);
+	        	System.out.println(bs.isSomethingHere(o));
+	        	}
+	        if(co_Valid==true){
+	        	bs.setPosBoat(al.get(index).getNom(),coord, dir);
+	        	//JPanel pane = new JPanel();
+	        	pos=xInit-1+(yInit-1) *10;
+	        	JLabel piece = new JLabel( new ImageIcon(BoatImageProvider.getImageFile("Sous-Marin")));
+	        	JPanel panel = (JPanel)Plateau.getComponent(pos);
+	        	panel.add(piece);
+	        for(Coord o: coo){
+	        	varx = o.x * ((c.getWidth()));
+	        	vary = o.y * ((c.getWidth()));
+	        	v = Plateau.findComponentAt(varx, vary);
+	         	v.setBackground(Color.green);
+
+	         	//System.out.println("Placer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
+	        }
+	        index++;
+	        textArea.setText("sens : " + mes +"\nPlacer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
+	        }
+	        else{
+	        	textArea.setText("Erreur de placement");
+	        }
+				
+	}
+		
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
