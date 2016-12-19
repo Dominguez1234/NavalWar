@@ -68,7 +68,7 @@ public class Reseau {
 	// Vérifie la connexion entre deux joueurs
 	public boolean connexion() {
 		
-		System.out.println("Tentative de connexion à l'adversaire...");
+		System.out.println("Tentative de connexion à "+this.ipOther+":"+this.port+"...");
 		
 		try {
 			// Connexion en tant que client
