@@ -20,6 +20,7 @@ import Graphism.*;
 public class Controler extends JFrame implements Observer {
 	
 	BattleShip bs;
+	JPanel accueil;
 	
 	/**
 	 * Launch the application.
@@ -28,7 +29,6 @@ public class Controler extends JFrame implements Observer {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					
 					JFrame p = new Controler();
 					p.setVisible(true);
 				} catch (Exception e) {
@@ -42,15 +42,17 @@ public class Controler extends JFrame implements Observer {
 	public Controler() throws FontFormatException, IOException {
 		
 		this.setResizable(false);
-		this.getContentPane().setBackground(Color.WHITE);		
-		// this.getContentPane().setLayout(null);
+		this.getContentPane().setBackground(Color.WHITE);
 		
 		this.setBounds(100, 100, 450, 300);
 		this.setSize(960,540);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JPanel accueil = new Accueil(this);
+		accueil = new Accueil(this);
 		this.getContentPane().add(accueil);
+		
+//		JPanel placement = new Placement();
+//		this.getContentPane().add(placement);
 	}
 
 
@@ -65,7 +67,17 @@ public class Controler extends JFrame implements Observer {
 	}
 	
 	public void connexionReseau(String ip) {
-		bs.connexion(ip);
+		if(bs.connexion(ip)) {
+			this.changeToPlacement();
+		}
+	}
+	
+	public void changeToPlacement() {
+		System.out.println("Changement de JPanel => Placement");
+		JPanel placement = new Placement();
+		this.removeAll();
+		this.getContentPane().add(placement);
+		this.repaint();
 	}
 
 	
