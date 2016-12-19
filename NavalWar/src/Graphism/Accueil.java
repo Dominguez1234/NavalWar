@@ -118,6 +118,7 @@ public class Accueil extends JPanel {
 		panel.setLayout(null);
 		
 		final JButton btnConnect = new JButton("Connect");
+		btnConnect.setEnabled(false);
 		btnConnect.setFont(BattlegroundSmall);
 		btnConnect.setBounds(625, 181, 150, 34);
 		panel.add(btnConnect);
@@ -134,15 +135,10 @@ public class Accueil extends JPanel {
 		});
 		
 		//Listener et bouton du mode standard
-		JButton btnModeStandard = new JButton("Mode standard");
+		final JButton btnModeStandard = new JButton("Mode standard");
 		btnModeStandard.setBounds(360, 310, 240, 80);
 		panel.add(btnModeStandard);
 		btnModeStandard.setFont(BattlegroundSmall);
-		btnModeStandard.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				controler.choixModeJeu(BattleShip.modeJeu.NORMAL);
-			}
-		});
 		
 		JLabel lblIPAddr = new JLabel("IP Address:");
 		lblIPAddr.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -156,15 +152,11 @@ public class Accueil extends JPanel {
 		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		
 		//Listener et bouton du mode worms
-		JButton btnModeWorms = new JButton("Mode worms");
+		final JButton btnModeWorms = new JButton("Mode worms");
 		btnModeWorms.setBounds(360, 396, 240, 80);
 		panel.add(btnModeWorms);
 		btnModeWorms.setFont(BattlegroundSmall);
-		btnModeWorms.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				controler.choixModeJeu(BattleShip.modeJeu.TOTALWAR);
-			}
-		});
+		
 		panel.add(label);
 		panel.setBounds(0, 0, 960, 511);
 		
@@ -181,6 +173,24 @@ public class Accueil extends JPanel {
 		IPAddrField.setBounds(360, 181, 240, 34);
 		panel.add(IPAddrField);
 		
+		// Boutons choix mode
+		btnModeStandard.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				controler.choixModeJeu(BattleShip.modeJeu.NORMAL);
+				btnConnect.setEnabled(true);
+				btnModeWorms.setEnabled(false);
+				btnModeStandard.setBackground(new Color(86, 255, 94));
+			}
+		});
+		
+		btnModeWorms.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				controler.choixModeJeu(BattleShip.modeJeu.TOTALWAR);
+				btnConnect.setEnabled(true);
+				btnModeStandard.setEnabled(false);
+				btnModeWorms.setBackground(new Color(86, 255, 94));
+			}
+		});
 				
 		IPAddrField.getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) {
