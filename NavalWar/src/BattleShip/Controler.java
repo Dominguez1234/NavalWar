@@ -2,8 +2,10 @@ package BattleShip;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.FontFormatException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -15,9 +17,9 @@ import Boats.Patrouilleur;
 import Boats.PorteAvions;
 import Graphism.*;
 
-public class TEst3 extends JFrame implements Observer {
+public class Controler extends JFrame implements Observer {
 	
-	BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
+	BattleShip bs;
 	
 	/**
 	 * Launch the application.
@@ -27,7 +29,7 @@ public class TEst3 extends JFrame implements Observer {
 			public void run() {
 				try {
 					
-					JFrame p = new TEst3();
+					JFrame p = new Controler();
 					p.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +39,7 @@ public class TEst3 extends JFrame implements Observer {
 	}
 
 	
-	public TEst3() {
+	public Controler() throws FontFormatException, IOException {
 		
 		this.setResizable(false);
 		this.getContentPane().setBackground(Color.WHITE);		
@@ -47,7 +49,7 @@ public class TEst3 extends JFrame implements Observer {
 		this.setSize(960,540);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JPanel accueil = new Accueil((JFrame) this);
+		JPanel accueil = new Accueil(this);
 		this.getContentPane().add(accueil);
 	}
 
@@ -57,7 +59,14 @@ public class TEst3 extends JFrame implements Observer {
 		System.out.println("j'ai été notifié - "+arg);
 	}
 
-
+	public void choixModeJeu(BattleShip.modeJeu mode) {
+		bs = new BattleShip(mode);
+		System.out.println("Choix mode de jeu : "+mode);
+	}
+	
+	public void connexionReseau(String ip) {
+		bs.connexion(ip);
+	}
 
 	
 }
