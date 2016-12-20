@@ -15,11 +15,9 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
@@ -27,17 +25,10 @@ import javax.swing.JPanel;
 
 import java.awt.Component;
 import java.awt.GridLayout;
-import java.awt.Insets;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Window;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JTextPane;
-
-import tools.BoatImageProvider;
 import BattleShip.BattleShip;
 import BattleShip.Coord;
 import Boats.AbstractBateau;
@@ -57,7 +48,7 @@ public class Placement implements MouseListener, MouseMotionListener, Observer, 
 	AbstractBateau abs3 = new AbstractBateau();
 	AbstractBateau abs4 = new AbstractBateau();
 	AbstractBateau abs5 = new AbstractBateau();
-	ArrayList<AbstractBateau> al= new ArrayList();
+	ArrayList<AbstractBateau> al = new ArrayList<AbstractBateau>();
 	Bateau.direction dir = Bateau.direction.verticale;
 	String mes = "Horizontal";
 	
