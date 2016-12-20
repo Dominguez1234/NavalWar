@@ -43,13 +43,14 @@ import BattleShip.Coord;
 import Boats.AbstractBateau;
 import Boats.Bateau;
 
-public class Placement implements MouseListener, MouseMotionListener, Observer, KeyListener {
+public class Board implements MouseListener, MouseMotionListener, Observer, KeyListener {
 
 	JFrame frame;
 	public JPanel square;
 	public JPanel panel;
 	public JPanel Plateau;
 	public JTextArea textArea;
+	public JButton btnJouer;
 	int xInit;
 	int yInit;
 	AbstractBateau abs1 = new AbstractBateau();
@@ -71,7 +72,7 @@ public class Placement implements MouseListener, MouseMotionListener, Observer, 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Placement window = new Placement();
+					Board window = new Board();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -83,7 +84,7 @@ public class Placement implements MouseListener, MouseMotionListener, Observer, 
 	/**
 	 * Create the application.
 	 */
-	public Placement() {
+	public Board() {
 		initialize();
 	}
 
@@ -191,11 +192,12 @@ public class Placement implements MouseListener, MouseMotionListener, Observer, 
 		frame.setFocusable(true);
 		
 		//Listener et bouton du bouton d�marrer
-		JButton btnModeStandard = new JButton("Demarrer");
-		btnModeStandard.setBounds(579, 231, 240, 80);
-		panel.add(btnModeStandard);
-		btnModeStandard.setFont(new Font("Battleground", Font.PLAIN, 40));
-		btnModeStandard.addActionListener(new ActionListener() {
+		btnJouer = new JButton("Jouer");
+		btnJouer.setEnabled(false);
+		btnJouer.setBounds(579, 231, 240, 80);
+		panel.add(btnJouer);
+		btnJouer.setFont(new Font("Battleground", Font.PLAIN, 40));
+		btnJouer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
@@ -257,18 +259,22 @@ public class Placement implements MouseListener, MouseMotionListener, Observer, 
 		int varx,vary,cox,coy,pos;
 		Coord testCo = new Coord();
 		boolean co_Valid=true;
-
+		ArrayList<Coord> coo;
 		Component v;
 		//quand on clique sur une case, elle devient verte
-			ArrayList<Coord> coo;
+			
+		if(index<=4){
+			
 			System.out.println(e.getX() + " " + e.getY());
 			Component c = Plateau.findComponentAt(e.getX(), e.getY());
 			this.xInit = (e.getX() / ((c.getWidth())))+1;
 	        this.yInit = (e.getY() / ((c.getHeight())))+1;
 	        Coord coord = new Coord(xInit,yInit);
 	        System.out.println(xInit + " " + yInit);
+	        
 	        coo = al.get(index).calculPositions(coord, dir);	
 	        System.out.println("\n\n"+coo+"\n");
+	        
 	        for(Coord o: coo){
 	        	cox=(o.x)-1;
 	        	coy=(o.y)-1;
@@ -279,13 +285,9 @@ public class Placement implements MouseListener, MouseMotionListener, Observer, 
 	        	//System.out.println(co_Valid);
 	        	System.out.println(bs.isSomethingHere(o));
 	        	}
+	       
 	        if(co_Valid==true){
 	        	bs.setPosBoat(al.get(index).getNom(),coord, dir);
-	        	//JPanel pane = new JPanel();
-	        	pos=xInit-1+(yInit-1) *10;
-	        	JLabel piece = new JLabel( new ImageIcon(BoatImageProvider.getImageFile("Sous-Marin")));
-	        	JPanel panel = (JPanel)Plateau.getComponent(pos);
-	        	panel.add(piece);
 	        for(Coord o: coo){
 	        	varx = o.x * ((c.getWidth()));
 	        	vary = o.y * ((c.getWidth()));
@@ -294,14 +296,21 @@ public class Placement implements MouseListener, MouseMotionListener, Observer, 
 
 	         	//System.out.println("Placer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
 	        }
-	        index++;
 	        textArea.setText("sens : " + mes +"\nPlacer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
+	        index++;
 	        }
 	        else{
 	        	textArea.setText("Erreur de placement");
 	        }
-				
+		}
+		else{
+			btnJouer.setEnabled(true);
+			textArea.setText("Commencer la partie ! \n");
+		}
 	}
+
+				
+	
 		
 
 	@Override
