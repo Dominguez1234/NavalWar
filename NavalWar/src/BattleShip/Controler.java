@@ -49,11 +49,15 @@ public class Controler extends JFrame implements Observer {
 		this.setSize(960,540);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		accueil = new Accueil(this);
-		this.add(accueil);
+//		accueil = new Accueil(this);
+//		this.add(accueil);
 		
-//		placement = new Placement();
+//		placement = new PlacementB();
 //		this.add(placement);
+		
+		PlacementB2 p2 = new PlacementB2();
+		this.add(p2);
+		
 	}
 
 
