@@ -7,67 +7,108 @@ import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import BattleShip.*;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Accueil {
+public class Accueil extends JPanel {
 
-	private JFrame frame;
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	// private JFrame frame;
 	private JTextField UsernameField;
 	private JTextField IPAddrField;
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Accueil window = new Accueil();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private Controler controler;
+	
+	public MonObservable monObservable = new MonObservable();
+			
+//	public class MonObservable extends Observable {
+//		public void envoie() {
+//			this.setChanged();
+//			this.notifyObservers();
+//		}
+//	};
 
 	/**
 	 * Create the application.
+	 * @throws IOException 
+	 * @throws FontFormatException 
 	 */
-	public Accueil() {
+	public Accueil() throws FontFormatException, IOException {
+		super();
 		initialize();
 	}
-
+	
+	
+//	public Accueil(Observer observer) {
+//		this();
+//		this.monObservable.addObserver(observer);
+//	}
+	
+	public Accueil(Controler fenetreMere) throws FontFormatException, IOException {
+		this();
+		this.controler = fenetreMere;
+	}
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws IOException 
+	 * @throws FontFormatException 
 	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.getContentPane().setBackground(Color.WHITE);		
-		frame.getContentPane().setLayout(null);
+	
+	private void initialize() throws FontFormatException, IOException {
+		this.setLayout(null);
 		
-		setFonts("fonts/Battleground.ttf");
-		
-		
+		// ************* POLICE **************
+		//Création de la police BattlegroundBig avec la taille
+	    Font BattlegroungBig = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")).deriveFont(75f);
+	    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+	    //Enregistrement de la police BattlegroundBig
+	    ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")));
+	    
+	    //Création de la police BattlegroundMedium avec la taille
+	    Font BattlegroundMedium = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")).deriveFont(47f);
+	    GraphicsEnvironment ge1 = GraphicsEnvironment.getLocalGraphicsEnvironment();
+	    //Enregistrement de la police BattlegroundBig
+	    ge1.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")));
+	    
+	    //Création de la police v avec la taille
+	    Font BattlegroundSmall = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")).deriveFont(35f);
+	    GraphicsEnvironment ge11 = GraphicsEnvironment.getLocalGraphicsEnvironment();
+	    //Enregistrement de la police BattlegroundSmall
+	    ge11.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")));
+	    // ***********************************
+	    
 		//Label NavalWar
 		JLabel lblNavalWar = new JLabel("NavalWar", SwingConstants.CENTER);
-		lblNavalWar.setFont(new Font("fonts/Battleground.ttf", Font.PLAIN, 75));
-		lblNavalWar.setBounds(360, 10, 240, 80);		
-		frame.getContentPane().add(lblNavalWar);
+		lblNavalWar.setFont(BattlegroungBig);
+		lblNavalWar.setBounds(360, 10, 240, 80);	
+		this.add(lblNavalWar);
+		
+		
 		
 		//Label Battleship Game
 		JLabel lblBattleShip = new JLabel("Battleship Game", SwingConstants.CENTER);
-		lblBattleShip.setFont(new Font("Battleground", Font.PLAIN, 47));
+		lblBattleShip.setFont(BattlegroundMedium);
 		lblBattleShip.setBounds(330, 50, 300, 80);		
-		frame.getContentPane().add(lblBattleShip);
+		this.add(lblBattleShip);
 		
 		//Image de fond
 		ImageIcon image = new ImageIcon("img/Fond.png"); 
@@ -77,19 +118,27 @@ public class Accueil {
 		panel.setLayout(null);
 		
 		final JButton btnConnect = new JButton("Connect");
-		btnConnect.setFont(new Font("Battleground", Font.PLAIN, 30));
+		btnConnect.setEnabled(false);
+		btnConnect.setFont(BattlegroundSmall);
 		btnConnect.setBounds(625, 181, 150, 34);
 		panel.add(btnConnect);
+		btnConnect.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+//				bs.connexion("127.0.0.1");
+//				System.out.println(IPAddrField.getText());
+//				controler.connexionReseau(IPAddrField.getText());
+				controler.connexionReseau("127.0.0.1");
+			}
+			
+		});
 		
 		//Listener et bouton du mode standard
-		JButton btnModeStandard = new JButton("Mode standard");
+		final JButton btnModeStandard = new JButton("Mode standard");
 		btnModeStandard.setBounds(360, 310, 240, 80);
 		panel.add(btnModeStandard);
-		btnModeStandard.setFont(new Font("Battleground", Font.PLAIN, 40));
-		btnModeStandard.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		btnModeStandard.setFont(BattlegroundSmall);
 		
 		JLabel lblIPAddr = new JLabel("IP Address:");
 		lblIPAddr.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -103,19 +152,15 @@ public class Accueil {
 		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		
 		//Listener et bouton du mode worms
-		JButton btnModeWorms = new JButton("Mode worms");
+		final JButton btnModeWorms = new JButton("Mode worms");
 		btnModeWorms.setBounds(360, 396, 240, 80);
 		panel.add(btnModeWorms);
-		btnModeWorms.setFont(new Font("Battleground", Font.PLAIN, 40));
-		btnModeWorms.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		panel.add( label );
+		btnModeWorms.setFont(BattlegroundSmall);
+		
+		panel.add(label);
 		panel.setBounds(0, 0, 960, 511);
 		
-		
-		frame.getContentPane().add(panel);
+		this.add(panel);
 		
 		//Champ de nom
 		UsernameField = new JTextField();
@@ -127,11 +172,25 @@ public class Accueil {
 		IPAddrField.setColumns(10);
 		IPAddrField.setBounds(360, 181, 240, 34);
 		panel.add(IPAddrField);
-		frame.setBounds(100, 100, 450, 300);
-		frame.setBackground(new Color(0, 153, 204));
-		frame.setSize(960,540);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		// Boutons choix mode
+		btnModeStandard.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				controler.choixModeJeu(BattleShip.modeJeu.NORMAL);
+				btnConnect.setEnabled(true);
+				btnModeWorms.setEnabled(false);
+				btnModeStandard.setBackground(new Color(86, 255, 94));
+			}
+		});
+		
+		btnModeWorms.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				controler.choixModeJeu(BattleShip.modeJeu.TOTALWAR);
+				btnConnect.setEnabled(true);
+				btnModeStandard.setEnabled(false);
+				btnModeWorms.setBackground(new Color(86, 255, 94));
+			}
+		});
 				
 		IPAddrField.getDocument().addDocumentListener(new DocumentListener() {
 			  public void changedUpdate(DocumentEvent e) {
@@ -158,8 +217,5 @@ public class Accueil {
 		
 	}
 
-	private void setFonts(String string) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

@@ -23,12 +23,10 @@ public class Coord implements Serializable{
 		this.y = -1;
 	}
 	
-	// Retourne VRAI si els coordon�es sont valides
 	public static boolean coordonnees_valides(int x, int y){
 		return ( (x<=9)&&(x>=0)&& (y<=9)&&(y>=0));
 	}
-	
-	// Retourne VRAI si els coordon�es sont valides
+
 	public boolean coordonnees_valides() {
 		return this.x<=9 && this.x>=0 && this.y<=9 && this.y>=0;
 	}
