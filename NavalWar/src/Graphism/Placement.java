@@ -257,18 +257,21 @@ public class Placement implements MouseListener, MouseMotionListener, Observer, 
 		int varx,vary,cox,coy,pos;
 		Coord testCo = new Coord();
 		boolean co_Valid=true;
-
+		ArrayList<Coord> coo;
 		Component v;
 		//quand on clique sur une case, elle devient verte
-			ArrayList<Coord> coo;
+			
+		if(index<5){
 			System.out.println(e.getX() + " " + e.getY());
 			Component c = Plateau.findComponentAt(e.getX(), e.getY());
 			this.xInit = (e.getX() / ((c.getWidth())))+1;
 	        this.yInit = (e.getY() / ((c.getHeight())))+1;
 	        Coord coord = new Coord(xInit,yInit);
 	        System.out.println(xInit + " " + yInit);
+	        
 	        coo = al.get(index).calculPositions(coord, dir);	
 	        System.out.println("\n\n"+coo+"\n");
+	        
 	        for(Coord o: coo){
 	        	cox=(o.x)-1;
 	        	coy=(o.y)-1;
@@ -279,13 +282,9 @@ public class Placement implements MouseListener, MouseMotionListener, Observer, 
 	        	//System.out.println(co_Valid);
 	        	System.out.println(bs.isSomethingHere(o));
 	        	}
+	       
 	        if(co_Valid==true){
 	        	bs.setPosBoat(al.get(index).getNom(),coord, dir);
-	        	//JPanel pane = new JPanel();
-	        	pos=xInit-1+(yInit-1) *10;
-	        	JLabel piece = new JLabel( new ImageIcon(BoatImageProvider.getImageFile("Sous-Marin")));
-	        	JPanel panel = (JPanel)Plateau.getComponent(pos);
-	        	panel.add(piece);
 	        for(Coord o: coo){
 	        	varx = o.x * ((c.getWidth()));
 	        	vary = o.y * ((c.getWidth()));
@@ -294,14 +293,18 @@ public class Placement implements MouseListener, MouseMotionListener, Observer, 
 
 	         	//System.out.println("Placer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
 	        }
-	        index++;
 	        textArea.setText("sens : " + mes +"\nPlacer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
+	        index++;
 	        }
 	        else{
 	        	textArea.setText("Erreur de placement");
 	        }
-				
+		}
+		else{System.out.println("Coucouy");}
 	}
+
+				
+	
 		
 
 	@Override
