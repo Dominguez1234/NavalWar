@@ -3,7 +3,7 @@ package BattleShip;
 import java.io.Serializable;
 
 /*
- * Classe pour les coordonnées
+ * Classe pour les coordonnï¿½es
  */
 
 public class Coord implements Serializable{
@@ -11,7 +11,7 @@ public class Coord implements Serializable{
 	// Attributs
 	public int x,y;
 	
-	// Constructeur avec coordonnées
+	// Constructeur avec coordonnï¿½es
 	public Coord(int x, int y){
 		this.x = x;
 		this.y = y;
@@ -23,12 +23,12 @@ public class Coord implements Serializable{
 		this.y = -1;
 	}
 	
-	// Retourne VRAI si els coordonées sont valides
+	// Retourne VRAI si els coordonï¿½es sont valides
 	public static boolean coordonnees_valides(int x, int y){
 		return ( (x<=9)&&(x>=0)&& (y<=9)&&(y>=0));
 	}
 	
-	// Retourne VRAI si els coordonées sont valides
+	// Retourne VRAI si els coordonï¿½es sont valides
 	public boolean coordonnees_valides() {
 		return this.x<=9 && this.x>=0 && this.y<=9 && this.y>=0;
 	}
