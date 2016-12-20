@@ -43,7 +43,7 @@ public class Controler extends JFrame implements Observer {
 	public Controler() throws FontFormatException, IOException {
 		
 		this.setResizable(false);
-		this.getContentPane().setBackground(Color.WHITE);
+		this.setBackground(Color.WHITE);
 		
 		this.setBounds(100, 100, 450, 300);
 		this.setSize(960,540);
@@ -53,7 +53,7 @@ public class Controler extends JFrame implements Observer {
 		this.add(accueil);
 		
 //		placement = new Placement();
-//		this.getContentPane().add(placement);
+//		this.add(placement);
 	}
 
 
@@ -75,7 +75,7 @@ public class Controler extends JFrame implements Observer {
 	
 	public void changeToPlacement() {
 		
-		JPanel placement = new Placement();
+		JPanel placement = new PlacementB();
 		this.remove(accueil);
 		this.add(placement);
 		this.revalidate();

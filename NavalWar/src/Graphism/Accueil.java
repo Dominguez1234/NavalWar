@@ -74,7 +74,7 @@ public class Accueil extends JPanel {
 	 */
 	
 	private void initialize() throws FontFormatException, IOException {
-		this.setLayout(null);
+		this.setLayout(null);	// A AJOUTER POUR QUE CA FONCTIONNE !!!
 		
 		// ************* POLICE **************
 		//Création de la police BattlegroundBig avec la taille
