@@ -2,9 +2,7 @@ package Graphism;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 
-import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
@@ -34,20 +32,19 @@ import BattleShip.Coord;
 import Boats.AbstractBateau;
 import Boats.Bateau;
 
-public class Placement implements MouseListener, MouseMotionListener, Observer, KeyListener {
+public class PlacementB extends JPanel implements MouseListener, MouseMotionListener, Observer, KeyListener {
 
-	JFrame frame;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	//	JFrame frame;
 	public JPanel square;
 	public JPanel panel;
 	public JPanel Plateau;
 	public JTextArea textArea;
 	int xInit;
 	int yInit;
-	AbstractBateau abs1 = new AbstractBateau();
-	AbstractBateau abs2 = new AbstractBateau();
-	AbstractBateau abs3 = new AbstractBateau();
-	AbstractBateau abs4 = new AbstractBateau();
-	AbstractBateau abs5 = new AbstractBateau();
 	ArrayList<AbstractBateau> al = new ArrayList<AbstractBateau>();
 	Bateau.direction dir = Bateau.direction.verticale;
 	String mes = "Horizontal";
@@ -58,23 +55,23 @@ public class Placement implements MouseListener, MouseMotionListener, Observer, 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Placement window = new Placement();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Placement window = new Placement();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
 	 */
-	public Placement() {
+	public PlacementB() {
 		initialize();
 	}
 
@@ -83,29 +80,32 @@ public class Placement implements MouseListener, MouseMotionListener, Observer, 
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.getContentPane().setBackground(new Color(0, 153, 204));		
-		frame.getContentPane().setLayout(null);
-
+//		frame = new JFrame();
+//		frame.setResizable(false);
+//		frame.getContentPane().setBackground(new Color(0, 153, 204));		
+//		frame.getContentPane().setLayout(null);
 		
-		al.add(abs1 = bs.getAbstractBateau("Porte-Avions"));
-		al.add(abs2 = bs.getAbstractBateau("Croiseur"));
-		al.add(abs3 = bs.getAbstractBateau("Sous-Marin"));		
-		al.add(abs4 = bs.getAbstractBateau("Destroyer"));
-		al.add(abs5 = bs.getAbstractBateau("Patrouilleur"));
+		this.setLayout(null);	// A AJOUTER POUR QUE CA FONCTIONNE !!!
+		
+		al.add(bs.getAbstractBateau("Porte-Avions"));
+		al.add(bs.getAbstractBateau("Croiseur"));
+		al.add(bs.getAbstractBateau("Sous-Marin"));		
+		al.add(bs.getAbstractBateau("Destroyer"));
+		al.add(bs.getAbstractBateau("Patrouilleur"));
 		
 		//Label NavalWar
 		JLabel lblNavalWar = new JLabel("NavalWar", SwingConstants.CENTER);
 		lblNavalWar.setFont(new Font("Battleground", Font.PLAIN, 75));
 		lblNavalWar.setBounds(360, 10, 240, 80);		
-		frame.getContentPane().add(lblNavalWar);
+//		frame.getContentPane().add(lblNavalWar);
+		this.add(lblNavalWar);
 		
 		//Label Battleship Game
 		JLabel lblBattleShip = new JLabel("Battleship Game", SwingConstants.CENTER);
 		lblBattleShip.setFont(new Font("Battleground", Font.PLAIN, 47));
 		lblBattleShip.setBounds(330, 50, 300, 80);		
-		frame.getContentPane().add(lblBattleShip);
+//		frame.getContentPane().add(lblBattleShip);
+		this.add(lblBattleShip);
 		
 		//Image de fond
 		ImageIcon image = new ImageIcon("img/Fond.png");
@@ -116,13 +116,13 @@ public class Placement implements MouseListener, MouseMotionListener, Observer, 
 		
 		textArea = new JTextArea();
 		textArea.setBounds(579, 379, 245, 80);
-		//textArea.setEditable(false);
+		textArea.setEditable(false);
 		panel.add(textArea);
 		
-		JLabel lblClicDroitSur = new JLabel("Appuyez sur les flÃ¨ches haut et bas pour changer le sens");
+		JLabel lblClicDroitSur = new JLabel("Appuyez sur les flèches haut et bas pour changer le sens");
 		lblClicDroitSur.setFont(new Font("Battleground", Font.PLAIN, 30));
 		lblClicDroitSur.setBounds(490, 165, 400, 50);
-		panel.add(lblClicDroitSur);
+//		panel.add(lblClicDroitSur);
 		
 		
 		//Lettres du dessus
@@ -150,16 +150,14 @@ public class Placement implements MouseListener, MouseMotionListener, Observer, 
   		GridLayout grilleChiffres = new GridLayout(10, 0);
   		Chiffres.setLayout(grilleChiffres);
   		JLabel[] lbls1 = new JLabel[10];
-  		int[] num = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-          for (int i = 0; i < 10; i++) {
-              lbls1[i] = new JLabel(num[i] + "");
-              Chiffres.add(lbls1[i]);
-          }		
+	      for (int i = 0; i < 10; i++) {
+	          lbls1[i] = new JLabel(i+1 + "");
+	          Chiffres.add(lbls1[i]);
+	      }		
 		
 		//Plateau
 		Plateau = new JPanel();
 		Plateau.setBounds(91, 138, 325, 325);
-		panel.add(Plateau);
 		Plateau.setBorder(new LineBorder(Color.BLACK));
 		Plateau.setLayout(new GridLayout(10, 10, 0, 0));
 		for(int i = 0; i < 100; i++){
@@ -171,15 +169,17 @@ public class Placement implements MouseListener, MouseMotionListener, Observer, 
 		Plateau.addMouseListener(this);
 
 		Plateau.addMouseMotionListener(this);
-		
+		panel.add(Plateau);
 		//Plateau
-		frame.getContentPane().add(panel);
-		frame.setBounds(100, 100, 450, 300);
-		frame.setBackground(new Color(0, 153, 204));
-		frame.setSize(960,540);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.addKeyListener(this);
-		frame.setFocusable(true);
+//		frame.getContentPane().add(panel);
+//		frame.setBounds(100, 100, 450, 300);
+//		frame.setBackground(new Color(0, 153, 204));
+//		frame.setSize(960,540);
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		frame.addKeyListener(this);
+//		frame.setFocusable(true);
+		panel.setBounds(100, 100, 450, 300);
+		this.add(panel);
 		
 		//Listener et bouton du bouton dï¿½marrer
 		JButton btnModeStandard = new JButton("Demarrer");
