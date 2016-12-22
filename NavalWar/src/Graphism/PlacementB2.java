@@ -34,9 +34,6 @@ import Boats.Bateau;
 
 public class PlacementB2 extends JPanel implements MouseListener, MouseMotionListener, Observer, KeyListener {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public JPanel square;
 	public JPanel panel;
@@ -46,7 +43,7 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 	Bateau.direction dir = Bateau.direction.verticale;
 	String mes = "Horizontal";
 	
-	ArrayList<Coord> preselection = new ArrayList<Coord>();
+	ArrayList<Component> preselection = new ArrayList<Component>();
 	
 	// ----- A SUPPRIMER
 	BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
@@ -207,19 +204,24 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 	@Override
 	public void mouseMoved(MouseEvent e) {
 		Component c;
-//		System.out.println(preselection);
-		for (Coord coord : preselection) {
-//			plateau.findComponentAt(coord.x, coord.y).setBackground(Color.WHITE);;
+		System.out.println(preselection);
+		int i = 0;
+		for (Component comp : preselection) {
+//			plateau.findComponentAt(coord.x, coord.y).setBackground(Color.WHITE);
 //			preselection.remove(coord);
+			comp.setBackground(Color.WHITE);
 		}
+		preselection.clear();
 		Coord coord = new Coord();
 		c = plateau.findComponentAt(e.getX(), e.getY());
 		coord.x = (e.getY() / (c.getWidth()))+1;
         coord.y = (e.getX() / (c.getHeight()))+1;
         System.out.println(coord);
         c.setBackground(Color.RED);
-//        preselection.add(coord);
+        preselection.add(c);
         plateau.setBackground(Color.white);
+//        if(coord.equals(new Coord(1,1)))
+//        	System.out.println("OK");
 	}
 	
 	@Override
