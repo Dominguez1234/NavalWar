@@ -220,15 +220,24 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 
 		c = plateau.findComponentAt(e.getX(), e.getY());
 		Coord coord = new Coord();
-		coord.x = (e.getY() / (c.getWidth()))+1;
-        coord.y = (e.getX() / (c.getHeight()))+1;
+		coord.x = (e.getY() / (c.getWidth()));
+        coord.y = (e.getX() / (c.getHeight()));
         
-        int pos = ((coord.x - 1)*10) + (coord.y - 1);
+        int pos = ((coord.x)*10) + (coord.y);
         int i;
 //        System.out.println(al.get(0).getNbrCases());
-        for(i=0 ; i<al.get(0).getNbrCases() ; i++) {
-        	plateau.getComponent(pos+i).setBackground(Color.BLUE);
-        	preselection.add(pos+i);
+//        for(i=0 ; i<al.get(0).getNbrCases() ; i++) {
+//        	plateau.getComponent(pos+i).setBackground(Color.BLUE);
+//        	preselection.add(pos+i);
+//        }
+        
+        ArrayList<Coord> coordPrevues = new ArrayList<Coord>();
+        coordPrevues = al.get(0).calculPositions(coord, Bateau.direction.verticale);
+        
+        for(Coord co : coordPrevues) {
+        	pos = ((co.x)*10) + (co.y);
+        	plateau.getComponent(pos).setBackground(Color.BLUE);
+        	preselection.add(pos);
         }
         
 	}
