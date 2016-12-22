@@ -236,12 +236,12 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 		if(e.getKeyCode() == KeyEvent.VK_UP){
 			dir= Bateau.direction.horizontale;
 			mes="Vertical";
-			textArea.setText("sens : " + mes +"\nPlacer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
+			textArea.setText("sens : " + mes +"\nPlacer le "+al.get(indexBoatAff).getNom()+"\n" +"("+al.get(indexBoatAff).getNbrCases()+" cases)\n");
 			}
 		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
 			dir = Bateau.direction.verticale;
 			mes="Horizontal";
-			textArea.setText("sens : " + mes +"\nPlacer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
+			textArea.setText("sens : " + mes +"\nPlacer le "+al.get(indexBoatAff).getNom()+"\n" +"("+al.get(indexBoatAff).getNbrCases()+" cases)\n");
 		}
 		}
 		else{}
@@ -276,19 +276,23 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 		// TODO Auto-generated method stub
 		
 	}
-	int index=0;
+	int index=0,indexBoatAff=1;
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		int varx,vary,cox,coy,pos;
+		//int varx,vary; Decommenter si utilisation des cases vertes
+		int cox,coy,pos;
 		Coord testCo = new Coord();
 		boolean co_Valid=true;
 		ArrayList<Coord> coo;
-		Component v;
+		//Component v;	Decommenter si utilisation des cases vertes
 		//quand on clique sur une case, elle devient verte
 		if(index<=4){
-
-    		
+			if (index<4){
+			 textArea.setText("sens : " + mes +"\nPlacer le "+al.get(index+1).getNom()+"\n" +"("+al.get(index+1).getNbrCases()+" cases)\n");
+			}
+			else{			textArea.setText("Cliquer sur jouez");
+			btnJouer.setEnabled(true);}
 			Component c = Plateau.findComponentAt(e.getX(), e.getY());
 			this.xInit = (e.getX() / ((c.getWidth())))+1;
 	        this.yInit = (e.getY() / ((c.getHeight())))+1;
@@ -306,6 +310,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 	        	}
 	       
 	        if(co_Valid==true){ // Si toutes les conditions sont reunies
+	        	
 	     int i =0;
  		String[] img;
  		img =BoatImageProvider.getImageFile(al.get(index).getNom(), dir); // On récupere les images correspondant au bateau dans un tab
@@ -323,17 +328,17 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 	    			i++;
 	    		
 	        }
-	        textArea.setText("sens : " + mes +"\nPlacer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
+	       
 	        index++;
 	        }
 	        else{
 	        	textArea.setText("Erreur de placement");
 	        }
 		}
-		else{
-			textArea.setText("Cliquer sur jouez");
-			btnJouer.setEnabled(true);
-		}
+//		else{
+//			textArea.setText("Cliquer sur jouez");
+//			btnJouer.setEnabled(true);
+//		}
 	}
 
 				
