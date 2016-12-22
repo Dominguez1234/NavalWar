@@ -35,6 +35,7 @@ import BattleShip.BattleShip;
 import BattleShip.Coord;
 import Boats.AbstractBateau;
 import Boats.Bateau;
+import tools.BoatImageProvider;
 
 public class Board extends JPanel implements MouseListener, MouseMotionListener, Observer, KeyListener {
 
@@ -286,6 +287,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 		Component v;
 		//quand on clique sur une case, elle devient verte
 		if(index<=4){
+
+    		
 			Component c = Plateau.findComponentAt(e.getX(), e.getY());
 			this.xInit = (e.getX() / ((c.getWidth())))+1;
 	        this.yInit = (e.getY() / ((c.getHeight())))+1;
@@ -298,17 +301,27 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 	        	coy=(o.y)-1;
 	        	testCo.x =cox;
 	        	testCo.y =coy;
-	        	co_Valid &= testCo.coordonnees_valides();
-	        	co_Valid &= !bs.isSomethingHere(o);
+	        	co_Valid &= testCo.coordonnees_valides(); // Check des bordures
+	        	co_Valid &= !bs.isSomethingHere(o); //Check si il y a un bateau
 	        	}
 	       
-	        if(co_Valid==true){
-	        	bs.setPosBoat(al.get(index).getNom(),coord, dir);
-	        for(Coord o: coo){
-	        	varx = o.x * ((c.getWidth()));
-	        	vary = o.y * ((c.getWidth()));
-	        	v = Plateau.findComponentAt(varx, vary);
-	         	v.setBackground(Color.green);
+	        if(co_Valid==true){ // Si toutes les conditions sont reunies
+	     int i =0;
+ 		String[] img;
+ 		img =BoatImageProvider.getImageFile(al.get(index).getNom(), dir); // On récupere les images correspondant au bateau dans un tab
+	        	bs.setPosBoat(al.get(index).getNom(),coord, dir); // maj de bs (placement du bateau)
+	        for(Coord o: coo){ // Pour toutes les emplacements du bateau
+//Si on veut juste colorié en vert	        	varx = o.x * ((c.getWidth()));
+//	        	vary = o.y * ((c.getWidth()));
+//	        	v = Plateau.findComponentAt(varx, vary);
+	         	//v.setBackground(Color.green);
+	        	//Ajout des images
+	         	pos = o.x-1 + (o.y-1)*10 ; // Calcul de la position de l'image en fonction de la co
+	    			JLabel image = new JLabel( new ImageIcon(img[i]));// on va chercher l'image dans le tableau
+	    			JPanel panel = (JPanel)Plateau.getComponent(pos); 
+	    			panel.add(image);
+	    			i++;
+	    		
 	        }
 	        textArea.setText("sens : " + mes +"\nPlacer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
 	        index++;
