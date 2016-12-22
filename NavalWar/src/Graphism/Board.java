@@ -236,12 +236,12 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 		if(e.getKeyCode() == KeyEvent.VK_UP){
 			dir= Bateau.direction.horizontale;
 			mes="Vertical";
-			textArea.setText("sens : " + mes +"\nPlacer le "+al.get(indexBoatAff).getNom()+"\n" +"("+al.get(indexBoatAff).getNbrCases()+" cases)\n");
+			textArea.setText("sens : " + mes +"\nPlacer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
 			}
 		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
 			dir = Bateau.direction.verticale;
 			mes="Horizontal";
-			textArea.setText("sens : " + mes +"\nPlacer le "+al.get(indexBoatAff).getNom()+"\n" +"("+al.get(indexBoatAff).getNbrCases()+" cases)\n");
+			textArea.setText("sens : " + mes +"\nPlacer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
 		}
 		}
 		else{}
@@ -276,7 +276,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 		// TODO Auto-generated method stub
 		
 	}
-	int index=0,indexBoatAff=1;
+	int index=0;
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -291,8 +291,10 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 			if (index<4){
 			 textArea.setText("sens : " + mes +"\nPlacer le "+al.get(index+1).getNom()+"\n" +"("+al.get(index+1).getNbrCases()+" cases)\n");
 			}
-			else{			textArea.setText("Cliquer sur jouez");
-			btnJouer.setEnabled(true);}
+			else{			
+				textArea.setText("Cliquer sur jouez");
+				btnJouer.setEnabled(true);
+				}
 			Component c = Plateau.findComponentAt(e.getX(), e.getY());
 			this.xInit = (e.getX() / ((c.getWidth())))+1;
 	        this.yInit = (e.getY() / ((c.getHeight())))+1;
@@ -335,10 +337,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 	        	textArea.setText("Erreur de placement");
 	        }
 		}
-//		else{
-//			textArea.setText("Cliquer sur jouez");
-//			btnJouer.setEnabled(true);
-//		}
+		else{}
 	}
 
 				
