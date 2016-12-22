@@ -38,14 +38,21 @@ public class AbstractBateau {
 		int i;
 		int x = origine.x;
 		int y = origine.y;
+		boolean possible = true;
+		Coord coordTemp;
 		
 		for (i = 0; i < this.nbrCases; i++) {
-			result.add(new Coord(x,y));
+			coordTemp = new Coord(x,y);
+			result.add(coordTemp);
+			possible &= coordTemp.coordonnees_valides();
 			if(sens.equals(Bateau.direction.horizontale))
 				y++;
 			else
 				x++;
 		}
+		
+		if(!possible)
+			result.clear();
 		
 		return result;
 	}
