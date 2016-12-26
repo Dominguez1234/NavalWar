@@ -1,8 +1,11 @@
 package tools;
 
-public enum BoatImages {
-	
-	SousMarin("Sous-Marin","soum_vert.png");
+public enum BoatImages { //Enumeration pour recup les images
+	PorteAvions("Porte-Avions","PorteAvion"),
+	SousMarin("Sous-Marin","SousMarin"),
+	Croiseur("Croiseur","Croiseur"),
+	Destroyer("Destroyer","Destroyer"),
+	Patrouilleur("Patrouilleur","Patrouilleur"); //String passe en argument, debut du nom de l'image
 		public String nom;
 	public  String imageFile ;   
 
