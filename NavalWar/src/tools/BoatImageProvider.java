@@ -45,7 +45,7 @@ public class BoatImageProvider {
 		}
 		else{ // si le sens est hroizontale
 			for(i=0;i<k;i++){
-				img=g.getAbsolutePath()+"/Images/" + value + "V" + + j + ".png";
+				img=g.getAbsolutePath()+"/Images/" + value + "V" + j + ".png";
 				ret[i] = img;
 				j++;
 			}
