@@ -45,7 +45,7 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 	public JTextArea textArea;
 	ArrayList<AbstractBateau> al = new ArrayList<AbstractBateau>();
 	Bateau.direction dir = Bateau.direction.verticale;
-	String mes = "Horizontal";
+	int numBateau = 0;
 	
 //	ArrayList<Component> preselection = new ArrayList<Component>();
 	ArrayList<Integer> preselection = new ArrayList<Integer>();
@@ -220,29 +220,31 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 	}
 	
 	private void previsualisationPos(MouseEvent e) {
-		Component c;
-		
-		for(int id : preselection)
-			plateau.getComponent(id).setBackground(Color.WHITE);
-				
-		preselection.clear();
-
-		c = plateau.findComponentAt(e.getX(), e.getY());
-		Coord coord = new Coord();
-		coord.x = (e.getY() / (c.getWidth()));
-        coord.y = (e.getX() / (c.getHeight()));
-        
-        int pos = ((coord.x)*10) + (coord.y);
-        int i;
-        
-        ArrayList<Coord> coordPrevues = new ArrayList<Coord>();
-        coordPrevues = al.get(0).calculPositions(coord, dir);
-        
-        for(Coord co : coordPrevues) {
-        	pos = ((co.x)*10) + (co.y);
-        	plateau.getComponent(pos).setBackground(Color.BLUE);
-        	preselection.add(pos);
-        }
+		if(numBateau < 5) {
+			Component c;
+			
+			for(int id : preselection)
+				plateau.getComponent(id).setBackground(Color.WHITE);
+					
+			preselection.clear();
+	
+			c = plateau.findComponentAt(e.getX(), e.getY());
+			Coord coord = new Coord();
+			coord.x = (e.getY() / (c.getWidth()));
+	        coord.y = (e.getX() / (c.getHeight()));
+	        
+	        int pos = ((coord.x)*10) + (coord.y);
+	        int i;
+	        
+	        ArrayList<Coord> coordPrevues = new ArrayList<Coord>();
+	        coordPrevues = al.get(numBateau).calculPositions(coord, dir);
+	        
+	        for(Coord co : coordPrevues) {
+	        	pos = ((co.x)*10) + (co.y);
+	        	plateau.getComponent(pos).setBackground(Color.BLUE);
+	        	preselection.add(pos);
+	        }
+		}
 	}
 	
 	private void setMessagePlacement() {
@@ -262,14 +264,13 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 			
 			int varx,vary,cox,coy,pos;
 			int xInit, yInit;
-			int index=0;
 			Coord testCo = new Coord();
 			boolean co_Valid=true;
 			ArrayList<Coord> coo;
 			Component v;
 			//quand on clique sur une case, elle devient verte
 				
-			if(index<5){
+			if(numBateau<5){
 				System.out.println(e.getX() + " " + e.getY());
 				Component c = plateau.findComponentAt(e.getX(), e.getY());
 				xInit = (e.getX() / ((c.getWidth())))+1;
@@ -277,7 +278,7 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 		        Coord coord = new Coord(xInit,yInit);
 		        System.out.println(xInit + " " + yInit);
 		        
-		        coo = al.get(index).calculPositions(coord, dir);	
+		        coo = al.get(numBateau).calculPositions(coord, dir);	
 		        System.out.println("\n\n"+coo+"\n");
 		        
 		        for(Coord o: coo){
@@ -292,17 +293,14 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 		        	}
 		       
 		        if(co_Valid==true){
-		        	bs.setPosBoat(al.get(index).getNom(),coord, dir);
+		        	bs.setPosBoat(al.get(numBateau).getNom(),coord, dir);
 		        for(Coord o: coo){
 		        	varx = o.x * ((c.getWidth()));
 		        	vary = o.y * ((c.getWidth()));
 		        	v = plateau.findComponentAt(varx, vary);
 		         	v.setBackground(Color.green);
-	
-		         	//System.out.println("Placer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
 		        }
-		        textArea.setText("sens : " + mes +"\nPlacer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
-		        index++;
+		        numBateau++;
 		        }
 		        else{
 		        	textArea.setText("Erreur de placement");
