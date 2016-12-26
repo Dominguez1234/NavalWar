@@ -193,18 +193,6 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-//		int index=0;
-//		if(e.getKeyCode() == KeyEvent.VK_UP){
-//			dir= Bateau.direction.horizontale;
-//			mes="Vertical";
-//			textArea.setText("sens : " + mes +"\nPlacer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
-//			}
-//		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
-//			dir = Bateau.direction.verticale;
-//			mes="Horizontal";
-//			textArea.setText("sens : " + mes +"\nPlacer le "+al.get(index).getNom()+"\n" +"("+al.get(index).getNbrCases()+" cases)\n");
-//		}
-//		else{}
 		
 	}
 
