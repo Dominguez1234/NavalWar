@@ -44,11 +44,11 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 	public JPanel panel;
 	public JPanel plateau;
 	public JTextArea textArea;
+	JButton btnDemarrer;
 	ArrayList<AbstractBateau> al = new ArrayList<AbstractBateau>();
 	Bateau.direction dir = Bateau.direction.horizontale;
 	int numBateau = 0;
 	
-//	ArrayList<Component> preselection = new ArrayList<Component>();
 	ArrayList<Integer> preselection = new ArrayList<Integer>();
 	
 	// ----- A SUPPRIMER
@@ -179,23 +179,18 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 		this.add(panel);
 		
 		//Listener et bouton du bouton démarrer
-		JButton btnModeStandard = new JButton("Demarrer");
-		btnModeStandard.setBounds(579, 231, 240, 80);
-		panel.add(btnModeStandard);
-		btnModeStandard.setFont(BattlegroundSmall);
-		btnModeStandard.addActionListener(new ActionListener() {
+		btnDemarrer = new JButton("Demarrer");
+		btnDemarrer.setBounds(579, 231, 240, 80);
+		btnDemarrer.setEnabled(false);
+		panel.add(btnDemarrer);
+		btnDemarrer.setFont(BattlegroundSmall);
+		btnDemarrer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 			}
 		});
 		panel.add( label );
 		panel.setBounds(0, 0, 960, 540);
-		
-		// TESTS
-		String[] img2 = BoatImageProvider.getImageFile(al.get(0).getNom(), dir);
-		JLabel image2 = new JLabel( new ImageIcon(img2[0]));// on va chercher l'image dans le tableau
-		JPanel panel2 = (JPanel)plateau.getComponent(0); 
-		panel2.add(image2);
-		panel2.setBackground(Color.blue);
 
 	}
 
@@ -227,12 +222,18 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 		
 	}
 	
+	// Remet toutes les cases en blanc
+	private void resetPrevi() {
+		int i;
+		for(i=0;i<100;i++)
+			plateau.getComponent(i).setBackground(Color.WHITE);
+	}
+	
 	private void previsualisationPos(MouseEvent e) {
 		if(numBateau < 5) {
 			Component c;
 			
-			for(int id : preselection)
-				plateau.getComponent(id).setBackground(Color.WHITE);
+			this.resetPrevi();
 					
 			preselection.clear();
 	
@@ -275,27 +276,22 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 			Coord testCo = new Coord();
 			boolean co_Valid=true;
 			ArrayList<Coord> coo;
-			Component v;
+			Component c;
 			//quand on clique sur une case, elle devient verte
 				
 			if(numBateau<5){
-//				System.out.println(e.getX() + " " + e.getY());
-				Component c = plateau.findComponentAt(e.getX(), e.getY());
-				xInit = (e.getX() / ((c.getWidth())))+1;
-		        yInit = (e.getY() / ((c.getHeight())))+1;
+				c = plateau.findComponentAt(e.getX(), e.getY());
+				xInit = e.getY() / ((c.getWidth()));
+		        yInit = e.getX() / ((c.getHeight()));
 		        Coord coord = new Coord(xInit,yInit);
-//		        System.out.println(xInit + " " + yInit);
+//		        System.out.println("Coord : "+coord);
 		        
 		        coo = al.get(numBateau).calculPositions(coord, dir);	
-		        System.out.println(coo);
+//		        System.out.println(coo);
 		        
 		        for(Coord o: coo){
-		        	testCo.x = (o.x)-1;
-		        	testCo.y = (o.y)-1;
-		        	co_Valid &= testCo.coordonnees_valides();
+		        	co_Valid &= new Coord(o.x,o.y).coordonnees_valides();
 		        	co_Valid &= !bs.isSomethingHere(o);
-		        	//System.out.println(co_Valid);
-//		        	System.out.println(bs.isSomethingHere(o));
 		        }
 		        
 		        String[] img = BoatImageProvider.getImageFile(al.get(numBateau).getNom(), dir);
@@ -303,9 +299,9 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 		        if(co_Valid==true && !coo.isEmpty()){
 		        	bs.setPosBoat(al.get(numBateau).getNom(),coord, dir);
 		        	for(Coord o: coo){
-			        	varx = (o.x) * ((c.getWidth()));
-			        	vary = (o.y) * ((c.getWidth()));
-//			        	System.out.println(o.x+" ; "+o.y);
+//		        		System.out.println("O : "+o);
+			        	vary = ((o.x)+1) * ((c.getWidth()));
+			        	varx = ((o.y)+1) * ((c.getWidth()));
 			        	JLabel image = new JLabel( new ImageIcon(img[i]));// on va chercher l'image dans le tableau
 		    			JPanel panel = (JPanel)plateau.findComponentAt(varx, vary); 
 		    			panel.add(image);
@@ -313,20 +309,23 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 			        	i++;
 			        }
 			        numBateau++;
-		        }
-		        else{
-		        	textArea.setText("Erreur de placement");
+			        
+			        if(numBateau == 5) {
+			        	btnDemarrer.setEnabled(true);
+			        	this.resetPrevi();
+			        }
 		        }
 			}
 			
 		} else if(buttonDown == MouseEvent.BUTTON3) {	// Clic droit
 			
-			System.out.println("changement direction");
+//			System.out.println("changement direction");
 			if(dir.equals(Bateau.direction.horizontale))
 				dir = Bateau.direction.verticale;
 			else
 				dir = Bateau.direction.horizontale;
 			
+			this.setMessagePlacement();
 			this.previsualisationPos(e);
 			
 		}
