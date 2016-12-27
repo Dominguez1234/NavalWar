@@ -24,7 +24,7 @@ public class BattleShip {
 	// Attributs
 	private boolean online = false;
 	private Reseau reseau;
-	public Ocean ocean;
+	private Ocean ocean;
 	
 	// Modes de jeux
 	public static enum modeJeu {
