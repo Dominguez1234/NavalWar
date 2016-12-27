@@ -50,13 +50,9 @@ public class Controler extends JFrame implements Observer {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 //		accueil = new Accueil(this);
-//		this.add(accueil);
+		accueil = new Game2();
 		
-//		placement = new PlacementB();
-//		this.add(placement);
-		
-		PlacementB2 p2 = new PlacementB2();
-		this.add(p2);
+		this.add(accueil);
 		
 	}
 
@@ -77,15 +73,37 @@ public class Controler extends JFrame implements Observer {
 		}
 	}
 	
+	// ----- ACCUEIL -----
+	
+	// Passage de l'accueil vers le placement
 	public void changeToPlacement() {
-		
-		JPanel placement = new PlacementB();
+		JPanel placement = null;
+		try {
+			placement = new PlacementB2(this);
+		} catch (FontFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.remove(accueil);
 		this.add(placement);
 		this.revalidate();
 		this.repaint();
 		
 		System.out.println("Changement de JPanel => Placement");
+	}
+	
+	// ----- PLACEMENT -----
+	
+	public boolean isSomethingHere(Coord c) {
+		return bs.isSomethingHere(c);
+	}
+	
+	// Passage du placement au plateau de jeu
+	public void changeToGame() {
+		System.out.println("\nYa rien pour le moment mdr\nTu peux pas jouer. Tu vas faire quoi ?\nTocard");
 	}
 
 	
