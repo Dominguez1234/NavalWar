@@ -1,3 +1,5 @@
+package Graphism;
+
 import java.awt.*;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
