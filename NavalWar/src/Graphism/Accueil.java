@@ -39,13 +39,6 @@ public class Accueil extends JPanel {
 	private Controler controler;
 	
 	public MonObservable monObservable = new MonObservable();
-			
-//	public class MonObservable extends Observable {
-//		public void envoie() {
-//			this.setChanged();
-//			this.notifyObservers();
-//		}
-//	};
 
 	/**
 	 * Create the application.
@@ -56,12 +49,6 @@ public class Accueil extends JPanel {
 		super();
 		initialize();
 	}
-	
-	
-//	public Accueil(Observer observer) {
-//		this();
-//		this.monObservable.addObserver(observer);
-//	}
 	
 	public Accueil(Controler fenetreMere) throws FontFormatException, IOException {
 		this();
