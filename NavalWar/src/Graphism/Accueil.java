@@ -45,14 +45,14 @@ public class Accueil extends JPanel {
 	 * @throws IOException 
 	 * @throws FontFormatException 
 	 */
-	public Accueil() throws FontFormatException, IOException {
-		super();
-		initialize();
-	}
 	
 	public Accueil(Controler fenetreMere) throws FontFormatException, IOException {
-		this();
+		super();
+		initialize();
 		this.controler = fenetreMere;
+		
+		// A SUPPRIMER
+		IPAddrField.setText("127.0.0.1");
 	}
 	/**
 	 * Initialize the contents of the frame.
@@ -113,10 +113,8 @@ public class Accueil extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-//				bs.connexion("127.0.0.1");
-//				System.out.println(IPAddrField.getText());
-//				controler.connexionReseau(IPAddrField.getText());
-				controler.connexionReseau("127.0.0.1");
+				// Connexion à l'ennemi, puis passage sur écran suivant
+				controler.connexionReseau(IPAddrField.getText());
 			}
 			
 		});
@@ -179,27 +177,27 @@ public class Accueil extends JPanel {
 			}
 		});
 				
-		IPAddrField.getDocument().addDocumentListener(new DocumentListener() {
-			  public void changedUpdate(DocumentEvent e) {
-			    changed();
-			  }
-			  public void removeUpdate(DocumentEvent e) {
-			    changed();
-			  }
-			  public void insertUpdate(DocumentEvent e) {
-			    changed();
-			  }
-
-			  public void changed() {
-			     if (IPAddrField.getText().equals("")){
-			    	 btnConnect.setEnabled(false);
-			     }
-			     else {
-			    	 btnConnect.setEnabled(true);
-			    }
-
-			  }
-			});
+//		IPAddrField.getDocument().addDocumentListener(new DocumentListener() {
+//			  public void changedUpdate(DocumentEvent e) {
+//			    changed();
+//			  }
+//			  public void removeUpdate(DocumentEvent e) {
+//			    changed();
+//			  }
+//			  public void insertUpdate(DocumentEvent e) {
+//			    changed();
+//			  }
+//
+//			  public void changed() {
+//			     if (IPAddrField.getText().equals("")){
+//			    	 btnConnect.setEnabled(false);
+//			     }
+//			     else {
+//			    	 btnConnect.setEnabled(true);
+//			    }
+//
+//			  }
+//		});
 		
 		
 	}
