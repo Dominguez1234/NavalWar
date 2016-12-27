@@ -63,13 +63,10 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 	 * @throws IOException 
 	 * @throws FontFormatException 
 	 */
-	private PlacementB2() throws FontFormatException, IOException {
-		initialize();
-		this.setMessagePlacement();
-	}
 	
 	public PlacementB2(Controler fenetreMere) throws FontFormatException, IOException {
-		this();
+		initialize();
+		this.setMessagePlacement();
 		this.controler = fenetreMere;
 	}
 
