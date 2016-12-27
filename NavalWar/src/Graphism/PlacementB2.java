@@ -284,10 +284,8 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 				xInit = e.getY() / ((c.getWidth()));
 		        yInit = e.getX() / ((c.getHeight()));
 		        Coord coord = new Coord(xInit,yInit);
-//		        System.out.println("Coord : "+coord);
 		        
-		        coo = al.get(numBateau).calculPositions(coord, dir);	
-//		        System.out.println(coo);
+		        coo = al.get(numBateau).calculPositions(coord, dir);
 		        
 		        for(Coord o: coo){
 		        	co_Valid &= new Coord(o.x,o.y).coordonnees_valides();
@@ -299,7 +297,6 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 		        if(co_Valid==true && !coo.isEmpty()){
 		        	bs.setPosBoat(al.get(numBateau).getNom(),coord, dir);
 		        	for(Coord o: coo){
-//		        		System.out.println("O : "+o);
 			        	vary = ((o.x)+1) * ((c.getWidth()));
 			        	varx = ((o.y)+1) * ((c.getWidth()));
 			        	JLabel image = new JLabel( new ImageIcon(img[i]));// on va chercher l'image dans le tableau
@@ -319,7 +316,6 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 			
 		} else if(buttonDown == MouseEvent.BUTTON3) {	// Clic droit
 			
-//			System.out.println("changement direction");
 			if(dir.equals(Bateau.direction.horizontale))
 				dir = Bateau.direction.verticale;
 			else
