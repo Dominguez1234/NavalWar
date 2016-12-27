@@ -8,7 +8,7 @@ import BattleShip.Coord;
  * Version simplifiée d'un bateau
  */
 
-public class AbstractBateau {
+public class AbstractBateau  {
 	
 	// Attributs
 	private String nom = "";

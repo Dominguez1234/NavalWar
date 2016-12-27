@@ -36,6 +36,7 @@ public class BoatImageProvider {
 		if(nomBateau == "Patrouilleur")
 			k=2;
 		ret = new String [k];
+
 		if (dir.equals(Bateau.direction.horizontale)){ // on selectionne des images differentes si le sens est horizontal
 			for(i=0;i<k;i++){
 				img=g.getAbsolutePath()+"/Images/"+value+j+".png";
