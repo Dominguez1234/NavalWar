@@ -32,13 +32,16 @@ import java.util.Observable;
 import java.util.Observer;
 
 import BattleShip.BattleShip;
+import BattleShip.Controler;
 import BattleShip.Coord;
 import Boats.AbstractBateau;
 import Boats.Bateau;
 import tools.BoatImageProvider;
 
 public class PlacementB2 extends JPanel implements MouseListener, MouseMotionListener, Observer, KeyListener {
-
+	
+	Controler controler = null;
+	
 	private static final long serialVersionUID = 1L;
 	public JPanel square;
 	public JPanel panel;
@@ -60,9 +63,14 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 	 * @throws IOException 
 	 * @throws FontFormatException 
 	 */
-	public PlacementB2() throws FontFormatException, IOException {
+	private PlacementB2() throws FontFormatException, IOException {
 		initialize();
 		this.setMessagePlacement();
+	}
+	
+	public PlacementB2(Controler fenetreMere) throws FontFormatException, IOException {
+		this();
+		this.controler = fenetreMere;
 	}
 
 
@@ -179,14 +187,15 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 		this.add(panel);
 		
 		//Listener et bouton du bouton démarrer
-		btnDemarrer = new JButton("Demarrer");
+		btnDemarrer = new JButton("Placement..");
 		btnDemarrer.setBounds(579, 231, 240, 80);
 		btnDemarrer.setEnabled(false);
 		panel.add(btnDemarrer);
 		btnDemarrer.setFont(BattlegroundSmall);
 		btnDemarrer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				// Changement d'écran vers le jeu
+				controler.changeToGame();
 			}
 		});
 		panel.add( label );
@@ -289,7 +298,7 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 		        
 		        for(Coord o: coo){
 		        	co_Valid &= new Coord(o.x,o.y).coordonnees_valides();
-		        	co_Valid &= !bs.isSomethingHere(o);
+		        	co_Valid &= !controler.isSomethingHere(o);
 		        }
 		        
 		        String[] img = BoatImageProvider.getImageFile(al.get(numBateau).getNom(), dir);
@@ -307,7 +316,9 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 			        }
 			        numBateau++;
 			        
+			        // Si tous les bateaux ont été placés
 			        if(numBateau == 5) {
+			        	btnDemarrer.setText("Lancer la Partie");
 			        	btnDemarrer.setEnabled(true);
 			        	this.resetPrevi();
 			        }
