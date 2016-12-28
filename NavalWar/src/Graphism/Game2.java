@@ -3,7 +3,11 @@ package Graphism;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -19,52 +23,60 @@ public class Game2 extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					Game window = new Game();
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
-	/**
 	 * Create the application.
+	 * @throws IOException 
+	 * @throws FontFormatException 
 	 */
-	public Game2() {
+	public Game2() throws FontFormatException, IOException {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws IOException 
+	 * @throws FontFormatException 
 	 */
-	private void initialize() {
+	private void initialize() throws FontFormatException, IOException {
 		
 		this.setLayout(null);	// A AJOUTER POUR QUE CA FONCTIONNE !!!
 		
+		// ************* POLICE **************
+		//Création de la police BattlegroundBig avec la taille
+	    Font BattlegroungBig = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")).deriveFont(75f);
+	    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+	    //Enregistrement de la police BattlegroundBig
+	    ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")));
+	    
+	    //Création de la police BattlegroundMedium avec la taille
+	    Font BattlegroundMedium = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")).deriveFont(47f);
+	    GraphicsEnvironment ge1 = GraphicsEnvironment.getLocalGraphicsEnvironment();
+	    //Enregistrement de la police BattlegroundBig
+	    ge1.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")));
+	    
+	    //Création de la police v avec la taille
+	    Font BattlegroundSmall = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")).deriveFont(35f);
+	    GraphicsEnvironment ge11 = GraphicsEnvironment.getLocalGraphicsEnvironment();
+	    //Enregistrement de la police BattlegroundSmall
+	    ge11.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")));
+	    // ***********************************
+		
 		//Label NavalWar
 		JLabel lblNavalWar = new JLabel("NavalWar", SwingConstants.CENTER);
-		lblNavalWar.setFont(new Font("Battleground", Font.PLAIN, 75));
-		lblNavalWar.setBounds(360, 10, 240, 80);		
-//		frame.getContentPane().add(lblNavalWar);
+		lblNavalWar.setFont(BattlegroungBig);
+		lblNavalWar.setBounds(360, 10, 240, 80);	
 		this.add(lblNavalWar);
 		
 		//Label Battleship Game
 		JLabel lblBattleShip = new JLabel("Battleship Game", SwingConstants.CENTER);
-		lblBattleShip.setFont(new Font("Battleground", Font.PLAIN, 47));
-		lblBattleShip.setBounds(330, 50, 300, 80);		
-//		frame.getContentPane().add(lblBattleShip);
+		lblBattleShip.setFont(BattlegroundMedium);
+		lblBattleShip.setBounds(330, 50, 300, 80);	
 		this.add(lblBattleShip);
 		
 		//Image de fond
 		ImageIcon image = new ImageIcon("img/Fond.png");
 		JLabel label = new JLabel("", image, JLabel.CENTER);
 		label.setBounds(0, 0, 944, 501);
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		
@@ -74,12 +86,12 @@ public class Game2 extends JPanel {
 		panel.add(lblChat);
 		
 		JLabel lblVotreFlotte = new JLabel("Votre flotte");
-		lblVotreFlotte.setFont(new Font("Battleground", Font.PLAIN, 20));
+		lblVotreFlotte.setFont(BattlegroundSmall);
 		lblVotreFlotte.setBounds(461, 114, 187, 19);
 		panel.add(lblVotreFlotte);
 		
 		JLabel AVous = new JLabel("C'est a vous de jouer.");
-		AVous.setFont(new Font("Battleground", Font.PLAIN, 20));
+		AVous.setFont(BattlegroundSmall);
 		AVous.setBounds(92, 77, 187, 19);
 		panel.add(AVous);
 		
@@ -140,10 +152,12 @@ public class Game2 extends JPanel {
 		panel.add(label);
 		panel.setBounds(0, 0, 960, 540);
 		
-		JPanel PanelChat = new JPanel();
-		PanelChat.setToolTipText("Chat");
-		PanelChat.setBounds(714, 139, 173, 324);
-		panel.add(PanelChat);
+		this.add(panel);
+		
+//		JPanel PanelChat = new JPanel();
+//		PanelChat.setToolTipText("Chat");
+//		PanelChat.setBounds(714, 139, 173, 324);
+//		panel.add(PanelChat);
 	
 	}
 }
