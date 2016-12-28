@@ -40,6 +40,11 @@ public class MonPlateau extends AbstractPlateau {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void resetPlateau() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 //	public static int getIndex(){
 //		return index;
