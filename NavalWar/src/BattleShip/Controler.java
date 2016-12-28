@@ -50,8 +50,8 @@ public class Controler extends JFrame implements Observer {
 		this.setSize(960,540);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		accueil = new Accueil(this);
-//		accueil = new Game2();
+//		accueil = new Accueil(this);
+		accueil = new Game2();
 		
 		this.add(accueil);
 		
