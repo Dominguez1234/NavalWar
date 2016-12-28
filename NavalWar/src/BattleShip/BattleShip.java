@@ -20,17 +20,18 @@ import Weapon.Torpille;
  */
 
 public class BattleShip {
+
+	// Modes de jeux
+	public static enum modeJeu {
+		NORMAL,
+		TOTALWAR
+	}
 	
 	// Attributs
 	private boolean online = false;
 	private Reseau reseau;
 	private Ocean ocean;
 	
-	// Modes de jeux
-	public static enum modeJeu {
-		NORMAL,
-		TOTALWAR
-	}
 	
 	// Liste des armes
 	private Map<String, Arme> lArmes = new LinkedHashMap<>();
