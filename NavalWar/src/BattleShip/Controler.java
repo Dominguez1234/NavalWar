@@ -24,7 +24,7 @@ public class Controler extends JFrame implements Observer {
 	BattleShip bs = null;
 	JPanel accueil;
 	JPanel placement;
-	JPanel board;
+	BoardDeux board;
 	
 	/**
 	 * Launch the application.
@@ -129,10 +129,24 @@ public class Controler extends JFrame implements Observer {
 		this.add(board);
 		this.revalidate();
 		this.repaint();
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		this.lancement();
 	}
 	
 	
 	// ----- JEU -----
+	
+	// Wait Adversaire
+	public boolean waitAdversaire() {
+		return bs.waitAdversaire();
+	}
 	
 	// Retourne la grille de Touche
 	public Touche[][] getTouches(Ocean.joueur cible) {
@@ -148,7 +162,37 @@ public class Controler extends JFrame implements Observer {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		board.resetGrilles();
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.jAttendsLattaque();
 		return result;
+	}
+	
+	public boolean jAttendsLattaque() {
+		boolean result = false;
+		try {
+			result = bs.jAttendsLattaque();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		board.resetGrilles();
+		return result;
+	}
+	
+	private void lancement() {
+		System.out.println("Attente de l'autre joueur...");
+		if(!bs.waitAdversaire()) {
+			System.out.println("L'adversaire commence.");
+			jAttendsLattaque();
+		} else
+			System.out.println("Je commence.");
 	}
 	
 }

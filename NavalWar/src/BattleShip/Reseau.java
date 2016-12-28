@@ -21,6 +21,7 @@ public class Reseau {
 	private Socket soc;
 	private ObjectOutputStream out;
 	private ObjectInputStream in;
+	private boolean wasFirst = false;;
 	
 	// Constructeur avec IP et port
 	public Reseau(String ip, int newPort) throws IOException {
@@ -74,6 +75,7 @@ public class Reseau {
 			// Connexion en tant que client
 			soc = new Socket(this.ipOther,this.port);
 			soc.close();
+			this.wasFirst = false;
 			System.out.println("Connexion réussie");
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
@@ -84,6 +86,7 @@ public class Reseau {
 			try {
 				servSoc = new ServerSocket(this.port);
 				soc = servSoc.accept();					// En attente que l'adversaire essaie de se connecter
+				this.wasFirst = true;
 				System.out.println("Connexion réussie");
 				soc.close();
 				servSoc.close();
@@ -94,6 +97,10 @@ public class Reseau {
 		}
 		
 		return true;
+	}
+	
+	public boolean getWasFirst() {
+		return this.wasFirst;
 	}
 	
 }

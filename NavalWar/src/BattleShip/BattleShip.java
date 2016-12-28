@@ -71,6 +71,11 @@ public class BattleShip {
 		return this.online;
 	}
 	
+	public boolean waitAdversaire() {
+		this.reseau.connexion();
+		return this.reseau.getWasFirst();
+	}
+	
 	// Joueur local attaque l'adversaire
 	public boolean jAttaque(Coord cible, String arme, Arme.Sens sens) throws IOException, ClassNotFoundException {
 		if(this.online) {

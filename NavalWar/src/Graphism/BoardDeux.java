@@ -35,15 +35,19 @@ public class BoardDeux extends JPanel{
 	
 	private Controler controler = null;
 
-	public JPanel panel;
-	public JPanel monPlateau;
-	public JPanel mesChiffres;
-	public JPanel mesLettres;
-	public JPanel tPlateau;
-	public JPanel tesChiffres;
-	public JPanel tesLettres;
-	public static JTextArea textArea;
-	public static JButton btnJouer;
+	private JPanel panel;
+	private JPanel monPlateau;
+	private JPanel mesChiffres;
+	private JPanel mesLettres;
+	private JPanel tPlateau;
+	private JPanel tesChiffres;
+	private JPanel tesLettres;
+	private static JTextArea textArea;
+	private static JButton btnJouer;
+	
+	AbstractPlateau plateau = null;
+	AbstractPlateau tonPlateau = null;
+	
 	int xInit;
 	int yInit;
 	ArrayList<AbstractBateau> al = new ArrayList<AbstractBateau>();
@@ -88,8 +92,10 @@ public class BoardDeux extends JPanel{
 	    // ***********************************
 		
 		this.setLayout(null);	// A AJOUTER POUR QUE CA FONCTIONNE !!!
-		AbstractPlateau plateau = new MonPlateau(91,138,al,controler);
-		AbstractPlateau tonPlateau = new TonPlateau(550,138,al,controler);
+		
+		plateau = new MonPlateau(91,138,al,controler);
+		tonPlateau = new TonPlateau(550,138,al,controler);
+		
 		monPlateau = plateau.creationPlateau();
 		mesChiffres = plateau.Chiffres();
 		mesLettres = plateau.Lettres();
@@ -105,13 +111,13 @@ public class BoardDeux extends JPanel{
 //		
 		//Label NavalWar
 		JLabel lblNavalWar = new JLabel("NavalWar", SwingConstants.CENTER);
-		lblNavalWar.setFont(new Font("Battleground", Font.PLAIN, 75));
+		lblNavalWar.setFont(BattlegroungBig);
 		lblNavalWar.setBounds(360, 10, 240, 80);		
 		this.add(lblNavalWar);
 		
 		//Label Battleship Game
 		JLabel lblBattleShip = new JLabel("Battleship Game", SwingConstants.CENTER);
-		lblBattleShip.setFont(new Font("Battleground", Font.PLAIN, 47));
+		lblBattleShip.setFont(BattlegroundMedium);
 		lblBattleShip.setBounds(330, 50, 300, 80);		
 		this.add(lblBattleShip);
 		
@@ -134,5 +140,9 @@ public class BoardDeux extends JPanel{
 		panel.add( label );
 		panel.setBounds(0, 0, 960, 540);
 
+	}
+	
+	public void resetGrilles() {
+		tonPlateau.resetPlateau();
 	}
 }

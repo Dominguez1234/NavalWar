@@ -36,7 +36,7 @@ public class TonPlateau extends AbstractPlateau {
 		// TODO Auto-generated constructor stub
 	}
 	
-	private void resetPlateau() {
+	public void resetPlateau() {
 		Touche[][] grille = this.controler.getTouches(Ocean.joueur.ennemi);
 		
 		int i,j;
@@ -87,8 +87,10 @@ public class TonPlateau extends AbstractPlateau {
         if(coord.coordonnees_valides() && !grille[coord.x][coord.y].isTargeted && !grille[coord.x][coord.y].isTouche) {
 //        	int pos = ((coord.x)*10) + (coord.y);
 //        	plateau.getComponent(pos).setBackground(Color.RED);
-        	if(controler.jAttaque(coord, "Nuke", Arme.Sens.HORIZONTAL))
-        		this.resetPlateau();
+//        	if(controler.jAttaque(coord, "Nuke", Arme.Sens.HORIZONTAL))
+//        		this.resetPlateau();
+        	controler.jAttaque(coord, "Nuke", Arme.Sens.HORIZONTAL);
+//        	this.resetPlateau();
         }
 	}
 

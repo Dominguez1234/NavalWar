@@ -24,6 +24,8 @@ public abstract class AbstractPlateau implements MouseListener, MouseMotionListe
 	protected  JPanel plateau;
 	protected JPanel square;
 	
+	public abstract void resetPlateau();
+	
 	public AbstractPlateau(int posx, int posy, Controler fenetreMere) {
 		super();
 		this.posx = posx;
