@@ -174,6 +174,7 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 			JPanel square = new JPanel(new BorderLayout());
 			plateau.add(square);
 			square.setBorder(new LineBorder(new Color(0, 0, 0)));
+			square.setBackground(Color.WHITE);
 		}
 
 		plateau.addMouseListener(this);
