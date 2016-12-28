@@ -46,7 +46,8 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 	//	JFrame frame;
 	public JPanel square;
 	public JPanel panel;
-	public JPanel Plateau;
+	public static JPanel monPlateau;
+	public JPanel tonPlateau;
 	public JTextArea textArea;
 	public JButton btnJouer;
 	int xInit;
@@ -90,10 +91,6 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 	 * @throws FontFormatException 
 	 */
 	private void initialize() throws FontFormatException, IOException {
-//		frame = new JFrame();
-//		frame.setResizable(false);
-//		frame.getContentPane().setBackground(new Color(0, 153, 204));		
-//		frame.getContentPane().setLayout(null);
 		
 		// ************* POLICE **************
 		//Création de la police BattlegroundBig avec la taille
@@ -141,7 +138,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 		ImageIcon image = new ImageIcon("img/Fond.png");
 		JLabel label = new JLabel("", image, JLabel.CENTER);
 		label.setBounds(0, 0, 944, 501);
-		JPanel panel = new JPanel();
+		final JPanel panel = new JPanel();
 		panel.setLayout(null);
 		
 		textArea = new JTextArea();
@@ -157,58 +154,101 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 		
 		
 		//Lettres du dessus
-		JPanel Lettres = new JPanel();
-		Lettres.setBounds(91, 107, 325, 26);
-		panel.add(Lettres);
-		Lettres.setOpaque(false);
+		JPanel mesLettres = new JPanel();
+		mesLettres.setBounds(91, 107, 325, 26);
+		panel.add(mesLettres);
+		mesLettres.setOpaque(false);
 		
-		GridLayout grilleLettres = new GridLayout(0, 10);
-		Lettres.setLayout(grilleLettres);
-		JLabel[] lbls = new JLabel[10];
-		String[] labelLettres = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
+		GridLayout magrilleLettres = new GridLayout(0, 10);
+		mesLettres.setLayout(magrilleLettres);
+		JLabel[] meslbls = new JLabel[10];
+		String[] meslabelLettres = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
         for (int i = 0; i < 10; i++) {
-            lbls[i] = new JLabel("    " + labelLettres[i] + "");
-            Lettres.add(lbls[i]);
+        	meslbls[i] = new JLabel("    " + meslabelLettres[i] + "");
+            mesLettres.add(meslbls[i]);
 
         }
         
         //Chiffre ï¿½ gaucheframe
-  		JPanel Chiffres = new JPanel();
-  		Chiffres.setBounds(58, 138, 26, 325);
-  		panel.add(Chiffres);
-  		Chiffres.setOpaque(false);
+  		JPanel MesChiffres = new JPanel();
+  		MesChiffres.setBounds(58, 138, 26, 325);
+  		panel.add(MesChiffres);
+  		MesChiffres.setOpaque(false);
   		
-  		GridLayout grilleChiffres = new GridLayout(10, 0);
-  		Chiffres.setLayout(grilleChiffres);
-  		JLabel[] lbls1 = new JLabel[10];
+  		GridLayout mesgrilleChiffres = new GridLayout(10, 0);
+  		MesChiffres.setLayout(mesgrilleChiffres);
+  		JLabel[] meslbls1 = new JLabel[10];
 	      for (int i = 0; i < 10; i++) {
-	          lbls1[i] = new JLabel(i+1 + "");
-	          Chiffres.add(lbls1[i]);
+	    	  meslbls1[i] = new JLabel(i+1 + "");
+	          MesChiffres.add(meslbls1[i]);
 	      }		
 		
 		//Plateau
-		Plateau = new JPanel();
-		Plateau.setBounds(91, 138, 325, 325);
-		Plateau.setBorder(new LineBorder(Color.BLACK));
-		Plateau.setLayout(new GridLayout(10, 10, 0, 0));
+		monPlateau = new JPanel();
+		monPlateau.setBounds(91, 138, 325, 325);
+		monPlateau.setBorder(new LineBorder(Color.BLACK));
+		monPlateau.setLayout(new GridLayout(10, 10, 0, 0));
 		for(int i = 0; i < 100; i++){
 			JPanel square = new JPanel(new BorderLayout());
-			Plateau.add(square);
+			monPlateau.add(square);
 			square.setBorder(new LineBorder(new Color(0, 0, 0)));
 		}
 
-		Plateau.addMouseListener(this);
+		monPlateau.addMouseListener(this);
 
-		Plateau.addMouseMotionListener(this);
-		panel.add(Plateau);
+		monPlateau.addMouseMotionListener(this);
+		panel.add(monPlateau);
 		//Plateau
-//		frame.getContentPane().add(panel);
-//		frame.setBounds(100, 100, 450, 300);
-//		frame.setBackground(new Color(0, 153, 204));
-//		frame.setSize(960,540);
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		frame.addKeyListener(this);
-//		frame.setFocusable(true);
+		
+		//Lettres du dessus
+		final JPanel tesLettres = new JPanel();
+		tesLettres.setBounds(550, 107, 325, 26);
+		tesLettres.setOpaque(false);
+		
+		GridLayout tagrilleLettres = new GridLayout(0, 10);
+		tesLettres.setLayout(tagrilleLettres);
+		JLabel[] teslbls = new JLabel[10];
+		String[] teslabelLettres = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
+        for (int i = 0; i < 10; i++) {
+        	teslbls[i] = new JLabel("    " + teslabelLettres[i] + "");
+            tesLettres.add(teslbls[i]);
+
+        }
+        
+        //Chiffre ï¿½ gaucheframe
+  		final JPanel tesChiffres = new JPanel();
+  		tesChiffres.setBounds(533, 138, 26, 325);
+  		tesChiffres.setOpaque(false);
+  		
+  		GridLayout tesgrilleChiffres = new GridLayout(10, 0);
+  		tesChiffres.setLayout(tesgrilleChiffres);
+  		JLabel[] teslbls1 = new JLabel[10];
+	      for (int i = 0; i < 10; i++) {
+	    	  teslbls1[i] = new JLabel(i+1 + "");
+	          tesChiffres.add(teslbls1[i]);
+	      }		
+		
+		//Plateau
+		tonPlateau = new JPanel();
+		tonPlateau.setBounds(550, 138, 325, 325);
+		tonPlateau.setBorder(new LineBorder(Color.BLACK));
+		tonPlateau.setLayout(new GridLayout(10, 10, 0, 0));
+		for(int i = 0; i < 100; i++){
+			JPanel square = new JPanel(new BorderLayout());
+			tonPlateau.add(square);
+			square.setBorder(new LineBorder(new Color(0, 0, 0)));
+		}
+		panel.add(tonPlateau);
+		panel.add(tesChiffres);
+		panel.add(tesLettres);
+		tonPlateau.setVisible(false);
+		tesLettres.setVisible(false);
+		tesChiffres.setVisible(false);
+
+		
+
+
+		//monPlateau.addMouseListener(this);
 		panel.setBounds(100, 100, 450, 300);
 		panel.addKeyListener(this);
 		panel.setFocusable(true);
@@ -222,10 +262,20 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 		btnJouer.setFont(new Font("Battleground", Font.PLAIN, 40));
 		btnJouer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				panel.remove(btnJouer);
+				panel.remove(textArea);
+				tonPlateau.setVisible(true);
+				tesLettres.setVisible(true);
+				tesChiffres.setVisible(true);
+				//panel.setVisible(false);
+				//panel.setVisible(true);
+				panel.revalidate();
 			}
 		});
 		panel.add( label );
 		panel.setBounds(0, 0, 960, 540);
+	
 
 	}
 
@@ -262,6 +312,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+
 		
 	}
 
@@ -295,7 +346,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 				textArea.setText("Cliquer sur jouez");
 				btnJouer.setEnabled(true);
 				}
-			Component c = Plateau.findComponentAt(e.getX(), e.getY());
+			Component c = monPlateau.findComponentAt(e.getX(), e.getY());
 			this.xInit = (e.getX() / ((c.getWidth())))+1;
 	        this.yInit = (e.getY() / ((c.getHeight())))+1;
 	        Coord coord = new Coord(xInit,yInit);
@@ -325,7 +376,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 	        	//Ajout des images
 	         	pos = o.x-1 + (o.y-1)*10 ; // Calcul de la position de l'image en fonction de la co
 	    			JLabel image = new JLabel( new ImageIcon(img[i]));// on va chercher l'image dans le tableau
-	    			JPanel panel = (JPanel)Plateau.getComponent(pos); 
+	    			JPanel panel = (JPanel)monPlateau.getComponent(pos); 
 	    			panel.add(image);
 	    			i++;
 	    		
@@ -365,6 +416,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
+		
+	
 }

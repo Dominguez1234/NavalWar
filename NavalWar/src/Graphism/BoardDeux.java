@@ -3,6 +3,7 @@ package Graphism;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 
 import java.awt.event.ActionListener;
@@ -10,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
@@ -41,6 +43,7 @@ public class BoardDeux extends JPanel{
 	public JPanel tesChiffres;
 	public JPanel tesLettres;
 	public static JTextArea textArea;
+	private JComboBox combo = new JComboBox();
 	public static JButton btnJouer;
 	int xInit;
 	int yInit;
@@ -99,6 +102,9 @@ public class BoardDeux extends JPanel{
 		al.add(bs.getAbstractBateau("Sous-Marin"));		
 		al.add(bs.getAbstractBateau("Destroyer"));
 		al.add(bs.getAbstractBateau("Patrouilleur"));
+
+	    combo.setBounds(91, 475, 100, 20);;
+
 		
 		//Label NavalWar
 		JLabel lblNavalWar = new JLabel("NavalWar", SwingConstants.CENTER);
@@ -124,6 +130,7 @@ public class BoardDeux extends JPanel{
 		textArea.setText("Utilisez les fleches haut/bas \n" + "pour changer de sens");	
 		textArea.setEditable(false);
 		panel.add(textArea);
+		panel.add(combo).setVisible(false);;
 	
 		panel.add(monPlateau);
 		panel.add(mesChiffres);
@@ -148,6 +155,7 @@ public class BoardDeux extends JPanel{
 				tPlateau.setVisible(true);
 				tesChiffres.setVisible(true);
 				tesLettres.setVisible(true);
+				combo.setVisible(true);
 				panel.setVisible(true);
 				
 			}

@@ -22,6 +22,7 @@ public class Controler extends JFrame implements Observer {
 	BattleShip bs;
 	JPanel accueil;
 	JPanel placement;
+	JPanel board;
 	
 	/**
 	 * Launch the application.
@@ -31,6 +32,7 @@ public class Controler extends JFrame implements Observer {
 			public void run() {
 				try {
 					JFrame p = new Controler();
+					
 					p.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,13 +46,12 @@ public class Controler extends JFrame implements Observer {
 		
 		this.setResizable(false);
 		this.setBackground(Color.WHITE);
-		
 		this.setBounds(100, 100, 450, 300);
 		this.setSize(960,540);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		accueil = new Accueil(this);
-		this.add(accueil);
+		board = new BoardDeux();
+		this.add(board);
+		//board.setFocusable(true);
 		
 //		placement = new Placement();
 //		this.add(placement);

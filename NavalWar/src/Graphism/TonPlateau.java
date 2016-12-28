@@ -6,19 +6,18 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JComboBox;
 
 import BattleShip.BattleShip;
 import BattleShip.Coord;
 import Boats.AbstractBateau;
 import Boats.Bateau;
-import tools.BoatImageProvider;
+
 
 public class TonPlateau extends AbstractPlateau {
 	private int xInit;
 	private int yInit;
+
 	 ArrayList<AbstractBateau> al;
 	Bateau.direction dir = Bateau.direction.verticale;
 	String mes = "Horizontal";
@@ -29,6 +28,7 @@ public class TonPlateau extends AbstractPlateau {
 		this.al=al;
 		// TODO Auto-generated constructor stub
 	}
+
 	int index=0;
 	@Override
 	
