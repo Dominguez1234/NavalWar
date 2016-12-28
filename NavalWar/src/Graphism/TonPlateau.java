@@ -17,6 +17,7 @@ import Boats.Bateau;
 import tools.BoatImageProvider;
 
 public class TonPlateau extends AbstractPlateau {
+	
 	private int xInit;
 	private int yInit;
 	 ArrayList<AbstractBateau> al;
@@ -24,22 +25,34 @@ public class TonPlateau extends AbstractPlateau {
 	String mes = "Horizontal";
 	// ----- A SUPPRIMER
 	BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
+	
 	public TonPlateau(int posx, int posy, ArrayList<AbstractBateau> al) {
 		super(posx, posy);
 		this.al=al;
 		// TODO Auto-generated constructor stub
 	}
-	int index=0;
-	@Override
 	
-	public void keyPressed(KeyEvent e) {
-
-		if(e.getKeyCode() == KeyEvent.VK_UP){
-			
-		}
-		else if(e.getKeyCode() == KeyEvent.VK_DOWN){
-			
-		}
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+//		super.mouseMoved(e);
+		
+		Component v;
+		int varx,vary,i;
+		
+//		for(i=0;i<100;i++) {
+//			
+//		}
+		
+		Component c = plateau.findComponentAt(e.getX(), e.getY());
+		this.xInit = (e.getX() / ((c.getWidth())))+1;
+        this.yInit = (e.getY() / ((c.getHeight())))+1;
+        Coord coord = new Coord(xInit,yInit);
+        System.out.println(coord.x +" " + coord.y);
+        varx = coord.x * ((c.getWidth()));
+    	vary = coord.y * ((c.getWidth()));
+    	v = plateau.findComponentAt(varx, vary);
+     	v.setBackground(Color.GRAY);		
 	}
 	
 	@Override
@@ -49,15 +62,21 @@ public class TonPlateau extends AbstractPlateau {
 		int varx,vary;
 			
 
-			Component c = Plateau.findComponentAt(e.getX(), e.getY());
+			Component c = plateau.findComponentAt(e.getX(), e.getY());
 			this.xInit = (e.getX() / ((c.getWidth())))+1;
 	        this.yInit = (e.getY() / ((c.getHeight())))+1;
 	        Coord coord = new Coord(xInit,yInit);
 	        System.out.println(coord.x +" " + coord.y);
 	        varx = coord.x * ((c.getWidth()));
         	vary = coord.y * ((c.getWidth()));
-        	v = Plateau.findComponentAt(varx, vary);
+        	v = plateau.findComponentAt(varx, vary);
          	v.setBackground(Color.red);		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

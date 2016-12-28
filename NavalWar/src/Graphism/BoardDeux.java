@@ -118,40 +118,16 @@ public class BoardDeux extends JPanel{
 		label.setBounds(0, 0, 944, 501);
 		final JPanel panel = new JPanel();
 		panel.setLayout(null);
-		
-		textArea = new JTextArea();
-		textArea.setBounds(579, 379, 245, 80);
-		textArea.setText("Utilisez les fleches haut/bas \n" + "pour changer de sens");	
-		textArea.setEditable(false);
-		panel.add(textArea);
 	
 		panel.add(monPlateau);
 		panel.add(mesChiffres);
 		panel.add(mesLettres);
-		panel.add(tPlateau).setVisible(false);
-		panel.add(tesChiffres).setVisible(false);
-		panel.add(tesLettres).setVisible(false);
+		panel.add(tPlateau).setVisible(true);
+		panel.add(tesChiffres).setVisible(true);
+		panel.add(tesLettres).setVisible(true);
 		panel.setBounds(100, 100, 450, 300);
-		this.add(panel);
 		
-		//Listener et bouton du bouton d�marrer
-		btnJouer = new JButton("Jouez");
-		btnJouer.setEnabled(false);
-		btnJouer.setBounds(579, 231, 240, 80);
-		panel.add(btnJouer);
-		btnJouer.setFont(new Font("Battleground", Font.PLAIN, 40));
-		btnJouer.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				panel.setVisible(false);
-				panel.remove(btnJouer);
-				panel.remove(textArea);
-				tPlateau.setVisible(true);
-				tesChiffres.setVisible(true);
-				tesLettres.setVisible(true);
-				panel.setVisible(true);
-				
-			}
-		});
+		this.add(panel);
 		panel.add( label );
 		panel.setBounds(0, 0, 960, 540);
 

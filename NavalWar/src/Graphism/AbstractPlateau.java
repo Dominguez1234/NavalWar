@@ -22,25 +22,25 @@ public abstract class AbstractPlateau implements MouseListener, MouseMotionListe
 		this.posy = posy;
 	}
 	public int posx,posy;
-	public  JPanel Plateau;
+	public  JPanel plateau;
 	public JPanel square;
 	
 	public JPanel creationPlateau(){
 		
-		Plateau = new JPanel();
-		Plateau.setBounds(posx, posy, 325, 325);
-		Plateau.setBorder(new LineBorder(Color.BLACK));
-		Plateau.setLayout(new GridLayout(10, 10, 0, 0));
+		plateau = new JPanel();
+		plateau.setBounds(posx, posy, 325, 325);
+		plateau.setBorder(new LineBorder(Color.BLACK));
+		plateau.setLayout(new GridLayout(10, 10, 0, 0));
 		for(int i = 0; i < 100; i++){
 			JPanel square = new JPanel(new BorderLayout());
-			Plateau.add(square);
+			plateau.add(square);
 			square.setBorder(new LineBorder(new Color(0, 0, 0)));
 		}
-		Plateau.addMouseListener(this);
-		Plateau.addMouseMotionListener(this);
-		Plateau.addKeyListener(this);
-		Plateau.setFocusable(true);
-		return Plateau;
+		plateau.addMouseListener(this);
+		plateau.addMouseMotionListener(this);
+		plateau.addKeyListener(this);
+		plateau.setFocusable(true);
+		return plateau;
 	}
 	
 	public JPanel Chiffres(){
