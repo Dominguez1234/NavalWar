@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import BattleShip.BattleShip;
+import BattleShip.Controler;
 import BattleShip.Coord;
 import Boats.AbstractBateau;
 import Boats.Bateau;
@@ -24,8 +25,8 @@ public class MonPlateau extends AbstractPlateau {
 	
 	// ----- A SUPPRIMER
 	BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
-	public MonPlateau(int posx, int posy, ArrayList<AbstractBateau> al) {
-		super(posx, posy);
+	public MonPlateau(int posx, int posy, ArrayList<AbstractBateau> al, Controler fenetreMere) {
+		super(posx, posy, fenetreMere);
 		this.al=al;
 		// TODO Auto-generated constructor stub
 	}

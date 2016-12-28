@@ -179,4 +179,9 @@ public class BattleShip {
 		return this.ocean.isSomethingHere(coord);
 	}
 	
+	// Renvoi le tableau de tirs
+	public Touche[][] getTouches(Ocean.joueur cible) {
+		return ocean.getTouches(cible);
+	}
+	
 }

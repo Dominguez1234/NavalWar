@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 
 import BattleShip.BattleShip;
-
+import BattleShip.Controler;
 import Boats.AbstractBateau;
 
 
@@ -32,6 +32,8 @@ public class BoardDeux extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private Controler controler = null;
 
 	public JPanel panel;
 	public JPanel monPlateau;
@@ -49,10 +51,11 @@ public class BoardDeux extends JPanel{
 	//String mes = "Horizontal";
 	
 	// ----- A SUPPRIMER
-	BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
+//	BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
 	// ------------------	
 
-	public BoardDeux() throws FontFormatException, IOException {
+	public BoardDeux(Controler fenetreMere) throws FontFormatException, IOException {
+		this.controler = fenetreMere;
 		initialize();
 	}
 
@@ -85,8 +88,8 @@ public class BoardDeux extends JPanel{
 	    // ***********************************
 		
 		this.setLayout(null);	// A AJOUTER POUR QUE CA FONCTIONNE !!!
-		AbstractPlateau plateau = new MonPlateau(91,138,al);
-		AbstractPlateau tonPlateau = new TonPlateau(550,138,al);
+		AbstractPlateau plateau = new MonPlateau(91,138,al,controler);
+		AbstractPlateau tonPlateau = new TonPlateau(550,138,al,controler);
 		monPlateau = plateau.creationPlateau();
 		mesChiffres = plateau.Chiffres();
 		mesLettres = plateau.Lettres();
@@ -94,12 +97,12 @@ public class BoardDeux extends JPanel{
 		tesChiffres = tonPlateau.Chiffres();
 		tesLettres = tonPlateau.Lettres();
 		
-		al.add(bs.getAbstractBateau("Porte-Avions"));
-		al.add(bs.getAbstractBateau("Croiseur"));
-		al.add(bs.getAbstractBateau("Sous-Marin"));		
-		al.add(bs.getAbstractBateau("Destroyer"));
-		al.add(bs.getAbstractBateau("Patrouilleur"));
-		
+//		al.add(bs.getAbstractBateau("Porte-Avions"));
+//		al.add(bs.getAbstractBateau("Croiseur"));
+//		al.add(bs.getAbstractBateau("Sous-Marin"));		
+//		al.add(bs.getAbstractBateau("Destroyer"));
+//		al.add(bs.getAbstractBateau("Patrouilleur"));
+//		
 		//Label NavalWar
 		JLabel lblNavalWar = new JLabel("NavalWar", SwingConstants.CENTER);
 		lblNavalWar.setFont(new Font("Battleground", Font.PLAIN, 75));

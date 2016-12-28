@@ -15,15 +15,21 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+import BattleShip.Controler;
+
 public abstract class AbstractPlateau implements MouseListener, MouseMotionListener, Observer, KeyListener {
-	public AbstractPlateau(int posx, int posy) {
+
+	protected int posx,posy;
+	protected Controler controler = null;
+	protected  JPanel plateau;
+	protected JPanel square;
+	
+	public AbstractPlateau(int posx, int posy, Controler fenetreMere) {
 		super();
 		this.posx = posx;
 		this.posy = posy;
+		this.controler = fenetreMere;
 	}
-	public int posx,posy;
-	public  JPanel plateau;
-	public JPanel square;
 	
 	public JPanel creationPlateau(){
 		
@@ -35,6 +41,7 @@ public abstract class AbstractPlateau implements MouseListener, MouseMotionListe
 			JPanel square = new JPanel(new BorderLayout());
 			plateau.add(square);
 			square.setBorder(new LineBorder(new Color(0, 0, 0)));
+			square.setBackground(Color.WHITE);
 		}
 		plateau.addMouseListener(this);
 		plateau.addMouseMotionListener(this);

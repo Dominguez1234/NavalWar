@@ -11,7 +11,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import BattleShip.BattleShip;
+import BattleShip.Controler;
 import BattleShip.Coord;
+import BattleShip.Ocean;
+import BattleShip.Touche;
 import Boats.AbstractBateau;
 import Boats.Bateau;
 import tools.BoatImageProvider;
@@ -26,8 +29,8 @@ public class TonPlateau extends AbstractPlateau {
 	// ----- A SUPPRIMER
 	BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
 	
-	public TonPlateau(int posx, int posy, ArrayList<AbstractBateau> al) {
-		super(posx, posy);
+	public TonPlateau(int posx, int posy, ArrayList<AbstractBateau> al, Controler fenetreMere) {
+		super(posx, posy, fenetreMere);
 		this.al=al;
 		// TODO Auto-generated constructor stub
 	}
@@ -37,22 +40,33 @@ public class TonPlateau extends AbstractPlateau {
 		// TODO Auto-generated method stub
 //		super.mouseMoved(e);
 		
-		Component v;
-		int varx,vary,i;
+		int i,j;
+		int pos=0;
 		
-//		for(i=0;i<100;i++) {
-//			
-//		}
+		Touche[][] grille = this.controler.getTouches(Ocean.joueur.ennemi);
+		
+		for(i=0;i<10;i++) {
+			for(j=0;j<10;j++) {
+				if(grille[i][j].isTouche)
+					plateau.getComponent(pos).setBackground(Color.RED);
+				else if(grille[i][j].isTargeted)
+					plateau.getComponent(pos).setBackground(Color.BLUE);
+				else
+					plateau.getComponent(pos).setBackground(Color.WHITE);
+				pos++;
+			}
+		}
 		
 		Component c = plateau.findComponentAt(e.getX(), e.getY());
-		this.xInit = (e.getX() / ((c.getWidth())))+1;
-        this.yInit = (e.getY() / ((c.getHeight())))+1;
-        Coord coord = new Coord(xInit,yInit);
-        System.out.println(coord.x +" " + coord.y);
-        varx = coord.x * ((c.getWidth()));
-    	vary = coord.y * ((c.getWidth()));
-    	v = plateau.findComponentAt(varx, vary);
-     	v.setBackground(Color.GRAY);		
+		Coord coord = new Coord();
+		coord.x = (e.getY() / (c.getWidth()));
+        coord.y = (e.getX() / (c.getHeight()));
+        
+        if(coord.coordonnees_valides() && !grille[coord.x][coord.y].isTargeted && !grille[coord.x][coord.y].isTouche) {
+        	pos = ((coord.x)*10) + (coord.y);
+        	plateau.getComponent(pos).setBackground(Color.GRAY);	
+        }
+        
 	}
 	
 	@Override
@@ -61,16 +75,17 @@ public class TonPlateau extends AbstractPlateau {
 		Component v;
 		int varx,vary;
 			
+		Touche[][] grille = this.controler.getTouches(Ocean.joueur.ennemi);
 
-			Component c = plateau.findComponentAt(e.getX(), e.getY());
-			this.xInit = (e.getX() / ((c.getWidth())))+1;
-	        this.yInit = (e.getY() / ((c.getHeight())))+1;
-	        Coord coord = new Coord(xInit,yInit);
-	        System.out.println(coord.x +" " + coord.y);
-	        varx = coord.x * ((c.getWidth()));
-        	vary = coord.y * ((c.getWidth()));
-        	v = plateau.findComponentAt(varx, vary);
-         	v.setBackground(Color.red);		
+		Component c = plateau.findComponentAt(e.getX(), e.getY());
+		Coord coord = new Coord();
+		coord.x = (e.getY() / (c.getWidth()));
+        coord.y = (e.getX() / (c.getHeight()));
+        
+        if(coord.coordonnees_valides() && !grille[coord.x][coord.y].isTargeted && !grille[coord.x][coord.y].isTouche) {
+        	int pos = ((coord.x)*10) + (coord.y);
+        	plateau.getComponent(pos).setBackground(Color.RED);	
+        }
 	}
 
 	@Override

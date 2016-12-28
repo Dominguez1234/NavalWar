@@ -40,7 +40,10 @@ public class Ocean {
 	
 	// Constructeur
 	public Ocean() {
-		
+		// ----- A SUPPRIMER
+		this.tirsFromMe[4][5].isTargeted = true;
+		this.tirsFromMe[8][9].isTouche = true;
+		// -----------------
 	}
 	
 	// Interroge si une case a d�j� �t� attaqu�.
@@ -112,9 +115,9 @@ public class Ocean {
 	public Touche[][] getTouches(Ocean.joueur plateau) {
 		Touche[][] tmp;
 		if(plateau.equals(Ocean.joueur.moi))
-			tmp = this.tirsFromEnnemi;
+			tmp = this.tirsFromEnnemi.clone();
 		else
-			tmp = this.tirsFromMe;
+			tmp = this.tirsFromMe.clone();
 		return tmp;
 	}
 	

@@ -23,6 +23,7 @@ public class Controler extends JFrame implements Observer {
 	BattleShip bs = null;
 	JPanel accueil;
 	JPanel placement;
+	JPanel board;
 	
 	/**
 	 * Launch the application.
@@ -50,8 +51,9 @@ public class Controler extends JFrame implements Observer {
 		this.setSize(960,540);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-//		accueil = new Accueil(this);
-		accueil = new Game2();
+		accueil = new Accueil(this);
+//		accueil = new Game2();
+//		accueil = new BoardDeux();
 		
 		this.add(accueil);
 		
@@ -78,7 +80,6 @@ public class Controler extends JFrame implements Observer {
 	
 	// Passage de l'accueil vers le placement
 	public void changeToPlacement() {
-		JPanel placement = null;
 		try {
 			placement = new PlacementB2(this);
 		} catch (FontFormatException e) {
@@ -96,6 +97,7 @@ public class Controler extends JFrame implements Observer {
 		System.out.println("Changement de JPanel => Placement");
 	}
 	
+	
 	// ----- PLACEMENT -----
 	
 	public AbstractBateau getAbstractBateau(String nom) {
@@ -112,9 +114,28 @@ public class Controler extends JFrame implements Observer {
 	}
 	
 	// Passage du placement au plateau de jeu
-	public void changeToGame() {
-		System.out.println("\nYa rien pour le moment mdr\nTu peux pas jouer. Tu vas faire quoi ?\nTocard");
+	public void changeToBoard() {
+		try {
+			board = new BoardDeux(this);
+		} catch (FontFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.remove(placement);
+		this.add(board);
+		this.revalidate();
+		this.repaint();
 	}
-
+	
+	
+	// ----- JEU -----
+	
+	// Retourne la grille de Touche
+	public Touche[][] getTouches(Ocean.joueur cible) {
+		return bs.getTouches(cible);
+	}
 	
 }

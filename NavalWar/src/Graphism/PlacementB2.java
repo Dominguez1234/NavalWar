@@ -193,7 +193,7 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 		btnDemarrer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// Changement d'écran vers le jeu
-				controler.changeToGame();
+				controler.changeToBoard();
 			}
 		});
 		panel.add( label );
@@ -238,19 +238,17 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 	
 	private void previsualisationPos(MouseEvent e) {
 		if(numBateau < 5) {
-			Component c;
 			
 			this.resetPrevi();
 					
 			preselection.clear();
 	
-			c = plateau.findComponentAt(e.getX(), e.getY());
+			Component c = plateau.findComponentAt(e.getX(), e.getY());
 			Coord coord = new Coord();
 			coord.x = (e.getY() / (c.getWidth()));
 	        coord.y = (e.getX() / (c.getHeight()));
 	        
 	        int pos = ((coord.x)*10) + (coord.y);
-	        int i;
 	        
 	        ArrayList<Coord> coordPrevues = new ArrayList<Coord>();
 	        coordPrevues = al.get(numBateau).calculPositions(coord, dir);
@@ -296,7 +294,7 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 		        
 		        for(Coord o: coo){
 		        	co_Valid &= o.coordonnees_valides();
-		        	System.out.println(o.coordonnees_valides());
+//		        	System.out.println(o.coordonnees_valides());
 		        	co_Valid &= !controler.isSomethingHere(o);
 		        }
 		        
