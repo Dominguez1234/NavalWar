@@ -77,20 +77,21 @@ public class Test2 {
 		
 // --------------------------------------------------------------------------------------------
 		
-		BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
-		bs.connexion("127.0.0.1", 3131);
-		
-		bs.setPosBoat("Porte-Avions", new Coord(1,1), Bateau.direction.horizontale);
-		bs.setPosBoat("Croiseur", new Coord(3,0), Bateau.direction.verticale);
-		bs.setPosBoat("Sous-Marin", new Coord(4,5), Bateau.direction.horizontale);
-		bs.setPosBoat("Destroyer", new Coord(2,9), Bateau.direction.verticale);
-		bs.setPosBoat("Patrouilleur", new Coord(7,6), Bateau.direction.verticale);
-		
-		System.out.println("Test2 prêt\n");
-		
-		Thread.sleep(1000);
-		bs.JattendsLattaque();
-
+		while(true) {
+			BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
+			bs.connexion("127.0.0.1", 3131);
+			
+			bs.setPosBoat("Porte-Avions", new Coord(1,1), Bateau.direction.horizontale);
+			bs.setPosBoat("Croiseur", new Coord(3,0), Bateau.direction.verticale);
+			bs.setPosBoat("Sous-Marin", new Coord(4,5), Bateau.direction.horizontale);
+			bs.setPosBoat("Destroyer", new Coord(2,9), Bateau.direction.verticale);
+			bs.setPosBoat("Patrouilleur", new Coord(7,6), Bateau.direction.verticale);
+			
+			System.out.println("Test2 prêt\n");
+			
+			Thread.sleep(1000);
+			bs.JattendsLattaque();
+		}
 		
 		
 	}
