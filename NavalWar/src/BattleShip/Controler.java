@@ -12,6 +12,7 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Boats.AbstractBateau;
 import Boats.Bateau;
 import Boats.Patrouilleur;
 import Boats.PorteAvions;
@@ -19,7 +20,7 @@ import Graphism.*;
 
 public class Controler extends JFrame implements Observer {
 	
-	BattleShip bs;
+	BattleShip bs = null;
 	JPanel accueil;
 	JPanel placement;
 	
@@ -49,8 +50,8 @@ public class Controler extends JFrame implements Observer {
 		this.setSize(960,540);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-//		accueil = new Accueil(this);
-		accueil = new Game2();
+		accueil = new Accueil(this);
+//		accueil = new Game2();
 		
 		this.add(accueil);
 		
@@ -64,7 +65,7 @@ public class Controler extends JFrame implements Observer {
 
 	public void choixModeJeu(BattleShip.modeJeu mode) {
 		bs = new BattleShip(mode);
-		System.out.println("Choix mode de jeu : "+mode);
+		System.out.println("Choix mode de jeu : "+mode+"\n\n"+bs);
 	}
 	
 	public void connexionReseau(String ip) {
@@ -96,6 +97,15 @@ public class Controler extends JFrame implements Observer {
 	}
 	
 	// ----- PLACEMENT -----
+	
+	public AbstractBateau getAbstractBateau(String nom) {
+		return bs.getAbstractBateau(nom);
+	}
+	
+	// Modifier la position d'un bateau
+		public void setPosBoat(String nom, Coord posOrigine, Bateau.direction sens) {
+			bs.setPosBoat(nom, posOrigine, sens);
+		}
 	
 	public boolean isSomethingHere(Coord c) {
 		return bs.isSomethingHere(c);

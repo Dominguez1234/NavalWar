@@ -55,7 +55,7 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 	ArrayList<Integer> preselection = new ArrayList<Integer>();
 	
 	// ----- A SUPPRIMER
-	BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
+//	BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
 	// ------------------	
 
 	/**
@@ -65,9 +65,9 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 	 */
 	
 	public PlacementB2(Controler fenetreMere) throws FontFormatException, IOException {
+		this.controler = fenetreMere;
 		initialize();
 		this.setMessagePlacement();
-		this.controler = fenetreMere;
 	}
 
 
@@ -100,11 +100,17 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 	    ge11.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")));
 	    // ***********************************
 		
-		al.add(bs.getAbstractBateau("Porte-Avions"));
-		al.add(bs.getAbstractBateau("Croiseur"));
-		al.add(bs.getAbstractBateau("Sous-Marin"));		
-		al.add(bs.getAbstractBateau("Destroyer"));
-		al.add(bs.getAbstractBateau("Patrouilleur"));
+		al.add(controler.getAbstractBateau("Porte-Avions"));
+		al.add(controler.getAbstractBateau("Croiseur"));
+		al.add(controler.getAbstractBateau("Sous-Marin"));		
+		al.add(controler.getAbstractBateau("Destroyer"));
+		al.add(controler.getAbstractBateau("Patrouilleur"));
+	    
+//	    al.add(bs.getAbstractBateau("Porte-Avions"));
+//		al.add(bs.getAbstractBateau("Croiseur"));
+//		al.add(bs.getAbstractBateau("Sous-Marin"));		
+//		al.add(bs.getAbstractBateau("Destroyer"));
+//		al.add(bs.getAbstractBateau("Patrouilleur"));
 		
 		//Label NavalWar
 		JLabel lblNavalWar = new JLabel("NavalWar", SwingConstants.CENTER);
@@ -121,7 +127,7 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 		//Image de fond
 		ImageIcon image = new ImageIcon("img/Fond.png");
 		JLabel label = new JLabel("", image, JLabel.CENTER);
-		label.setBounds(0, 0, 944, 501);
+		label.setBounds(0, 0, 960, 511);
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		
@@ -294,14 +300,15 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 		        coo = al.get(numBateau).calculPositions(coord, dir);
 		        
 		        for(Coord o: coo){
-		        	co_Valid &= new Coord(o.x,o.y).coordonnees_valides();
+		        	co_Valid &= o.coordonnees_valides();
+		        	System.out.println(o.coordonnees_valides());
 		        	co_Valid &= !controler.isSomethingHere(o);
 		        }
 		        
 		        String[] img = BoatImageProvider.getImageFile(al.get(numBateau).getNom(), dir);
 		        int i = 0;
 		        if(co_Valid==true && !coo.isEmpty()){
-		        	bs.setPosBoat(al.get(numBateau).getNom(),coord, dir);
+		        	controler.setPosBoat(al.get(numBateau).getNom(),coord, dir);
 		        	for(Coord o: coo){
 			        	vary = ((o.x)+1) * ((c.getWidth()));
 			        	varx = ((o.y)+1) * ((c.getWidth()));
