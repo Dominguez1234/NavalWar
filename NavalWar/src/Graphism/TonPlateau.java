@@ -17,6 +17,7 @@ import BattleShip.Ocean;
 import BattleShip.Touche;
 import Boats.AbstractBateau;
 import Boats.Bateau;
+import Weapon.Arme;
 import tools.BoatImageProvider;
 
 public class TonPlateau extends AbstractPlateau {
@@ -35,15 +36,11 @@ public class TonPlateau extends AbstractPlateau {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@Override
-	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-//		super.mouseMoved(e);
+	private void resetPlateau() {
+		Touche[][] grille = this.controler.getTouches(Ocean.joueur.ennemi);
 		
 		int i,j;
 		int pos=0;
-		
-		Touche[][] grille = this.controler.getTouches(Ocean.joueur.ennemi);
 		
 		for(i=0;i<10;i++) {
 			for(j=0;j<10;j++) {
@@ -56,6 +53,13 @@ public class TonPlateau extends AbstractPlateau {
 				pos++;
 			}
 		}
+	}
+	
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		this.resetPlateau();
+		
+		Touche[][] grille = this.controler.getTouches(Ocean.joueur.ennemi);
 		
 		Component c = plateau.findComponentAt(e.getX(), e.getY());
 		Coord coord = new Coord();
@@ -63,15 +67,13 @@ public class TonPlateau extends AbstractPlateau {
         coord.y = (e.getX() / (c.getHeight()));
         
         if(coord.coordonnees_valides() && !grille[coord.x][coord.y].isTargeted && !grille[coord.x][coord.y].isTouche) {
-        	pos = ((coord.x)*10) + (coord.y);
+        	int pos = ((coord.x)*10) + (coord.y);
         	plateau.getComponent(pos).setBackground(Color.GRAY);	
         }
-        
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 		Component v;
 		int varx,vary;
 			
@@ -83,8 +85,10 @@ public class TonPlateau extends AbstractPlateau {
         coord.y = (e.getX() / (c.getHeight()));
         
         if(coord.coordonnees_valides() && !grille[coord.x][coord.y].isTargeted && !grille[coord.x][coord.y].isTouche) {
-        	int pos = ((coord.x)*10) + (coord.y);
-        	plateau.getComponent(pos).setBackground(Color.RED);	
+//        	int pos = ((coord.x)*10) + (coord.y);
+//        	plateau.getComponent(pos).setBackground(Color.RED);
+        	if(controler.jAttaque(coord, "Nuke", Arme.Sens.HORIZONTAL))
+        		this.resetPlateau();
         }
 	}
 

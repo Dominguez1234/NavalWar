@@ -17,6 +17,7 @@ import Boats.Bateau;
 import Boats.Patrouilleur;
 import Boats.PorteAvions;
 import Graphism.*;
+import Weapon.Arme;
 
 public class Controler extends JFrame implements Observer {
 	
@@ -136,6 +137,18 @@ public class Controler extends JFrame implements Observer {
 	// Retourne la grille de Touche
 	public Touche[][] getTouches(Ocean.joueur cible) {
 		return bs.getTouches(cible);
+	}
+	
+	public boolean jAttaque(Coord cible, String arme, Arme.Sens sens) {
+		boolean result = false;
+		try {
+			result = bs.jAttaque(cible, arme, sens);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 }
