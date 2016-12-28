@@ -115,7 +115,7 @@ public class Test {
 		
 		bs.jAttaque(cible, "Nuke", Arme.Sens.HORIZONTAL);
 		
-		System.out.println(bs.ocean);
+//		System.out.println(bs.ocean);
 		
 	}
 	
