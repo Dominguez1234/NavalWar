@@ -72,7 +72,7 @@ public class BattleShip {
 	}
 	
 	// Joueur local attaque l'adversaire
-	public boolean Jattaque(Coord cible, String arme, Arme.Sens sens) throws IOException, ClassNotFoundException {
+	public boolean jAttaque(Coord cible, String arme, Arme.Sens sens) throws IOException, ClassNotFoundException {
 		if(this.online) {
 			
 			ArrayList<Coord> ciblesValides = new ArrayList<>();
@@ -119,11 +119,11 @@ public class BattleShip {
 			}
 			
 		}
-		return false;
+		return true;
 	}
 	
 	// L'adversaire attaque le joueur local
-	public boolean JattendsLattaque() throws ClassNotFoundException, IOException {
+	public boolean jAttendsLattaque() throws ClassNotFoundException, IOException {
 		System.out.println("En attente de réception...");
 		Tir tir = reseau.receive();		// Réception du Tir de l'adversaire
 		boolean continueFire = true;
@@ -161,7 +161,7 @@ public class BattleShip {
 		
 		reseau.send(tir);	// Renvoie de l'objet tir à l'adversaire
 		
-		return false;
+		return true;
 	}
 	
 	// Modifier la position d'un bateau

@@ -113,7 +113,7 @@ public class Test {
 		System.out.print("Colonne : ");
 		cible.y = sc.nextInt()-1;
 		
-		bs.Jattaque(cible, "Nuke", Arme.Sens.HORIZONTAL);
+		bs.jAttaque(cible, "Nuke", Arme.Sens.HORIZONTAL);
 		
 		System.out.println(bs.ocean);
 		

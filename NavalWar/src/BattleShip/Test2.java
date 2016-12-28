@@ -79,7 +79,7 @@ public class Test2 {
 		
 		while(true) {
 			BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
-			bs.connexion("127.0.0.1", 3131);
+			bs.connexion("127.0.0.1");
 			
 			bs.setPosBoat("Porte-Avions", new Coord(1,1), Bateau.direction.horizontale);
 			bs.setPosBoat("Croiseur", new Coord(3,0), Bateau.direction.verticale);
@@ -90,7 +90,7 @@ public class Test2 {
 			System.out.println("Test2 prêt\n");
 			
 			Thread.sleep(1000);
-			bs.JattendsLattaque();
+			bs.jAttendsLattaque();
 		}
 		
 		
