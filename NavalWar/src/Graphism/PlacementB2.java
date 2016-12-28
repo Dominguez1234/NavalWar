@@ -105,12 +105,6 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 		al.add(controler.getAbstractBateau("Sous-Marin"));		
 		al.add(controler.getAbstractBateau("Destroyer"));
 		al.add(controler.getAbstractBateau("Patrouilleur"));
-	    
-//	    al.add(bs.getAbstractBateau("Porte-Avions"));
-//		al.add(bs.getAbstractBateau("Croiseur"));
-//		al.add(bs.getAbstractBateau("Sous-Marin"));		
-//		al.add(bs.getAbstractBateau("Destroyer"));
-//		al.add(bs.getAbstractBateau("Patrouilleur"));
 		
 		//Label NavalWar
 		JLabel lblNavalWar = new JLabel("NavalWar", SwingConstants.CENTER);
