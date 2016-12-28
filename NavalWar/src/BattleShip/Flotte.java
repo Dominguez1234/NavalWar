@@ -30,39 +30,6 @@ public class Flotte {
 		// I have nothing to do here
 	}
 	
-	// Modifier la position d'un bateau
-//	public void setPosition(String nomBateau, Coord refPosition, Bateau.direction direction) {
-//		int i = this.getIdBateau(nomBateau);	// R�cup�re l'ID de la case o� se trouve le bateau
-//		if(i > -1) {							// Si le bateau existe dans le tableau
-//			Coord newPos[] = {
-//					new Coord(-1,-1), 
-//					new Coord(-1,-1), 
-//					new Coord(-1,-1), 
-//					new Coord(-1,-1), 
-//					new Coord(-1,-1)
-//				};
-//			int j;
-//			boolean conflit = false;
-//			Coord ref = new Coord(refPosition.x, refPosition.y);
-//			
-//			// Calcul de la position de chaque case du bateau
-//			for (j = 0; j < bateaux[i].getNbrCases(); j++) {
-//				newPos[j].x = ref.x;
-//				newPos[j].y = ref.y;
-//				if(this.isSomethingHere(newPos[j]))		// V�rifie qu'aucun bateau de s'y trouve d�j�
-//					conflit = true;
-//				// Incr�mentation en fonction de la direction
-//				if(direction.equals(Bateau.direction.horizontale))
-//					ref.y++;
-//				else
-//					ref.x++;
-//			}
-//
-//			if(!conflit)	// Si aucun conflit avec un autre bateau
-//				bateaux[i].setPositions(newPos);
-//		}
-//	}
-	
 	public void setPosition(String nomBateau, Coord refPosition, Bateau.direction direction) {
 		int i = this.getIdBateau(nomBateau);	// R�cup�re l'ID de la case o� se trouve le bateau
 		boolean conflit = false;
