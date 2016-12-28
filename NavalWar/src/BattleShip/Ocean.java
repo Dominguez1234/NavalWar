@@ -40,10 +40,7 @@ public class Ocean {
 	
 	// Constructeur
 	public Ocean() {
-		// ----- A SUPPRIMER
-		this.tirsFromMe[4][5].isTargeted = true;
-		this.tirsFromMe[8][9].isTouche = true;
-		// -----------------
+		
 	}
 	
 	// Interroge si une case a d�j� �t� attaqu�.
