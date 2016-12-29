@@ -155,6 +155,7 @@ public class Controler extends JFrame implements Observer {
 	
 	public boolean jAttaque(Coord cible, String arme, Arme.Sens sens) {
 		boolean result = false;
+		
 		try {
 			result = bs.jAttaque(cible, arme, sens);
 		} catch (ClassNotFoundException e) {
@@ -163,18 +164,21 @@ public class Controler extends JFrame implements Observer {
 			e.printStackTrace();
 		}
 		board.resetGrilles();
-		try {
-			Thread.sleep(200);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		this.jAttendsLattaque();
 		return result;
 	}
 	
 	public boolean jAttendsLattaque() {
 		boolean result = false;
+		
+		try {
+			Thread.sleep(500);
+			System.out.println("Wait before");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		try {
 			result = bs.jAttendsLattaque();
 		} catch (ClassNotFoundException e) {
@@ -183,10 +187,26 @@ public class Controler extends JFrame implements Observer {
 			e.printStackTrace();
 		}
 		board.resetGrilles();
+		
+		try {
+			Thread.sleep(500);
+			System.out.println("Wait after");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return result;
 	}
 	
 	private void lancement() {
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		System.out.println("Attente de l'autre joueur...");
 		if(!bs.waitAdversaire()) {
 			System.out.println("L'adversaire commence.");

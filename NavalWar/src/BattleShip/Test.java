@@ -27,21 +27,25 @@ public class Test {
 		
 		Thread.sleep(2000);
 		
-		while(true) {
-			Coord cible = new Coord();
-			Scanner sc = new Scanner(System.in);
-			System.out.print("Ligne : ");
-			cible.x = sc.nextInt()-1;
-			System.out.print("Colonne : ");
-			cible.y = sc.nextInt()-1;
-			
-			bs.jAttaque(cible, "Nuke", Arme.Sens.HORIZONTAL);
-			System.out.println(bs.ocean);
-			
-			bs.jAttendsLattaque();
+//		while(true) {
+//			Coord cible = new Coord();
+//			Scanner sc = new Scanner(System.in);
+//			System.out.print("Ligne : ");
+//			cible.x = sc.nextInt()-1;
+//			System.out.print("Colonne : ");
+//			cible.y = sc.nextInt()-1;
+//			
+//			bs.jAttaque(cible, "Nuke", Arme.Sens.HORIZONTAL);
+//			System.out.println(bs.ocean);
+//			
+//			bs.jAttendsLattaque();
+//		}
+		
+		int i;
+		for(i=0;i<5;i++) {
+			System.out.println("+++++ Test - Connexion "+i);
+			bs.waitAdversaire();
 		}
-		
-		
 		
 	}
 	
