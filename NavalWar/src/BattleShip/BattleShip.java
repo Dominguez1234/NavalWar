@@ -138,8 +138,10 @@ public class BattleShip {
 		for(Coord cible  : tir.getCibles()) {	// Pour chaque case ciblé par l'adversaire
 			// Si on touche un bateau
 			if(continueFire) {
+				ocean.addATargeted(Ocean.joueur.ennemi, cible);
 				if(ocean.fire(cible)) {
 					tir.addTouche(cible);
+					ocean.addATouched(Ocean.joueur.ennemi, cible);
 					// si le bateau touché est coulé
 					if(ocean.isDown(cible)) {
 						temp = ocean.whoIsHere(cible);
