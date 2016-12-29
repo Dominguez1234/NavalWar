@@ -30,7 +30,7 @@ public class BattleShip {
 	// Attributs
 	private boolean online = false;
 	private Reseau reseau;
-	private Ocean ocean;
+	public Ocean ocean;
 	
 	
 	// Liste des armes
@@ -107,7 +107,7 @@ public class BattleShip {
 			
 			// --- A SUPPRIMER
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(500);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
