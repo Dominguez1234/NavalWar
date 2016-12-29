@@ -51,11 +51,7 @@ public class BoardDeux extends JPanel{
 	int xInit;
 	int yInit;
 	ArrayList<AbstractBateau> al = new ArrayList<AbstractBateau>();
-	//Bateau.direction dir = Bateau.direction.verticale;
-	//String mes = "Horizontal";
 	
-	// ----- A SUPPRIMER
-//	BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
 	// ------------------	
 
 	public BoardDeux(Controler fenetreMere) throws FontFormatException, IOException {
@@ -102,12 +98,6 @@ public class BoardDeux extends JPanel{
 		tPlateau = tonPlateau.creationPlateau();
 		tesChiffres = tonPlateau.Chiffres();
 		tesLettres = tonPlateau.Lettres();
-		
-//		al.add(bs.getAbstractBateau("Porte-Avions"));
-//		al.add(bs.getAbstractBateau("Croiseur"));
-//		al.add(bs.getAbstractBateau("Sous-Marin"));		
-//		al.add(bs.getAbstractBateau("Destroyer"));
-//		al.add(bs.getAbstractBateau("Patrouilleur"));
 //		
 		//Label NavalWar
 		JLabel lblNavalWar = new JLabel("NavalWar", SwingConstants.CENTER);
