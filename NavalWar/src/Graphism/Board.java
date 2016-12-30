@@ -96,19 +96,19 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 //		frame.getContentPane().setLayout(null);
 		
 		// ************* POLICE **************
-		//Cr�ation de la police BattlegroundBig avec la taille
+		//Création de la police BattlegroundBig avec la taille
 	    Font BattlegroungBig = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")).deriveFont(75f);
 	    GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
 	    //Enregistrement de la police BattlegroundBig
 	    ge.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")));
 	    
-	    //Cr�ation de la police BattlegroundMedium avec la taille
+	    //Création de la police BattlegroundMedium avec la taille
 	    Font BattlegroundMedium = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")).deriveFont(47f);
 	    GraphicsEnvironment ge1 = GraphicsEnvironment.getLocalGraphicsEnvironment();
 	    //Enregistrement de la police BattlegroundBig
 	    ge1.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")));
 	    
-	    //Cr�ation de la police v avec la taille
+	    //Création de la police v avec la taille
 	    Font BattlegroundSmall = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")).deriveFont(35f);
 	    GraphicsEnvironment ge11 = GraphicsEnvironment.getLocalGraphicsEnvironment();
 	    //Enregistrement de la police BattlegroundSmall
@@ -150,7 +150,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 		textArea.setEditable(false);
 		panel.add(textArea);
 		
-		JLabel lblClicDroitSur = new JLabel("Appuyez sur les fl�ches haut et bas pour changer le sens");
+		JLabel lblClicDroitSur = new JLabel("Appuyez sur les flèches haut et bas pour changer le sens");
 		lblClicDroitSur.setFont(new Font("Battleground", Font.PLAIN, 30));
 		lblClicDroitSur.setBounds(490, 165, 400, 50);
 //		panel.add(lblClicDroitSur);
@@ -172,7 +172,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 
         }
         
-        //Chiffre � gaucheframe
+        //Chiffre ï¿½ gaucheframe
   		JPanel Chiffres = new JPanel();
   		Chiffres.setBounds(58, 138, 26, 325);
   		panel.add(Chiffres);
@@ -214,7 +214,7 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener,
 		panel.setFocusable(true);
 		this.add(panel);
 		
-		//Listener et bouton du bouton d�marrer
+		//Listener et bouton du bouton dï¿½marrer
 		btnJouer = new JButton("Jouez");
 		btnJouer.setEnabled(false);
 		btnJouer.setBounds(579, 231, 240, 80);
