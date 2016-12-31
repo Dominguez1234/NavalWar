@@ -108,7 +108,7 @@ public class BattleShip {
 			
 				// --- A SUPPRIMER
 				try {
-					Thread.sleep(1000);
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -165,7 +165,7 @@ public class BattleShip {
 		
 		// --- A SUPPRIMER
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(200);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
