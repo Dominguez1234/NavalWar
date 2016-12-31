@@ -23,7 +23,7 @@ public class Controler extends JFrame implements Observer {
 	
 	BattleShip bs = null;
 	JPanel accueil;
-	JPanel placement;
+	PlacementB2 placement;
 	BoardDeux board;
 	
 	/**
@@ -117,7 +117,7 @@ public class Controler extends JFrame implements Observer {
 	// Passage du placement au plateau de jeu
 	public void changeToBoard() {
 		try {
-			board = new BoardDeux(this);
+			board = new BoardDeux(this, this.placement.plateau);
 		} catch (FontFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -125,6 +125,9 @@ public class Controler extends JFrame implements Observer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		System.out.println(bs.ocean.monJeu);
+		
 		this.remove(placement);
 		this.add(board);
 		this.revalidate();
@@ -180,8 +183,11 @@ public class Controler extends JFrame implements Observer {
 			e.printStackTrace();
 		}
 		
-		if(!result)	// si pas de bateau touché, on attend le coup ennemi
+		if(!result && !bs.isGameOver())	// si pas de bateau touché, on attend le coup ennemi
 			this.jAttendsLattaque();
+		else if(bs.isGameOver())		// ou si la partie est finie
+			this.changeToScore();
+			
 		return result;
 	}
 	
@@ -205,8 +211,10 @@ public class Controler extends JFrame implements Observer {
 			e.printStackTrace();
 		}
 		
-		if(result)	// Si on a été touché, on attend à nouveau un coup ennemi
+		if(result && !bs.isGameOver())	// Si on a été touché, on attend à nouveau un coup ennemi
 			this.jAttendsLattaque();
+		else if(bs.isGameOver())		// ou si la partie est finie
+			this.changeToScore();
 		
 		return result;
 	}
@@ -225,6 +233,10 @@ public class Controler extends JFrame implements Observer {
 			jAttendsLattaque();
 		} else
 			System.out.println("Je commence.");
+	}
+	
+	private void changeToScore() {
+		System.out.println("------------------ C'EST FINI WESH !!!");
 	}
 	
 }

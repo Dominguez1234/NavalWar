@@ -16,7 +16,7 @@ import Weapon.*;
 public class Ocean {
 	
 	// Attributs
-	private Flotte monJeu = new Flotte();	// Flotte du joueur local
+	public Flotte monJeu = new Flotte();	// Flotte du joueur local
 	
 	// G�n�ration des maps 10x10 de chaque joueur avec, dans chaque case, un objet Touche.
 	private Touche[][] tirsFromMe = {

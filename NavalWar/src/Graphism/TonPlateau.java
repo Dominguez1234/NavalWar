@@ -45,9 +45,9 @@ public class TonPlateau extends AbstractPlateau {
 		for(i=0;i<10;i++) {
 			for(j=0;j<10;j++) {
 				if(grille[i][j].isTouche)
-					plateau.getComponent(pos).setBackground(Color.RED);
+					plateau.getComponent(pos).setBackground(new Color(255,28,28));
 				else if(grille[i][j].isTargeted)
-					plateau.getComponent(pos).setBackground(Color.BLUE);
+					plateau.getComponent(pos).setBackground(new Color(66, 129, 255));
 				else
 					plateau.getComponent(pos).setBackground(Color.WHITE);
 				pos++;

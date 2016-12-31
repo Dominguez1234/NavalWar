@@ -31,6 +31,7 @@ public class BattleShip {
 	private boolean online = false;
 	private Reseau reseau;
 	public Ocean ocean;
+	private boolean gameOver = false;
 	
 	
 	// Liste des armes
@@ -125,6 +126,9 @@ public class BattleShip {
 					result = true;
 				}
 				
+				if(tir.gameOver)
+					this.gameOver = true;
+				
 			}
 			
 		}
@@ -157,6 +161,7 @@ public class BattleShip {
 						// Si tous les bateaux sont coulés => fin de la partie
 						if(ocean.areAllDown()) {
 							tir.gameOver = true;
+							this.gameOver = true;
 						}
 					}
 				}
@@ -175,6 +180,10 @@ public class BattleShip {
 		reseau.send(tir);	// Renvoie de l'objet tir à l'adversaire
 		
 		return result;
+	}
+	
+	public boolean isGameOver() {
+		return this.gameOver;
 	}
 	
 	// Modifier la position d'un bateau

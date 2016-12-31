@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
@@ -23,6 +24,8 @@ import java.util.ArrayList;
 
 import BattleShip.BattleShip;
 import BattleShip.Controler;
+import BattleShip.Ocean;
+import BattleShip.Touche;
 import Boats.AbstractBateau;
 
 
@@ -54,8 +57,9 @@ public class BoardDeux extends JPanel{
 	
 	// ------------------	
 
-	public BoardDeux(Controler fenetreMere) throws FontFormatException, IOException {
+	public BoardDeux(Controler fenetreMere, JPanel plateauLocal) throws FontFormatException, IOException {
 		this.controler = fenetreMere;
+		this.monPlateau = plateauLocal;
 		initialize();
 	}
 
@@ -92,7 +96,7 @@ public class BoardDeux extends JPanel{
 		plateau = new MonPlateau(91,138,al,controler);
 		tonPlateau = new TonPlateau(550,138,al,controler);
 		
-		monPlateau = plateau.creationPlateau();
+//		monPlateau = plateau.creationPlateau();
 		mesChiffres = plateau.Chiffres();
 		mesLettres = plateau.Lettres();
 		tPlateau = tonPlateau.creationPlateau();
@@ -133,6 +137,24 @@ public class BoardDeux extends JPanel{
 	}
 	
 	public void resetGrilles() {
-		tonPlateau.resetPlateau();
+		tonPlateau.resetPlateau();	// Pour la grille ennemie
+		
+		// Pour la grille locale
+		Touche[][] grille = this.controler.getTouches(Ocean.joueur.moi);
+		
+		int i,j;
+		int pos=0;
+		
+		for(i=0;i<10;i++) {
+			for(j=0;j<10;j++) {
+				if(grille[i][j].isTouche)
+					monPlateau.getComponent(pos).setBackground(new Color(255,28,28));
+				else if(grille[i][j].isTargeted)
+					monPlateau.getComponent(pos).setBackground(new Color(66, 129, 255));
+				else
+					monPlateau.getComponent(pos).setBackground(Color.WHITE);
+				pos++;
+			}
+		}
 	}
 }

@@ -43,10 +43,10 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 	Controler controler = null;
 	
 	private static final long serialVersionUID = 1L;
-	public JPanel square;
-	public JPanel panel;
+	private JPanel square;
+	private JPanel panel;
 	public JPanel plateau;
-	public JTextArea textArea;
+	private JTextArea textArea;
 	JButton btnDemarrer;
 	ArrayList<AbstractBateau> al = new ArrayList<AbstractBateau>();
 	Bateau.direction dir = Bateau.direction.horizontale;
