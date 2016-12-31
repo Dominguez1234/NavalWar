@@ -25,6 +25,7 @@ public class Controler extends JFrame implements Observer {
 	JPanel accueil;
 	PlacementB2 placement;
 	BoardDeux board;
+	Score2 score;
 	
 	/**
 	 * Launch the application.
@@ -55,6 +56,7 @@ public class Controler extends JFrame implements Observer {
 		accueil = new Accueil(this);
 //		accueil = new Game2();
 //		accueil = new BoardDeux();
+//		accueil = new Score2(this);
 		
 		this.add(accueil);
 		
@@ -236,7 +238,36 @@ public class Controler extends JFrame implements Observer {
 	}
 	
 	private void changeToScore() {
-		System.out.println("------------------ C'EST FINI WESH !!!");
+		System.out.println("--- FIN DE LA PARTIE");
+		try {
+			score = new Score2(this);
+		} catch (FontFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.remove(board);
+		this.add(score);
+		this.revalidate();
+		this.repaint();
+		
+		System.out.println("Changement de JPanel => Scores");
+	}
+	
+	// ----- SCORES -----
+	
+	public Ocean.joueur getWinner() {
+		return bs.getWinner();
+	}
+	
+	public void fermerJeu() {
+		System.exit(0);
+	}
+	
+	public float getRatio(Ocean.joueur joueur) {
+		return bs.getRatio(joueur);
 	}
 	
 }

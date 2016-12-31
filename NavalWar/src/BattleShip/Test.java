@@ -8,6 +8,7 @@ import Weapon.Arme;
 public class Test {
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
+		
 		BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
 		bs.connexion("127.0.0.1");
 		

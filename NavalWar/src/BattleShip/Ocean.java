@@ -156,4 +156,31 @@ public class Ocean {
 		return str;
 	}
 	
+	public float getRatio(Ocean.joueur joueur) {
+		float ratio = 0;
+		int nbrTirs=0, nbrTouches=0;
+		int i,j;
+		Touche[][] grille;
+		
+		if(joueur.equals(Ocean.joueur.moi))
+			grille = tirsFromMe.clone();
+		else
+			grille = tirsFromEnnemi.clone();
+		
+		for(i=0;i<10;i++) {
+			for(j=0;j<10;j++) {
+				if(grille[i][j].isTargeted) {
+					nbrTirs++;
+					if(grille[i][j].isTouche)
+						nbrTouches++;
+				}
+			}
+		}
+		
+		if(nbrTirs > 0)
+			ratio = (float)((int)(((float)nbrTouches / (float)nbrTirs)*100))/100;
+		
+		return ratio;
+	}
+	
 }

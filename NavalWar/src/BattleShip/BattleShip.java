@@ -32,6 +32,7 @@ public class BattleShip {
 	private Reseau reseau;
 	public Ocean ocean;
 	private boolean gameOver = false;
+	private boolean IAmWinner = false;
 	
 	
 	// Liste des armes
@@ -126,8 +127,10 @@ public class BattleShip {
 					result = true;
 				}
 				
-				if(tir.gameOver)
+				if(tir.gameOver) {
 					this.gameOver = true;
+					this.IAmWinner = true;
+				}
 				
 			}
 			
@@ -204,6 +207,19 @@ public class BattleShip {
 	// Renvoi le tableau de tirs
 	public Touche[][] getTouches(Ocean.joueur cible) {
 		return ocean.getTouches(cible);
+	}
+	
+	public Ocean.joueur getWinner() {
+		Ocean.joueur result;
+		if(this.IAmWinner)
+			result = Ocean.joueur.moi;
+		else
+			result = Ocean.joueur.ennemi;
+		return result;
+	}
+	
+	public float getRatio(Ocean.joueur joueur) {
+		return ocean.getRatio(joueur);
 	}
 	
 }
