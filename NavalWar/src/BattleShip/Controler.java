@@ -28,7 +28,7 @@ public class Controler extends JFrame implements Observer {
 	
 	/**
 	 * Launch the application.
-	 */
+	 */ 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -130,6 +130,8 @@ public class Controler extends JFrame implements Observer {
 		this.revalidate();
 		this.repaint();
 		
+		System.out.println("Changement de JPanel => Jeu");
+		
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -154,6 +156,7 @@ public class Controler extends JFrame implements Observer {
 	}
 	
 	public boolean jAttaque(Coord cible, String arme, Arme.Sens sens) {
+		System.out.println("A moi de jouer");
 		boolean result = false;
 		
 		try {
@@ -164,20 +167,27 @@ public class Controler extends JFrame implements Observer {
 			e.printStackTrace();
 		}
 		board.resetGrilles();
-		this.jAttendsLattaque();
-		return result;
-	}
-	
-	public boolean jAttendsLattaque() {
-		boolean result = false;
+		board.repaint();
+		this.remove(board);
+		this.add(board);
+		this.revalidate();
+		this.repaint();
 		
 		try {
 			Thread.sleep(500);
-			System.out.println("Wait before");
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		if(!result)	// si pas de bateau touché, on attend le coup ennemi
+			this.jAttendsLattaque();
+		return result;
+	}
+	
+	public boolean jAttendsLattaque() {
+		System.out.println("Je suis la victime");
+		boolean result = false;
 		
 		try {
 			result = bs.jAttendsLattaque();
@@ -190,11 +200,13 @@ public class Controler extends JFrame implements Observer {
 		
 		try {
 			Thread.sleep(500);
-			System.out.println("Wait after");
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		if(result)	// Si on a été touché, on attend à nouveau un coup ennemi
+			this.jAttendsLattaque();
 		
 		return result;
 	}

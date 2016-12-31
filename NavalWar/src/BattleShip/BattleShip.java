@@ -78,6 +78,7 @@ public class BattleShip {
 	
 	// Joueur local attaque l'adversaire
 	public boolean jAttaque(Coord cible, String arme, Arme.Sens sens) throws IOException, ClassNotFoundException {
+		boolean result = false;
 		if(this.online) {
 			
 			ArrayList<Coord> ciblesValides = new ArrayList<>();
@@ -103,32 +104,36 @@ public class BattleShip {
 				tir = new Tir(ciblesValides,arme);
 				System.out.println("Envoi de tir : "+tir);
 				reseau.send(tir);
-			}
+				tir = null;
 			
-			// --- A SUPPRIMER
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			// ----------------
-			
-			// Réception de la réponse
-			tir = reseau.receive();
-			System.out.println("Cibles touchées : "+tir.getTouches());
-			if(!tir.getBateauxCoules().isEmpty())
-				System.out.println("Bateau(x) coulé(s) : "+tir.getBateauxCoules());
-			for(Coord touche : tir.getTouches()) {			// Pour chaque case touché, on modifie sur la map
-				ocean.addATouched(Ocean.joueur.moi, touche);
+				// --- A SUPPRIMER
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				// ----------------
+				
+				// Réception de la réponse
+				tir = reseau.receive();
+				System.out.println("Cibles touchées : "+tir.getTouches());
+				if(!tir.getBateauxCoules().isEmpty())
+					System.out.println("Bateau(x) coulé(s) : "+tir.getBateauxCoules());
+				for(Coord touche : tir.getTouches()) {			// Pour chaque case touché, on modifie sur la map
+					ocean.addATouched(Ocean.joueur.moi, touche);
+					result = true;
+				}
+				
 			}
 			
 		}
-		return true;
+		return result;
 	}
 	
 	// L'adversaire attaque le joueur local
 	public boolean jAttendsLattaque() throws ClassNotFoundException, IOException {
+		boolean result = false;
 		System.out.println("En attente de réception...");
 		Tir tir = reseau.receive();		// Réception du Tir de l'adversaire
 		boolean continueFire = true;
@@ -141,6 +146,7 @@ public class BattleShip {
 				ocean.addATargeted(Ocean.joueur.ennemi, cible);
 				if(ocean.fire(cible)) {
 					tir.addTouche(cible);
+					result = true;
 					ocean.addATouched(Ocean.joueur.ennemi, cible);
 					// si le bateau touché est coulé
 					if(ocean.isDown(cible)) {
@@ -168,7 +174,7 @@ public class BattleShip {
 		
 		reseau.send(tir);	// Renvoie de l'objet tir à l'adversaire
 		
-		return true;
+		return result;
 	}
 	
 	// Modifier la position d'un bateau

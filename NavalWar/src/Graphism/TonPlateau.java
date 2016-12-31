@@ -89,7 +89,7 @@ public class TonPlateau extends AbstractPlateau {
 //        	plateau.getComponent(pos).setBackground(Color.RED);
 //        	if(controler.jAttaque(coord, "Nuke", Arme.Sens.HORIZONTAL))
 //        		this.resetPlateau();
-        	controler.jAttaque(coord, "Nuke", Arme.Sens.HORIZONTAL);
+        	controler.jAttaque(coord, "Missile", Arme.Sens.HORIZONTAL);
 //        	this.resetPlateau();
         }
 	}

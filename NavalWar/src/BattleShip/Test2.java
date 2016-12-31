@@ -21,11 +21,11 @@ public class Test2 {
 			
 			System.out.println("Test2 prêt\n");
 			
-			Thread.sleep(1000);
+//			Thread.sleep(1000);
 			
 //			while(true) {
 //				bs.jAttendsLattaque();
-//				
+				
 //				Coord cible = new Coord();
 //				Scanner sc = new Scanner(System.in);
 //				System.out.print("Ligne : ");
@@ -35,17 +35,32 @@ public class Test2 {
 //				
 //				bs.jAttaque(cible, "Nuke", Arme.Sens.HORIZONTAL);
 //				System.out.println(bs.ocean);
-//				
-//				
+				
+				
+//			}
+			
+//			int i;
+//			for(i=0;i<1;i++) {
+//				Thread.sleep(500);
+//				System.out.println("+++++ Test2 - Connexion "+i);
+//				bs.waitAdversaire();
+////				
+////				Thread.sleep(500);
+////				bs.jAttaque(new Coord(5,i), "Missile", Arme.Sens.HORIZONTAL);
+////				Thread.sleep(500);
 //			}
 			
 			int i;
+			bs.waitAdversaire();
 			for(i=0;i<5;i++) {
-				Thread.sleep(500);
-				System.out.println("+++++ Test2 - Connexion "+i);
-				bs.waitAdversaire();
+				Thread.sleep(2000);
+				bs.jAttaque(new Coord(6,i), "Missile", Arme.Sens.HORIZONTAL);
+				
+				Thread.sleep(1000);
+				bs.jAttendsLattaque();
 			}
-		
+//			
+//			System.out.println(bs.ocean);
 		
 	}
 	
