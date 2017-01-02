@@ -137,10 +137,11 @@ public class Accueil extends JPanel {
 		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		
 		//Listener et bouton du mode worms
-		final JButton btnModeWorms = new JButton("Mode worms");
+		final JButton btnModeWorms = new JButton("TotalWar");
 		btnModeWorms.setBounds(360, 396, 240, 80);
 		panel.add(btnModeWorms);
 		btnModeWorms.setFont(BattlegroundSmall);
+		btnModeWorms.setEnabled(false);;
 		
 		panel.add(label);
 		panel.setBounds(0, 0, 960, 511);
