@@ -232,6 +232,12 @@ public class Controler extends JFrame implements Observer {
 		System.out.println("Attente de l'autre joueur...");
 		if(!bs.waitAdversaire()) {
 			System.out.println("L'adversaire commence.");
+			try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			jAttendsLattaque();
 		} else
 			System.out.println("Je commence.");
