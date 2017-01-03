@@ -8,6 +8,10 @@ import java.io.Serializable;
 
 public class Coord implements Serializable{
 		
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// Attributs
 	public int x,y;
 	

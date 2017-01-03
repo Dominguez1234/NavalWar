@@ -1,16 +1,12 @@
 package Graphism;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 
-import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.Observable;
-import java.util.Observer;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -18,8 +14,6 @@ import java.awt.GraphicsEnvironment;
 
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 import BattleShip.*;
 

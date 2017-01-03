@@ -6,10 +6,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
 import BattleShip.BattleShip;
 import BattleShip.Controler;
 import BattleShip.Coord;
@@ -18,12 +14,9 @@ import BattleShip.Touche;
 import Boats.AbstractBateau;
 import Boats.Bateau;
 import Weapon.Arme;
-import tools.BoatImageProvider;
 
 public class TonPlateau extends AbstractPlateau {
-	
-	private int xInit;
-	private int yInit;
+
 	 ArrayList<AbstractBateau> al;
 	Bateau.direction dir = Bateau.direction.verticale;
 	String mes = "Horizontal";
@@ -74,8 +67,6 @@ public class TonPlateau extends AbstractPlateau {
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Component v;
-		int varx,vary;
 			
 		Touche[][] grille = this.controler.getTouches(Ocean.joueur.ennemi);
 

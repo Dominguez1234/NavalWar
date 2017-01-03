@@ -3,8 +3,6 @@ package BattleShip;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import Boats.Bateau;
-
 /*
  * Classe qui permet de stocker les informations 
  * qui seront envoyées à l'adversaire via le réseau.
@@ -12,6 +10,10 @@ import Boats.Bateau;
 
 public class Tir implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// Attributs 
 	private ArrayList<Coord> coordCibles = new ArrayList<>();
 	private String nomArme;

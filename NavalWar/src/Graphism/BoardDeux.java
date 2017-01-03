@@ -2,14 +2,8 @@ package Graphism;
 
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-
-import java.awt.event.ActionListener;
-
 import java.io.File;
 import java.io.IOException;
-import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -21,8 +15,6 @@ import javax.swing.JPanel;
 
 import java.util.ArrayList;
 
-
-import BattleShip.BattleShip;
 import BattleShip.Controler;
 import BattleShip.Ocean;
 import BattleShip.Touche;
@@ -38,15 +30,12 @@ public class BoardDeux extends JPanel{
 	
 	private Controler controler = null;
 
-	private JPanel panel;
 	private JPanel monPlateau;
 	private JPanel mesChiffres;
 	private JPanel mesLettres;
 	private JPanel tPlateau;
 	private JPanel tesChiffres;
 	private JPanel tesLettres;
-	private static JTextArea textArea;
-	private static JButton btnJouer;
 	
 	AbstractPlateau plateau = null;
 	AbstractPlateau tonPlateau = null;
@@ -83,13 +72,6 @@ public class BoardDeux extends JPanel{
 	    GraphicsEnvironment ge1 = GraphicsEnvironment.getLocalGraphicsEnvironment();
 	    //Enregistrement de la police BattlegroundBig
 	    ge1.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")));
-	    
-	    //Création de la police v avec la taille
-	    Font BattlegroundSmall = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")).deriveFont(35f);
-	    GraphicsEnvironment ge11 = GraphicsEnvironment.getLocalGraphicsEnvironment();
-	    //Enregistrement de la police BattlegroundSmall
-	    ge11.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")));
-	    // ***********************************
 		
 		this.setLayout(null);	// A AJOUTER POUR QUE CA FONCTIONNE !!!
 		

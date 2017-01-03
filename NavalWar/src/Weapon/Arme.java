@@ -1,7 +1,5 @@
 package Weapon;
 
-import java.util.Arrays;
-
 import java.util.ArrayList;
 
 import BattleShip.Coord;

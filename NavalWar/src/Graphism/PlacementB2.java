@@ -31,7 +31,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import BattleShip.BattleShip;
 import BattleShip.Controler;
 import BattleShip.Coord;
 import Boats.AbstractBateau;
@@ -43,8 +42,6 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 	Controler controler = null;
 	
 	private static final long serialVersionUID = 1L;
-	private JPanel square;
-	private JPanel panel;
 	public JPanel plateau;
 	private JTextArea textArea;
 	JButton btnDemarrer;
@@ -276,9 +273,8 @@ public class PlacementB2 extends JPanel implements MouseListener, MouseMotionLis
 		
 		if (buttonDown == MouseEvent.BUTTON1) {	// Clic gauche
 			
-			int varx,vary,cox,coy,pos;
+			int varx,vary;
 			int xInit, yInit;
-			Coord testCo = new Coord();
 			boolean co_Valid=true;
 			ArrayList<Coord> coo;
 			Component c;

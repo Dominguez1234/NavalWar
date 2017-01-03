@@ -8,9 +8,11 @@ import Weapon.Arme;
 
 public class Test2 {
 	
+	private static Scanner sc;
+
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 		
-		Scanner sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 		
 			BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
 			bs.connexion("127.0.0.1");

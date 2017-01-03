@@ -3,8 +3,6 @@ package BattleShip;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FontFormatException;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
@@ -14,13 +12,15 @@ import javax.swing.JPanel;
 
 import Boats.AbstractBateau;
 import Boats.Bateau;
-import Boats.Patrouilleur;
-import Boats.PorteAvions;
 import Graphism.*;
 import Weapon.Arme;
 
 public class Controler extends JFrame implements Observer {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	BattleShip bs = null;
 	JPanel accueil;
 	PlacementB2 placement;

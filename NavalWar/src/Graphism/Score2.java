@@ -1,8 +1,6 @@
 package Graphism;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
@@ -12,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -20,10 +17,14 @@ import javax.swing.SwingConstants;
 import BattleShip.Controler;
 import BattleShip.Ocean;
 
-import javax.swing.JToggleButton;
 import javax.swing.JButton;
 
 public class Score2 extends JPanel {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6995080088393716703L;
 
 	private Controler controler = null;
 	
@@ -67,13 +68,7 @@ public class Score2 extends JPanel {
 	    GraphicsEnvironment ge1 = GraphicsEnvironment.getLocalGraphicsEnvironment();
 	    //Enregistrement de la police BattlegroundBig
 	    ge1.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")));
-	    
-	    //Création de la police v avec la taille
-	    Font BattlegroundSmall = Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")).deriveFont(35f);
-	    GraphicsEnvironment ge11 = GraphicsEnvironment.getLocalGraphicsEnvironment();
-	    //Enregistrement de la police BattlegroundSmall
-	    ge11.registerFont(Font.createFont(Font.TRUETYPE_FONT, new File("fonts/Battleground.ttf")));
-		
+
 	    //Label NavalWar
 		JLabel lblNavalWar = new JLabel("NavalWar", SwingConstants.CENTER);
 		lblNavalWar.setFont(BattlegroungBig);
@@ -150,7 +145,6 @@ public class Score2 extends JPanel {
 	}
 	
 	private void calculScore() {
-		Ocean.joueur winner = controler.getWinner();
 		
 		this.winner = controler.getWinner();
 		

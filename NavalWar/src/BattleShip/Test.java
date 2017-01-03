@@ -7,9 +7,11 @@ import Weapon.Arme;
 
 public class Test {
 	
+	private static Scanner sc;
+
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 		
-		Scanner sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 //		while(true) {
 //			System.out.print("Nbr : ");
 //			sc.nextInt();

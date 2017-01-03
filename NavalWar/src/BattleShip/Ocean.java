@@ -1,12 +1,7 @@
 package BattleShip;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import Boats.AbstractBateau;
 import Boats.Bateau;
-import Weapon.*;
 
 /*
  * Classe Oc�an, repr�sentant le terrain de jeu.

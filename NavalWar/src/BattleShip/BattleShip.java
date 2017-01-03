@@ -2,7 +2,6 @@ package BattleShip;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -151,7 +150,6 @@ public class BattleShip {
 		System.out.println("En attente de réception...");
 		Tir tir = reseau.receive();		// Réception du Tir de l'adversaire
 		boolean continueFire = true;
-		String temp = "";
 		System.out.println("Réception : "+tir);
 		
 		for(Coord cible  : tir.getCibles()) {	// Pour chaque case ciblé par l'adversaire
