@@ -7,7 +7,7 @@ import Boats.*;
 import Weapon.AbstractArme;
 import Weapon.Arme;
 
-public class TestTotalWar {
+public class DemoTotalWar {
 	
 	private BattleShip bs;
 	private boolean first;
@@ -16,7 +16,7 @@ public class TestTotalWar {
 	
 	public static void main(String[] args) {
 		try {
-			new TestTotalWar();
+			new DemoTotalWar();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -29,7 +29,7 @@ public class TestTotalWar {
 		}
 	}
 	
-	public TestTotalWar() throws InterruptedException, ClassNotFoundException, IOException {
+	public DemoTotalWar() throws InterruptedException, ClassNotFoundException, IOException {
 		
 //		sc = new Scanner(System.in);
 		
