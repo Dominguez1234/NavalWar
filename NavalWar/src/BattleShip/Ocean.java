@@ -183,4 +183,9 @@ public class Ocean {
 		return ratio;
 	}
 	
+	public void deleteTargetFromTorpille(Coord c) {
+		System.out.println(c);
+		tirsFromMe[c.x][c.y].isTargeted = false;
+	}
+	
 }

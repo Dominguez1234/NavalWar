@@ -8,6 +8,7 @@ import java.util.Map;
 
 import Boats.AbstractBateau;
 import Boats.Bateau;
+import Weapon.AbstractArme;
 import Weapon.Arme;
 import Weapon.Avion;
 import Weapon.Missile;
@@ -126,6 +127,12 @@ public class BattleShip {
 					ocean.addATouched(Ocean.joueur.moi, touche);
 					result = true;
 				}
+				if(tir.getNomArme().equals("Torpille") && tir.getTouches().size() > 0) {
+					Coord c = tir.getTouches().get(0);
+					int i;
+					for(i=(c.y)+1;i<10;i++)
+						ocean.deleteTargetFromTorpille(new Coord(c.x,i));
+				}
 				
 				if(tir.gameOver) {
 					this.gameOver = true;
@@ -155,12 +162,11 @@ public class BattleShip {
 					tir.addTouche(cible);
 					result = true;
 					ocean.addATouched(Ocean.joueur.ennemi, cible);
+					if(tir.getNomArme().equals("Torpille"))
+						continueFire = false;
 					// si le bateau touché est coulé
 					if(ocean.isDown(cible)) {
-						temp = ocean.whoIsHere(cible);
-						if(temp.equals("Sous-Matin"))
-							continueFire = false;
-						tir.addBateauCoule(temp);
+						tir.addBateauCoule(ocean.whoIsHere(cible));
 						// Si tous les bateaux sont coulés => fin de la partie
 						if(ocean.areAllDown()) {
 							tir.gameOver = true;
@@ -220,6 +226,17 @@ public class BattleShip {
 	
 	public float getRatio(Ocean.joueur joueur) {
 		return ocean.getRatio(joueur);
+	}
+	
+	public boolean wasFirst() {
+		return reseau.getWasFirst();
+	}
+	
+	public AbstractArme getAbstractArme(String name) {
+		AbstractArme result = null;
+		if(lArmes.containsKey(name))
+			result = new AbstractArme(name, lArmes.get(name).getNbrRestant());
+		return result;
 	}
 	
 }

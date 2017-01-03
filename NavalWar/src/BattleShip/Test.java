@@ -9,6 +9,12 @@ public class Test {
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 		
+		Scanner sc = new Scanner(System.in);
+//		while(true) {
+//			System.out.print("Nbr : ");
+//			sc.nextInt();
+//		}
+//		
 		BattleShip bs = new BattleShip(BattleShip.modeJeu.TOTALWAR);
 		bs.connexion("127.0.0.1");
 		
@@ -23,20 +29,20 @@ public class Test {
 		
 //		Thread.sleep(2000);
 		
-//		while(true) {
-//			Coord cible = new Coord();
-//			Scanner sc = new Scanner(System.in);
-//			System.out.print("Ligne : ");
-//			cible.x = sc.nextInt()-1;
-//			System.out.print("Colonne : ");
-//			cible.y = sc.nextInt()-1;
-//			sc.close();
-//			
-//			bs.jAttaque(cible, "Nuke", Arme.Sens.HORIZONTAL);
-//			System.out.println(bs.ocean);
-//			
-//			bs.jAttendsLattaque();
-//		}
+		while(true) {
+			Coord cible = new Coord();
+			System.out.print("Ligne : ");
+			cible.x = sc.nextInt()-1;
+			System.out.print("Colonne : ");
+			cible.y = sc.nextInt()-1;
+			
+			Thread.sleep(200);
+			bs.jAttaque(cible, "Nuke", Arme.Sens.HORIZONTAL);
+			System.out.println(bs.ocean);
+			Thread.sleep(100);
+			
+			bs.jAttendsLattaque();
+		}
 		
 //		int i;
 //		for(i=0;i<1;i++) {
@@ -47,15 +53,15 @@ public class Test {
 //			Thread.sleep(500);
 //		}
 		
-		int i;
-		bs.waitAdversaire();
-		for(i=0;i<5;i++) {
-			Thread.sleep(1000);
-			bs.jAttendsLattaque();
-			
-			Thread.sleep(2000);
-			bs.jAttaque(new Coord(4,i), "Missile", Arme.Sens.HORIZONTAL);
-		}
+//		int i;
+//		bs.waitAdversaire();
+//		for(i=0;i<5;i++) {
+//			Thread.sleep(1000);
+//			bs.jAttendsLattaque();
+//			
+//			Thread.sleep(2000);
+//			bs.jAttaque(new Coord(4,i), "Missile", Arme.Sens.HORIZONTAL);
+//		}
 //		
 //		System.out.println(bs.ocean);
 		

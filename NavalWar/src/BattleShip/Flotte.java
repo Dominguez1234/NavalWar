@@ -133,9 +133,9 @@ public class Flotte {
 	@Override
 	public String toString() {
 		String str = "";
-		for (Bateau b : bateaux) {
-			str += b.toString()+"\n";
-		}
+//		for (Bateau b : bateaux) {
+//			str += b.toString()+"\n";
+//		}
 		
 		int i,j;
 		Coord p = new Coord(-1,-1);
